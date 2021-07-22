@@ -24,11 +24,9 @@ const publish = (name, spinner) => {
 const task = async name => {
   const spinner = ora('Loading').start()
   await Promise.resolve()
+    .then(() => chdir(`/Users/caohefei/work/${name}`))
     .then(() => {
       console.log(`开始编译 ${name}`)
-      chdir(`/Users/caohefei/work/${name}`)
-    })
-    .then(() => {
       return new Promise((res, rj) => {
         exec(`yarn com`, (error, stdout, stderr) => {
           if (error) {
@@ -45,24 +43,19 @@ const task = async name => {
             return rename('./dist', `./${name}`)
           }
         })
-        .then(() => {
-          return zip(name, spinner)
-        })
+        .then(() => zip(name, spinner))
         .then(() => {
           if (name !== 'data') {
             return rmdir(`./${name}`, { recursive: true })
           }
         })
-        .then(() => {
-          return publish(name, spinner)
-        })
+        .then(() => publish(name, spinner))
         .then(() => {
           return unlink(`./${name}.zip`)
           spinner.stop()
         })
         .catch(err => {
-          spinner.fail(name)
-          spinner.fail(err)
+          spinner.fail(err + name)
           spinner.stop()
         })
     })
