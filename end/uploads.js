@@ -1,19 +1,45 @@
-let Client = require('ssh2-sftp-client')
-let client = new Client()
+const { NodeSSH } = require('node-ssh')
 
-let localFile = '/Users/caohefei/work'
-let remoteFile = '/usr/share/nginx/html/'
+const ssh = new NodeSSH()
 
-exports.upload = async name => {
+let remoteFile = '/usr/share/nginx/html'
+
+const task = async name => {
   try {
-    await client.connect({
-      host: '124.71.153.152',
-      port: '22',
-      username: 'root',
-      password: 'xyadm01$'
-    })
-    return await client.fastPut(`./${name}.zip`, remoteFile + name + '.zip')
+    await ssh
+      .connect({
+        host: '124.71.153.152',
+        port: 22,
+        username: 'root',
+        password: 'xyadm01$'
+      })
+      .then(() => {
+        return ssh.putFile(`./${name}.zip`, `${remoteFile}/${name}.zip`)
+      })
+      .then(() => {
+        return ssh.execCommand(`rm -rf ${name}`, {
+          cwd: remoteFile
+        })
+      })
+      .then(() => {
+        return ssh.execCommand(`unzip  ${name}.zip`, {
+          cwd: remoteFile
+        })
+      })
+      .then(() => {
+        return ssh.execCommand(`rm -rf ${name}.zip`, {
+          cwd: remoteFile
+        })
+      })
+      .then(res => {
+        console.log('上传成功')
+      })
+      .catch(err => {
+        console.log(err)
+      })
   } finally {
-    client.end()
+    ssh.dispose()
   }
 }
+
+exports.upload = task

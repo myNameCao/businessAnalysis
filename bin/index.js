@@ -17,7 +17,8 @@ inquirer
         'data',
         'check',
         'center',
-        'answersheet'
+        'answersheet',
+        'port'
       ]
     }
   ])
