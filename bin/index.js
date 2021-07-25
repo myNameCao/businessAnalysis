@@ -1,8 +1,6 @@
 #!/usr/bin/env node
-
 var inquirer = require('inquirer')
-const { task } = require('../end/pubish')
-// const { a } = require('../index.js')
+const { task } = require('../tools/pubish')
 inquirer
   .prompt([
     {
