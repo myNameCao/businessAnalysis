@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const ora = require('ora')
-const { exec } = require('child_process')
+const { exec, execSync } = require('child_process')
 const { chdir } = require('process')
 const { unlink, rename, rmdir } = require('fs').promises
 const { upload } = require('./uploads')
@@ -21,10 +21,22 @@ const publish = (name, spinner) => {
     spinner.succeed(`${name}  上传完成`)
   })
 }
-const task = async name => {
+const task = name => {
   const spinner = ora('Loading').start()
-  await Promise.resolve()
+  return Promise.resolve()
     .then(() => chdir(`/Users/caohefei/work/${name}`))
+    .then(() => {
+      return execSync('git pull origin develop')
+    })
+    .then(res => {
+      console.log(res.toString())
+    })
+    .then(() => {
+      return execSync('git log -1')
+    })
+    .then(res => {
+      console.log(res.toString())
+    })
     .then(() => {
       console.log(`开始编译 ${name}`)
       return new Promise((res, rj) => {
@@ -58,6 +70,9 @@ const task = async name => {
           spinner.fail(err + name)
           spinner.stop()
         })
+    })
+    .catch(err => {
+      console.log('拉取失败', err)
     })
 }
 
