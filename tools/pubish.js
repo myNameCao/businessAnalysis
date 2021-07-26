@@ -42,8 +42,8 @@ const task = name => {
       return new Promise((res, rj) => {
         exec(`yarn com`, (error, stdout, stderr) => {
           if (error) {
-            console.log(`${name} 编译失败`)
-            rj()
+            spinner.fail(`${name} 编译失败`)
+            rj('编译失败')
             return
           }
           res()
