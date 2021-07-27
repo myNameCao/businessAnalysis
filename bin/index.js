@@ -9,8 +9,6 @@ inquirer
       name: 'checkbox',
       message: 'Select your product',
       choices: [
-        'port',
-        'test',
         'test_new',
         'report',
         'base',
@@ -24,14 +22,10 @@ inquirer
     }
   ])
   .then(answers => {
-    let list = answers.checkbox.map(name => {
-      return task.bind(null, name)
-    })
-    console.log(
-      composeAsync(list)().then(res => {
-        console.log(res)
+    composeAsync(
+      answers.checkbox.map(name => {
+        return task.bind(null, name)
       })
-    )
-    // return composeAsync(list)()
+    )()
   })
   .catch(error => {})

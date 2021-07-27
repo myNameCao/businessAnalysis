@@ -18,7 +18,8 @@ let b = async () => {
 }
 const transformData = composeAsync(a, b)
 const result3 = transformData()
-  .then(data => console.log(data))
-  .catch(err => {
-    console.log(err)
+  .then(data =>   console.log(err)
   })
+console.log(data))
+  .catch(err => {
+  
