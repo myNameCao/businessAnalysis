@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var inquirer = require('inquirer')
 const { task } = require('../tools/pubish')
+const { composeAsync } = require('../composeAsync')
 inquirer
   .prompt([
     {
@@ -8,6 +9,8 @@ inquirer
       name: 'checkbox',
       message: 'Select your product',
       choices: [
+        'port',
+        'test',
         'test_new',
         'report',
         'base',
@@ -21,10 +24,14 @@ inquirer
     }
   ])
   .then(answers => {
-    answers.checkbox
-      .map(name => {
-        return task.bind(null, name)
+    let list = answers.checkbox.map(name => {
+      return task.bind(null, name)
+    })
+    console.log(
+      composeAsync(list)().then(res => {
+        console.log(res)
       })
-      .reduce((p, f) => p.then(f), Promise.resolve())
+    )
+    // return composeAsync(list)()
   })
   .catch(error => {})

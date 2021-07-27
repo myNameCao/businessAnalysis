@@ -23,6 +23,7 @@ const publish = (name, spinner) => {
 }
 const task = name => {
   const spinner = ora('Loading').start()
+  console.log(111)
   return Promise.resolve()
     .then(() => chdir(`/Users/caohefei/work/${name}`))
     .then(() => {
