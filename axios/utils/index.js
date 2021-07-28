@@ -1,5 +1,4 @@
 function forEach(obj, fn) {
-  // Iterate over object keys
   for (var key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       fn.call(null, obj[key], key, obj)
@@ -21,4 +20,12 @@ function extend(a, b, thisArg) {
     }
   }
   return a
+}
+
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  }
 }
