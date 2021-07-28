@@ -1,10 +1,9 @@
-const ora = require('ora')
-const spinner = ora().start()
+let a = 1
+let b = 2
 
-setTimeout(() => {
-  spinner.succeed(`  上传完成`)
-  spinner.start('wwww')
-  setTimeout(() => {
-    spinner.succeed(`  上传完成111`)
-  }, 3000)
-}, 3000)
+exports.b = b
+exports.a = a
+
+module.exports = { a }
+
+module.exports.default = a

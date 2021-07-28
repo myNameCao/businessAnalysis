@@ -4,15 +4,12 @@ const ssh = new NodeSSH()
 
 let remoteFile = '/usr/share/nginx/html'
 
+let CONF = require('../config.json')
+
 const task = async name => {
   try {
     await ssh
-      .connect({
-        host: '124.71.153.152',
-        port: 22,
-        username: 'root',
-        password: 'xyadm01$'
-      })
+      .connect(CONF)
       .then(() => {
         return ssh.putFile(`./${name}.zip`, `${remoteFile}/${name}.zip`)
       })
