@@ -29,7 +29,8 @@ const gitPull = name => {
 } // 拉取代码
 
 const build = (name, spinner) => {
-  spinner.succeed('开始编译 loading....')
+  spinner.succeed('开始编译')
+  spinner.start('loading....')
   return Promise.resolve()
     .then(() => {
       return execSync(`yarn com`)
