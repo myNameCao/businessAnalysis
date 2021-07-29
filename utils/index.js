@@ -1,4 +1,4 @@
-function forEach(obj, fn) {
+let forEach = (obj, fn) => {
   // Don't bother if no value provided
   if (obj === null || typeof obj === 'undefined') {
     return
@@ -23,4 +23,4 @@ function forEach(obj, fn) {
   }
 }
 
-exports.forEach = forEach
+exports.upload = forEach

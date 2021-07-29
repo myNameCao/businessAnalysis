@@ -26,4 +26,6 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
   })
 }
 
+//观察者模式
+
 module.exports = InterceptorManager
