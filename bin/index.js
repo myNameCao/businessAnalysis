@@ -14,6 +14,7 @@ inquirer
         'base',
         'exam',
         'data',
+        'datacenter',
         'check',
         'center',
         'pay',
