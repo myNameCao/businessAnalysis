@@ -1,0 +1,33 @@
+/* BEM support Func
+ -------------------------- */
+.el-alert {
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s; }
+  .el-alert--success.is-light {
+    color: red; }
+    .el-alert--success.is-light .el-alert__description {
+      color: blue; }
+  .el-alert--success.is-dark {
+    background-color: blue;
+    color: white; }
+  .el-alert--error.is-light {
+    color: white; }
+    .el-alert--error.is-light .el-alert__description {
+      color: red; }
+  .el-alert--error.is-dark {
+    background-color: black;
+    color: white; }
+  .el-alert__content {
+    display: table-cell;
+    padding: 0 8px; }
+  .el-alert__icon {
+    font-size: 12px; }
+  .el-alert .el-alert__description {
+    margin: 5px 0 0 0; }

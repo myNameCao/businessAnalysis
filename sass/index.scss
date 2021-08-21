@@ -1,0 +1,240 @@
+$namespace: 'el';
+$element-separator: '__';
+$modifier-separator: '--';
+$state-prefix: 'is-';
+
+/* BEM support Func
+ -------------------------- */
+@function selectorToString($selector) {
+  $selector: inspect($selector);
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}
+
+@function containsModifier($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, $modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containWhenFlag($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, '.' + $state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containPseudoClass($selector) {
+  $selector: selectorToString($selector);
+  @if str-index($selector, ':') {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function hitAllSpecialNestRule($selector) {
+  @return containsModifier($selector) or containWhenFlag($selector) or
+    containPseudoClass($selector);
+}
+
+@mixin b($block) {
+  $B: $namespace + '-' + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin e($element) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector +
+      '.' +
+      $B +
+      $element-separator +
+      $unit +
+      ','};
+  }
+
+  @if hitAllSpecialNestRule($selector) {
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      & +
+      $modifier-separator +
+      $unit +
+      ','};
+  }
+  @debug $currentSelector;
+  @debug &;
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+@include b(alert) {
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+
+  // @include when(light) {
+  //   .el-alert__closebtn {
+  //     color: red;
+  //   }
+  // }
+
+  // @include when(dark) {
+  //   .el-alert__closebtn {
+  //     color: white;
+  //   }
+  //   .el-alert__description {
+  //     color: white;
+  //   }
+  // }
+
+  // @include when(center) {
+  //   justify-content: center;
+  // }
+
+  @include m(success) {
+    &.is-light {
+      color: red;
+      .el-alert__description {
+        color: blue;
+      }
+    }
+
+    &.is-dark {
+      background-color: blue;
+      color: white;
+    }
+  }
+
+  // @include m(info) {
+  //   &.is-light {
+  //     color: $--color-info;
+  //   }
+
+  //   &.is-dark {
+  //     background-color: $--color-info;
+  //     color: $--color-white;
+  //   }
+
+  //   .el-alert__description {
+  //     color: $--color-info;
+  //   }
+  // }
+
+  // @include m(warning) {
+  //   &.is-light {
+  //     background-color: $--alert-warning-color;
+  //     color: $--color-warning;
+
+  //     .el-alert__description {
+  //       color: $--color-warning;
+  //     }
+  //   }
+
+  //   &.is-dark {
+  //     background-color: $--color-warning;
+  //     color: $--color-white;
+  //   }
+  // }
+
+  @include m(error) {
+    &.is-light {
+      color: white;
+
+      .el-alert__description {
+        color: red;
+      }
+    }
+
+    &.is-dark {
+      background-color: black;
+      color: white;
+    }
+  }
+
+  @include e(content) {
+    display: table-cell;
+    padding: 0 8px;
+  }
+
+  @include e(icon) {
+    font-size: 12px;
+    // @include when(big) {
+    //   font-size: 12px;
+    //   width: 12px;
+    // }
+  }
+
+  // @include e(title) {
+  //   font-size: $--alert-title-font-size;
+  //   line-height: 18px;
+  //   @include when(bold) {
+  //     font-weight: bold;
+  //   }
+  // }
+
+  & .el-alert__description {
+    margin: 5px 0 0 0;
+  }
+
+  // @include e(closebtn) {
+  //   opacity: 1;
+  //   position: absolute;
+  //   top: 12px;
+  //   right: 15px;
+  //   cursor: pointer;
+  //   @include when(customed) {
+  //     font-style: normal;
+  //     top: 9px;
+  //   }
+  // }
+}
