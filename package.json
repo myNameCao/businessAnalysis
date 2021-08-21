@@ -5,6 +5,7 @@
     "inquirer": "^8.1.2",
     "node-sass": "^6.0.1",
     "node-ssh": "^12.0.0",
+    "chalk": "^4.1.0",
     "ora": "^5.4.1"
   },
   "name": "myrun",
@@ -20,6 +21,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "node ./scripts/checkYarn.js",
     "sass": "node-sass --watch sass/index.scss css/index.css"
   },
   "author": "",
