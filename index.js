@@ -1,62 +1,17 @@
-function notice(args) {
-  const duration = args.duration !== undefined ? args.duration : defaultDuration
-  const iconType = {
-    info: 'info-circle',
-    success: 'check-circle',
-    error: 'close-circle',
-    warning: 'exclamation-circle',
-    loading: 'loading'
-  }[args.type]
-  const target = args.key || key++
-  const closePromise = new Promise(resolve => {
-    const callback = () => {
-      if (typeof args.onClose === 'function') {
-        args.onClose()
-      }
-      return resolve(true)
-    }
-    getMessageInstance(instance => {
-      instance.notice({
-        key: target,
-        duration,
-        style: {},
-        content: h => {
-          const iconNode = (
-            <Icon
-              type={iconType}
-              theme={iconType === 'loading' ? 'outlined' : 'filled'}
-            />
-          )
-          const switchIconNode = iconType ? iconNode : ''
-          return (
-            <div
-              class={`${prefixCls}-custom-content${
-                args.type ? ` ${prefixCls}-${args.type}` : ''
-              }`}
-            >
-              {args.icon
-                ? typeof args.icon === 'function'
-                  ? args.icon(h)
-                  : args.icon
-                : switchIconNode}
-              <span>
-                {typeof args.content === 'function'
-                  ? args.content(h)
-                  : args.content}
-              </span>
-            </div>
-          )
-        },
-        onClose: callback
-      })
-    })
-  })
-  const result = () => {
-    if (messageInstance) {
-      messageInstance.removeNotice(target)
-    }
-  }
-  result.then = (filled, rejected) => closePromise.then(filled, rejected)
-  result.promise = closePromise
-  return result
-}
+const execa = require('execa')
+const chalk = require('chalk')
+let isDryRun = 0
+const step = msg => console.log(chalk.cyan(msg))
+
+const run = (bin, args, opts = {}) =>
+  execa(bin, args, { stdio: 'inherit', ...opts })
+
+const dryRun = (bin, args, opts = {}) =>
+  console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts)
+
+const runIfNotDry = isDryRun ? dryRun : run
+
+step('\nPushing to GitHub...')
+let targetVersion = '2.9.1'
+runIfNotDry('git', ['tag', `v${targetVersion}`])
+const { stdout } = run('git', ['diff'], { stdio: 'pipe' })
