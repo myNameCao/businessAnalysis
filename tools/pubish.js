@@ -26,6 +26,11 @@ const gitPull = name => {
     .then(res => {
       console.log(res.toString())
     })
+    .then(() => {
+      return execSync(
+        `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}'`
+      )
+    })
 } // 拉取代码
 
 const build = (name, spinner) => {
