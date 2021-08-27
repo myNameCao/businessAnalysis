@@ -19,9 +19,12 @@
     "pre-commit": "lint-staged",
     "commit-msg": "node scripts/verifyCommit.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.1.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "preinstall": "node ./scripts/checkYarn.js",
     "sass": "node-sass --watch sass/index.scss css/index.css"
   },
