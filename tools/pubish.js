@@ -28,7 +28,7 @@ const gitPull = name => {
     })
     .then(() => {
       return execSync(
-        `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}'`
+        `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
       )
     })
 } // 拉取代码

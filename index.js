@@ -1,17 +1,31 @@
-const execa = require('execa')
-const chalk = require('chalk')
-let isDryRun = 0
-const step = msg => console.log(chalk.cyan(msg))
+// zero :: () -> Number
+function fZero() {
+  console.log('Starting with nothing')
+  // Definitely not launching a nuclear strike here.
+  // But this function is still impure.
+  return 0
+}
 
-const run = (bin, args, opts = {}) =>
-  execa(bin, args, { stdio: 'inherit', ...opts })
+// Effect :: Function -> Effect
+function Effect(f) {
+  return {
+    map(g) {
+      return Effect(x => g(f(x)))
+    },
+    runEffects(x) {
+      return f(x)
+    }
+  }
+}
 
-const dryRun = (bin, args, opts = {}) =>
-  console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts)
+const zero = Effect(fZero)
 
-const runIfNotDry = isDryRun ? dryRun : run
+const increment = x => x + 1 // Just a regular function.
 
-step('\nPushing to GitHub...')
-let targetVersion = '2.9.1'
-runIfNotDry('git', ['tag', `v${targetVersion}`])
-const { stdout } = run('git', ['diff'], { stdio: 'pipe' })
+const double = x => x * 2
+
+const one = zero.map(increment).map(double)
+
+let a = one.runEffects()
+
+console.log(a)
