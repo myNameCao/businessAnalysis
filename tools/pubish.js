@@ -33,7 +33,7 @@ const gitPull = name => {
       )
     })
     .then(() => {
-      return execSync(`git tag ${new Date().toDateString()}`)
+      return execSync(`git tag '${new Date().toDateString()}' `)
     })
 } // 拉取代码
 const build = (name, spinner) => {
