@@ -8,7 +8,7 @@ updatePackage(version)
 
 console.log(typeof version)
 
-execSync(`git tag 'v-${version}' `)
+execSync(`git tag 'v${version}' && git push origin  `)
 
 execSync(
   `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
