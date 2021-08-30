@@ -30,7 +30,7 @@ const gitPull = (name, spinner) => {
     })
     .then(res => {
       const currentVersion = require('../package.json').version
-      spinner.succeed('生成changelog')
+      spinner.succeed('拉取代码成功')
       return inquirer
         .prompt([
           {
@@ -40,6 +40,7 @@ const gitPull = (name, spinner) => {
           }
         ])
         .then(i => {
+          spinner.start('生成 tag ....')
           return execSync(`yarn release ${i.version} `)
         })
     })
