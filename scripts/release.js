@@ -8,4 +8,4 @@ function updatePackage(version) {
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
 }
 
-updatePackage('3.0.0')
+updatePackage('8.0.0')
