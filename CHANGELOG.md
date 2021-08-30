@@ -1,3 +1,12 @@
+## [3.0.56](https://github.com/myNameCao/node/compare/3.0.55...3.0.56) (2021-08-30)
+
+
+### Bug Fixes
+
+* add ([ee7718d](https://github.com/myNameCao/node/commit/ee7718dd22a0396be863d20a6413afb1ed43b88b))
+
+
+
 ## [3.0.55](https://github.com/myNameCao/node/compare/3.0.54...3.0.55) (2021-08-30)
 
 
