@@ -1,7 +1,6 @@
 const path = require('path')
 const fs = require('fs')
 const { execSync } = require('child_process')
-console.log(process.argv[2])
 let version = process.argv[2] || ''
 execSync(`git tag 'v${version}' && git push origin 'v${version}'  `)
 
