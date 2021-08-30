@@ -1,11 +1,8 @@
 const path = require('path')
 const fs = require('fs')
 const { execSync } = require('child_process')
-
 let version = process.argv[2] || ''
-
 updatePackage(version)
-
 execSync(
   `yarn changelog && git add . && git commit -m 'release(自动化): ${version}' && git push`
 )
