@@ -11,7 +11,7 @@ const compressing = require('compressing')
 
 let PATH = '/Users/caohefei/work'
 
-const gitPull = name => {
+const gitPull = (name, spinner) => {
   return Promise.resolve()
     .then(() => {
       return chdir(`${PATH}/${name}`)
@@ -30,6 +30,7 @@ const gitPull = name => {
     })
     .then(res => {
       const currentVersion = require('../package.json').version
+      spinner.succeed('生成changelog')
       return inquirer
         .prompt([
           {
@@ -39,11 +40,7 @@ const gitPull = name => {
           }
         ])
         .then(i => {
-          console.log(i.version)
           return execSync(`yarn release ${i.version} `)
-        })
-        .catch(t => {
-          console.log(t)
         })
     })
 } // 拉取代码
@@ -91,8 +88,8 @@ const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
 const task = name => {
-  // const spinner = ora().start()
-  const spinner = ora()
+  const spinner = ora().start()
+  // const spinner = ora()
 
   const funs = composeAsync(
     [gitPull].map(fn => {
