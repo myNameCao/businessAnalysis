@@ -6,7 +6,7 @@ let version = process.argv[2] || ''
 
 updatePackage(version)
 
-execSync(`git tag '${version}' `)
+execSync(`git tag '2' `)
 
 execSync(
   `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
