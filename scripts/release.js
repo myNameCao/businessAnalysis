@@ -3,7 +3,7 @@ const fs = require('fs')
 const { execSync } = require('child_process')
 let version = process.argv[2] || ''
 
-execSync(`git tag 'v${version}' && git push origin 'v${version}'  `)
+execSync(`git tag 'v${version}' && git push origin 'v${version}'`)
 
 execSync(
   `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
