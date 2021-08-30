@@ -26,13 +26,16 @@ const gitPull = name => {
     .then(res => {
       console.log(res.toString())
     })
+
     .then(() => {
       return execSync(
         `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
       )
     })
+    .then(() => {
+      return execSync(`git tag ${new Date().toDateString()}`)
+    })
 } // 拉取代码
-
 const build = (name, spinner) => {
   spinner.succeed('开始编译')
   spinner.start('loading....')
@@ -78,9 +81,12 @@ const rmZip = name => {
 const task = name => {
   const spinner = ora().start()
   const funs = composeAsync(
-    [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
+    [gitPull].map(fn => {
       return fn.bind(null, name, spinner)
     })
+    // [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
+    //   return fn.bind(null, name, spinner)
+    // })
   )
   return funs()
     .then(() => {

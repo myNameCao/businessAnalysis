@@ -13,6 +13,7 @@ inquirer
         'report',
         'base',
         'exam',
+        'node',
         'mark',
         'datacenter',
         'check',
