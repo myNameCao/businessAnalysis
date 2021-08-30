@@ -2,11 +2,14 @@ const path = require('path')
 const fs = require('fs')
 const { execSync } = require('child_process')
 
-const currentVersion = require('../package.json').version
-
-let version = '10.0.0'
+console.log(process.argv[2])
+let version = process.argv[2] || ''
 
 execSync(`git tag 'v${version}' && git push origin 'v${version}'  `)
+
+execSync(
+  `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
+)
 
 updatePackage(version)
 

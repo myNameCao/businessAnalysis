@@ -1,4 +1,6 @@
 const ora = require('ora')
+
+const inquirer = require('inquirer')
 const { execSync } = require('child_process')
 const { chdir } = require('process')
 const { unlink, rename, rmdir } = require('fs').promises
@@ -27,14 +29,12 @@ const gitPull = name => {
       console.log(res.toString())
     })
     .then(res => {
-      return execSync(`yarn release`)
-    })
-    .then(() => {
-      return execSync(
-        `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
-      )
+      const currentVersion = require('../package.json').version
+      console.log(currentVersion)
+      return execSync(`yarn release ${currentVersion} `)
     })
 } // 拉取代码
+
 const build = (name, spinner) => {
   spinner.succeed('开始编译')
   spinner.start('loading....')
