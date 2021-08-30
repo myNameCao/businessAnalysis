@@ -10,7 +10,7 @@
     "ora": "^5.4.1"
   },
   "name": "myrun",
-  "version": "2.9.122",
+  "version": "2.9.21211",
   "main": "index.js",
   "bin": {
     "chris_publish": "bin/index.js"
