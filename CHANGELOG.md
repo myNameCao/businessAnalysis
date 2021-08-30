@@ -4,6 +4,16 @@
 ### Bug Fixes
 
 * 222 ([4ebe811](https://github.com/myNameCao/node/commit/4ebe8117e85987b12c0d99cb6cbe39938ea1833e))
+* 333 ([c23b352](https://github.com/myNameCao/node/commit/c23b35229130376b513a8cfcd3423b77ada9bcc7))
+
+
+
+# [1.0.0](https://github.com/myNameCao/node/compare/v2.9.3...v1.0.0) (2021-08-30)
+
+
+### Bug Fixes
+
+* 222 ([4ebe811](https://github.com/myNameCao/node/commit/4ebe8117e85987b12c0d99cb6cbe39938ea1833e))
 
 
 
