@@ -38,7 +38,7 @@ const gitPull = name => {
           message: `当前的版本号是 ${currentVersion}`
         })
         .then(i => {
-          console.log(i)
+          return console.log(i)
           // return execSync(`yarn release ${i} `)
         })
         .catch(t => {
