@@ -1,3 +1,12 @@
+## [3.0.2111](https://github.com/myNameCao/node/compare/v3.0.111...v3.0.2111) (2021-08-30)
+
+
+### Bug Fixes
+
+* eee ([8232534](https://github.com/myNameCao/node/commit/8232534061a5c29df4613cb744e0fab625c91c37))
+
+
+
 ## [2.9.21211](https://github.com/myNameCao/node/compare/2.9.23333...2.9.21211) (2021-08-30)
 
 
