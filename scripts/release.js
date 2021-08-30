@@ -6,7 +6,7 @@ let version = process.argv[2] || ''
 
 updatePackage(version)
 
-console.log(version)
+console.log(typeof version)
 
 execSync(`git tag 'v-${version}' `)
 
