@@ -34,13 +34,13 @@ const gitPull = name => {
         .prompt([
           {
             type: 'input',
-            name: '请输入版本号',
-            message: `当前的版本号是 ${currentVersion}`
+            name: 'version',
+            message: ` 当前的版本号是 ${currentVersion}，请输入你的版本号？`
           }
         ])
         .then(i => {
-          return console.log(i)
-          // return execSync(`yarn release ${i} `)
+          console.log(i.version)
+          return execSync(`yarn release ${i.version} `)
         })
         .catch(t => {
           console.log(t)
@@ -91,7 +91,9 @@ const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
 const task = name => {
-  const spinner = ora().start()
+  // const spinner = ora().start()
+  const spinner = ora()
+
   const funs = composeAsync(
     [gitPull].map(fn => {
       return fn.bind(null, name, spinner)
