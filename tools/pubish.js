@@ -30,7 +30,20 @@ const gitPull = name => {
     })
     .then(res => {
       const currentVersion = require('../package.json').version
-      return execSync(`yarn release ${currentVersion} `)
+      console.log(currentVersion, 111)
+      return inquirer
+        .prompt({
+          type: 'input',
+          name: '请输入版本号',
+          message: `当前的版本号是 ${currentVersion}`
+        })
+        .then(i => {
+          console.log(i)
+          // return execSync(`yarn release ${i} `)
+        })
+        .catch(t => {
+          console.log(t)
+        })
     })
 } // 拉取代码
 
