@@ -7,10 +7,10 @@ console.log(version)
 
 updatePackage(version)
 
-// execSync(`git tag 'v-232sss32' `)
+execSync(`git tag 'v-${version}' `)
 
 execSync(
-  `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
+  `yarn changelog && git add . && git commit -m 'release(自动化): ${version}' && git push`
 )
 
 function updatePackage(version) {
