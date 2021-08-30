@@ -30,7 +30,6 @@ const gitPull = name => {
     })
     .then(res => {
       const currentVersion = require('../package.json').version
-      console.log(currentVersion)
       return execSync(`yarn release ${currentVersion} `)
     })
 } // 拉取代码
