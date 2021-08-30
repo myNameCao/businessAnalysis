@@ -3,7 +3,6 @@ const fs = require('fs')
 const { execSync } = require('child_process')
 
 let version = process.argv[2] || ''
-console.log(version)
 
 updatePackage(version)
 
