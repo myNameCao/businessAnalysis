@@ -5,8 +5,9 @@ const { execSync } = require('child_process')
 let version = process.argv[2] || ''
 
 updatePackage(version)
+console.log(version)
 
-execSync(`git tag 'eeee' `)
+execSync(`git tag ${version} `)
 
 execSync(
   `yarn changelog && git add . && git commit -m 'release(自动化): ${new Date().toDateString()}' && git push`
