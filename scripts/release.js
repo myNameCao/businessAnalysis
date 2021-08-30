@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
-
+const currentVersion = require('../package.json').version
+console.log(currentVersion)
 function updatePackage(version) {
   const pkgPath = path.resolve('./', 'package.json')
   const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
