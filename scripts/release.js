@@ -10,7 +10,6 @@ execSync(
 )
 
 execSync(`git tag 'v-${version}' && git push origin 'v-${version}' `)
-
 function updatePackage(version) {
   const pkgPath = path.resolve('./', 'package.json')
   const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
