@@ -30,7 +30,7 @@ const gitPull = name => {
     })
     .then(res => {
       const currentVersion = require('../package.json').version
-      console.log(currentVersion, 111)
+      console.log(inquirer, 111)
       return inquirer
         .prompt({
           type: 'input',
