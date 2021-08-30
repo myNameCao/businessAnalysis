@@ -1,3 +1,14 @@
+## [3.1.4](https://github.com/myNameCao/node/compare/3.1.1...3.1.4) (2021-08-30)
+
+
+### Bug Fixes
+
+* 3.1.2 ([f022174](https://github.com/myNameCao/node/commit/f0221747dbdcbc55d672a8ea5f2839c83fda6f10))
+* 3.1.2 ([7877710](https://github.com/myNameCao/node/commit/7877710c1c756a4e39b8eb39106cd4cdd38f7d50))
+* 3.1.4 ([8b3dae6](https://github.com/myNameCao/node/commit/8b3dae6f9984881c26bc3928a1bd9e338615808a))
+
+
+
 ## [3.1.3](https://github.com/myNameCao/node/compare/3.1.1...3.1.3) (2021-08-30)
 
 
