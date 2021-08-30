@@ -1,3 +1,13 @@
+# [8.0.0](https://github.com/myNameCao/node/compare/v2.9.4...v8.0.0) (2021-08-30)
+
+
+### Bug Fixes
+
+* 112121 ([6fe1339](https://github.com/myNameCao/node/commit/6fe13396961a2d8b4fcdb05bddd78268cdd6b20c))
+* eee ([eec6552](https://github.com/myNameCao/node/commit/eec655222a9490f38ddce4ee4ec3289ced2df4cb))
+
+
+
 # [1.0.0](https://github.com/myNameCao/node/compare/v2.9.4...v1.0.0) (2021-08-30)
 
 
