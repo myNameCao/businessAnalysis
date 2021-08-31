@@ -41,6 +41,7 @@ const gitPull = (name, spinner) => {
         ])
         .then(i => {
           spinner.start('生成 tag ....')
+
           return execSync(`yarn release ${i.version} `)
         })
     })
@@ -90,8 +91,6 @@ const rmZip = name => {
 } // 删除压缩包
 const task = name => {
   const spinner = ora().start()
-  // const spinner = ora()
-
   const funs = composeAsync(
     [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
       return fn.bind(null, name, spinner)
