@@ -40,8 +40,6 @@ const gitPull = (name, spinner) => {
           }
         ])
         .then(i => {
-          spinner.start('生成 tag ....')
-
           return execSync(`yarn release ${i.version} `)
         })
     })

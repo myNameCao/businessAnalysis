@@ -3,6 +3,7 @@ const fs = require('fs')
 const { execSync } = require('child_process')
 let version = process.argv[2] || ''
 updatePackage(version)
+// 必须都是同步的
 execSync(
   `yarn changelog && git add . && git commit -m 'release(自动化): ${version}' && git push`
 )
