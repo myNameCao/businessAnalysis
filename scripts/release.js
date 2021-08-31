@@ -3,19 +3,10 @@ const fs = require('fs')
 const { exec } = require('child_process')
 let version = process.argv[2] || ''
 updatePackage(version)
-exec(
-  `yarn changelog && git add . && git commit -m 'release(自动化): ${version}' && git push`,
-  (error, stdout, stderr) => {
-    console.log(error)
-  }
+execSync(
+  `yarn changelog && git add . && git commit -m 'release(自动化): ${version}' && git push`
 )
-exec(
-  `git tag '${version}' && git push origin --tags `,
-  (error, stdout, stderr) => {
-    console.log(error)
-    console.log(stdout)
-  }
-)
+execSync(`git tag '${version}' && git push origin --tags `)
 function updatePackage(version) {
   const pkgPath = path.resolve('./', 'package.json')
   const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
