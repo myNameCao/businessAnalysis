@@ -29,7 +29,7 @@ const gitPull = (name, spinner) => {
       console.log(res.toString())
     })
     .then(res => {
-      const currentVersion = require('../package.json').version
+      const currentVersion = require(`${PATH}/${name}/package.json`).version
       spinner.succeed('拉取代码成功')
       return inquirer
         .prompt([
