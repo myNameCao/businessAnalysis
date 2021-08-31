@@ -13,6 +13,7 @@ exec(
   `git tag '${version}' && git push origin --tags `,
   (error, stdout, stderr) => {
     console.log(error)
+    console.log(stdout)
   }
 )
 function updatePackage(version) {
