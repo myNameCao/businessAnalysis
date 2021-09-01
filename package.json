@@ -15,10 +15,6 @@
   "bin": {
     "chris_publish": "bin/index.js"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verifyCommit.js"
-  },
   "devDependencies": {
     "conventional-changelog-cli": "^2.1.1",
     "husky": "^7.0.2"
