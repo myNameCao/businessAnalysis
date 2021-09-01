@@ -90,9 +90,18 @@ const rmZip = name => {
 const task = name => {
   const spinner = ora().start()
   const funs = composeAsync(
+<<<<<<< HEAD
     [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
       return fn.bind(null, name, spinner)
     })
+=======
+    [gitPull].map(fn => {
+      return fn.bind(null, name, spinner)
+    })
+    // [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
+    //   return fn.bind(null, name, spinner)
+    // })
+>>>>>>> 3cffd6e6a723ff8f50cce81e2c5c492eabc3db13
   )
   return funs()
     .then(() => {
