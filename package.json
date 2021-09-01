@@ -4,6 +4,7 @@
     "chalk": "^4.1.0",
     "compressing": "^1.5.1",
     "execa": "^5.1.1",
+    "husky": "^7.0.2",
     "inquirer": "^8.1.2",
     "node-sass": "^6.0.1",
     "node-ssh": "^12.0.0",
@@ -16,8 +17,7 @@
     "chris_publish": "bin/index.js"
   },
   "devDependencies": {
-    "conventional-changelog-cli": "^2.1.1",
-    "husky": "^7.0.2"
+    "conventional-changelog-cli": "^2.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
