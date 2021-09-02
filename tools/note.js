@@ -12,7 +12,7 @@ const note = name => {
         {
           markdown: {
             title: name + '发版',
-            text: '11'
+            text
           },
           headers: { 'Content-Type': 'application/json' },
           msgtype: 'markdown'
@@ -20,8 +20,7 @@ const note = name => {
       )
       .then(function (res) {
         console.log(res.data)
-
-        // fs.unlink('./CHANGELOG.js')
+        fs.unlink('./CHANGELOG.js')
       })
 
       .catch(function (error) {
