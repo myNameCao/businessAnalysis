@@ -6,6 +6,7 @@ const { chdir } = require('process')
 const { unlink, rename, rmdir } = require('fs').promises
 
 const { upload } = require('./uploads')
+const { note } = require('./note')
 const { composeAsync } = require('../composeAsync')
 const compressing = require('compressing')
 
@@ -90,7 +91,10 @@ const rmZip = name => {
 const task = name => {
   const spinner = ora().start()
   const funs = composeAsync(
-    [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
+    // [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
+    //   return fn.bind(null, name, spinner)
+    // })
+    [note].map(fn => {
       return fn.bind(null, name, spinner)
     })
   )
