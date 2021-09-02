@@ -14,3 +14,10 @@ class User implements IPerson {
 interface IRoles extends User {}
 
 class Roles extends User {}
+
+type LinkedList<T> = T & { next: LinkedList<T> }
+
+interface Person {
+  name: string
+}
+type Yikes = Array<Yikes>
