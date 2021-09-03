@@ -58,24 +58,17 @@ const build = (name, spinner) => {
     })
 } // 打包
 const renameVue = name => {
-  if (name !== 'data') {
-    return rename('./dist', `./${name}`)
-  }
+  return rename('./dist', `./${name}`)
 } // 修改名称
 const zip = (name, spinner) => {
   let path = name
-  if (name === 'data') {
-    path = `dist/${name}/`
-  }
   return compressing.zip.compressDir(`./${path}`, `./${name}.zip`).then(() => {
     spinner.succeed(`${name} 压缩完成`)
   })
 } // 压缩代码
 
 const rmVue = name => {
-  if (name !== 'data') {
-    return rmdir(`./${name}`, { recursive: true })
-  }
+  return rmdir(`./${name}`, { recursive: true })
 } // 删除 多余文件夹
 
 const publish = (name, spinner) => {
@@ -91,7 +84,10 @@ const rmZip = name => {
 const task = name => {
   const spinner = ora().start()
   const funs = composeAsync(
-    [gitPull, build, renameVue, zip, rmVue, publish, rmZip, note].map(fn => {
+    // [gitPull, build, renameVue, zip, rmVue, publish, rmZip, note].map(fn => {
+    //   return fn.bind(null, name, spinner)
+    // })
+    [gitPull, note].map(fn => {
       return fn.bind(null, name, spinner)
     })
   )
