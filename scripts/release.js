@@ -7,6 +7,7 @@ updatePackage(version)
 execSync(
   `yarn changelog && git add . && git commit -m 'release(自动化): ${version}' && git push`
 )
+execSync(`yarn note`)
 execSync(`git tag '${version}' && git push origin --tags `)
 function updatePackage(version) {
   const pkgPath = path.resolve('./', 'package.json')

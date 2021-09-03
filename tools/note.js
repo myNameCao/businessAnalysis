@@ -3,7 +3,6 @@ const fs = require('fs')
 const path = require('path')
 const { execSync } = require('child_process')
 const note = name => {
-  execSync(`yarn note`)
   try {
     let text = fs.readFileSync('./CHANGELOG.js', 'utf8')
     axios
