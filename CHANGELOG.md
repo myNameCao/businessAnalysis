@@ -1,3 +1,12 @@
+## [1.0.7](https://github.com/myNameCao/node/compare/1.0.6...1.0.7) (2021-09-03)
+
+
+### Features
+
+* 测试 ([15d33e2](https://github.com/myNameCao/node/commit/15d33e2ceed41f0fd5032fdc30aacb3f777966a4))
+
+
+
 ## [1.0.6](https://github.com/myNameCao/node/compare/1.0.5...1.0.6) (2021-09-03)
 
 
