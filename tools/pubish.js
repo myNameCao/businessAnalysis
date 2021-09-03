@@ -87,7 +87,7 @@ const task = name => {
     // [gitPull, build, renameVue, zip, rmVue, publish, rmZip, note].map(fn => {
     //   return fn.bind(null, name, spinner)
     // })
-    [gitPull, note].map(fn => {
+    [note, gitPull].map(fn => {
       return fn.bind(null, name, spinner)
     })
   )
