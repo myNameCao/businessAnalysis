@@ -19,10 +19,8 @@ const note = name => {
         }
       )
       .then(function (res) {
-        console.log(res.data)
-        fs.unlink('./CHANGELOG.js')
+        console.log(fs.unlinkSync('./CHANGELOG.js'))
       })
-
       .catch(function (error) {
         console.log(error, 0)
       })
@@ -31,5 +29,4 @@ const note = name => {
   }
 }
 
-note()
 exports.note = note
