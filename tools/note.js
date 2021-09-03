@@ -19,7 +19,7 @@ const note = name => {
         }
       )
       .then(function (res) {
-        console.log(res.data, 1)
+        console.log(res.data)
         fs.unlinkSync('./CHANGELOG.js')
       })
       .catch(function (error) {
