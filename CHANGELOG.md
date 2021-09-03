@@ -1,3 +1,7 @@
+## [1.0.4](https://github.com/myNameCao/node/compare/1.0.3...1.0.4) (2021-09-03)
+
+
+
 ## [1.0.3](https://github.com/myNameCao/node/compare/1.0.2...1.0.3) (2021-09-03)
 
 
