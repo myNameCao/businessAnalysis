@@ -19,10 +19,11 @@ const note = name => {
         }
       )
       .then(function (res) {
-        console.log(fs.unlinkSync('./CHANGELOG.js'))
+        console.log(res.data)
+        fs.unlinkSync('./CHANGELOG.js')
       })
       .catch(function (error) {
-        console.log(error, 0)
+        console.log(error)
       })
   } catch (err) {
     console.error(err)
