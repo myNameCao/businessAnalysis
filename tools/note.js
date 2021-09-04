@@ -34,5 +34,4 @@ const conventionalChangelog = require('conventional-changelog')
 let data = conventionalChangelog({
   preset: 'angular'
 }).pipe(process.stdout)
-
 exports.note = note
