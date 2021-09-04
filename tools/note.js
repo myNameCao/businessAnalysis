@@ -3,7 +3,6 @@ const fs = require('fs')
 const path = require('path')
 const { execSync } = require('child_process')
 const conventionalChangelog = require('conventional-changelog')
-
 const note = async name => {
   // 版本修改到最新的一个tag
   let stream = conventionalChangelog({
