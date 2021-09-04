@@ -50,10 +50,9 @@ const gitPull = (name, spinner) => {
     })
 } // 拉取代码
 const updatePackage = version => {
-  const pkgPath = path.resolve('./', 'package.json')
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
+  const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
   pkg.version = version
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
+  fs.writeFileSync('./package.json', JSON.stringify(pkg, null, 2) + '\n')
 }
 const build = (name, spinner) => {
   spinner.succeed('开始编译')
@@ -93,9 +92,12 @@ const rmZip = name => {
 const task = name => {
   const spinner = ora().start()
   const funs = composeAsync(
-    [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
+    [gitPull, build].map(fn => {
       return fn.bind(null, name, spinner)
     })
+    // [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
+    //   return fn.bind(null, name, spinner)
+    // })
   )
   return funs()
     .then(() => {
