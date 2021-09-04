@@ -11,7 +11,7 @@
     "ora": "^5.4.1"
   },
   "name": "myrun",
-  "version": "4.0.11",
+  "version": "4.0.13",
   "main": "index.js",
   "bin": {
     "chris_publish": "bin/index.js"
