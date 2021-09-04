@@ -2,10 +2,20 @@ const axios = require('axios')
 const fs = require('fs')
 const path = require('path')
 const { execSync } = require('child_process')
-const note = name => {
+const conventionalChangelog = require('conventional-changelog')
+
+const note = async name => {
+  // 版本修改到最新的一个tag
+  let stream = conventionalChangelog({
+    preset: 'angular'
+  })
+  const chunks = []
+  for await (let chunk of stream) {
+    chunks.push(chunk)
+  }
+  const buffer = Buffer.concat(chunks)
+  const text = buffer.toString('utf-8')
   try {
-    let text = fs.readFileSync('./CHANGELOG.md', 'utf8')
-    console.log(text)
     axios
       .post(
         'https://oapi.dingtalk.com/robot/send?access_token=87b87743b7f62e5cd10d5bafc69f3b92329102ce00a39695a1022274a0e62199',
@@ -28,10 +38,4 @@ const note = name => {
     console.error(err)
   }
 }
-
-const conventionalChangelog = require('conventional-changelog')
-
-let data = conventionalChangelog({
-  preset: 'angular'
-}).pipe(process.stdout)
 exports.note = note

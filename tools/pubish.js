@@ -1,4 +1,6 @@
 const ora = require('ora')
+const path = require('path')
+const fs = require('fs')
 
 const inquirer = require('inquirer')
 const { execSync } = require('child_process')
@@ -40,12 +42,19 @@ const gitPull = (name, spinner) => {
             message: ` 当前的版本号是 ${currentVersion}，请输入你的版本号？`
           }
         ])
-        .then(i => {
+        .then(async i => {
+          updatePackage(i.version) // 更新版本
+          await note(name) // 发送通知
           return execSync(`yarn release ${i.version} `)
         })
     })
 } // 拉取代码
-
+const updatePackage = version => {
+  const pkgPath = path.resolve('./', 'package.json')
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
+  pkg.version = version
+  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
+}
 const build = (name, spinner) => {
   spinner.succeed('开始编译')
   spinner.start('loading....')
