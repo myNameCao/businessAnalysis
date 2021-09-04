@@ -21,7 +21,7 @@ const note = async name => {
         'https://oapi.dingtalk.com/robot/send?access_token=87b87743b7f62e5cd10d5bafc69f3b92329102ce00a39695a1022274a0e62199',
         {
           markdown: {
-            title: name + '发版',
+            title: name + '  发版完成',
             text
           },
           headers: { 'Content-Type': 'application/json' },
