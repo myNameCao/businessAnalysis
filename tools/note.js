@@ -35,4 +35,7 @@ let data = conventionalChangelog({
   preset: 'angular'
 }).pipe(process.stdout)
 
+// const rs = fs.createReadStream('./pubish')
+// rs.pipe(process.stdout)
+
 exports.note = note
