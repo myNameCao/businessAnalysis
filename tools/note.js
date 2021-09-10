@@ -25,7 +25,7 @@ const note = async name => {
         {
           markdown: {
             title: name + '  发版完成',
-            text: `# ${name}发版成功 \n>${text}  `
+            text: `# [ ${name} ] 发版成功 \n>  \n>${text}  `
           },
           headers: { 'Content-Type': 'application/json' },
           msgtype: 'markdown'
