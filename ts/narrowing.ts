@@ -64,7 +64,7 @@ if (isFish(pet)) {
 //   throw new Error(`Expected string or number, got '${padding}'.`)
 // }
 
-// typeof类型保护
+// typeof 类型保护
 
 function padLeft(value: string, padding: string | number) {
   if (typeof padding === 'number') {
