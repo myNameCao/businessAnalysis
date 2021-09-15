@@ -1,56 +1,62 @@
-interface IPerson {
-  age: number
-  name: string
+interface VNodeData {
+  props?: Props
+  attrs?: Attrs
+  class?: Classes
+  style?: VNodeStyle
+  dataset?: Dataset
+  on?: On
+  attachData?: AttachData
+  hook?: Hooks
+  key?: Key
+  ns?: string // for SVGs
+  fn?: () => VNode // for thunks
+  args?: any[] // for thunks
+  is?: string // for custom elements v1
+  [key: string]: any // for any other 3rd party module
 }
 
-interface IPeoPle extends IPerson {
-  sex: string
+export interface VNode {
+  sel: string | undefined
+  data: VNodeData | undefined
+  children: Array<VNode | string> | undefined
+  elm: Node | undefined
+  text: string | undefined
+  key: Key | undefined
 }
 
-class User implements IPerson {
-  age: number
-  name: string
+export type Key = string | number | symbol
+
+export type PreHook = () => any
+export type InitHook = (vNode: VNode) => any
+export type CreateHook = (emptyVNode: VNode, vNode: VNode) => any
+export type InsertHook = (vNode: VNode) => any
+export type PrePatchHook = (oldVNode: VNode, vNode: VNode) => any
+export type UpdateHook = (oldVNode: VNode, vNode: VNode) => any
+export type PostPatchHook = (oldVNode: VNode, vNode: VNode) => any
+export type DestroyHook = (vNode: VNode) => any
+export type RemoveHook = (vNode: VNode, removeCallback: () => void) => any
+export type PostHook = () => any
+//Partial  部分属性
+export type Module = Partial<{
+  pre: PreHook
+  create: CreateHook
+  update: UpdateHook
+  destroy: DestroyHook
+  remove: RemoveHook
+  post: PostHook
+}>
+
+type ArraysOf<T> = {
+  [K in keyof T]: Array<T[K]>
 }
-interface IRoles extends User {}
+//   Required  必须是完成的属性
+type ModuleHooks = ArraysOf<Required<Module>>
 
-class Roles extends User {}
-
-type LinkedList<T> = T & { next: LinkedList<T> }
-
-interface Person {
-  name: string
-}
-type Yikes = Array<Yikes>
-
-interface lengthwise {
-  length: number
-}
-
-interface CreateArrayFunc {
-  <T>(length: number, value: T): Array<T>
-}
-let createArray: CreateArrayFunc
-createArray = function <T>(length: number, value: T): Array<T> {
-  let result: T[] = []
-  for (let i = 0; i < length; i++) {
-    result[i] = value
-  }
-  return result
-}
-
-createArray(3, 'x') // ['x', 'x', 'x']
-
-type Alias = { num: number }
-interface Interface {
-  num: number
-}
-declare function aliased(arg: Alias): Alias
-declare function interfaced(arg: Interface): Interface
-
-aliased({
-  num: 1
-})
-
-interfaced({
-  num: 1
-})
+const hooks: Array<keyof Module> = [
+  'create',
+  'update',
+  'remove',
+  'destroy',
+  'pre',
+  'post'
+]
