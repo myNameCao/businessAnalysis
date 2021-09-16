@@ -2,6 +2,7 @@
 var inquirer = require('inquirer')
 const { task } = require('../tools/pubish')
 const { composeAsync } = require('../composeAsync')
+
 inquirer
   .prompt([
     {
@@ -18,6 +19,7 @@ inquirer
         'datacenter',
         'check',
         'center',
+        'unionexam',
         'pay',
         'answersheet'
       ]
