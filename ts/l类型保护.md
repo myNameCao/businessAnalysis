@@ -1,3 +1,6 @@
+- 类型保护函数
+
+```ts
 enum Type {
   Strong,
   Week
@@ -54,3 +57,4 @@ function getLanguage(type: Type, x: string | number) {
 
   return lang
 }
+```
