@@ -6,7 +6,6 @@ const childProcess = require('child_process')
 const msgPath = process.env.HUSKY_GIT_PARAMS
 const msg = require('fs').readFileSync(msgPath, 'utf-8').trim()
 const email = childProcess.execSync('git config user.email').toString().trim()
-console.log(email)
 const commitRE =
   /^(revert: )?(feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release)(\(.+\))?: .{1,50}/
 
@@ -22,7 +21,9 @@ if (!commitRE.test(msg)) {
       `    ${chalk.green(
         `fix(v-model): handle events on blur (close #28)`
       )}\n\n` +
-      chalk.red(`  See .github/commit-convention.md for more details.\n`)
+      chalk.red(
+        `  See https://github.com/myNameCao/learn/blob/master/git%20commit%20style.md\n`
+      )
   )
   process.exit(1)
 }
