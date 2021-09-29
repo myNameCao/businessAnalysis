@@ -16,12 +16,12 @@ const project = {
   answersheet: '答题卡'
 }
 
-const note = (name, text) => {
+const note = (name, text，emoji) => {
   axios
     .post(url, {
       markdown: {
         title: name + '发版完成',
-        text: `# [ ${project[name] || name} ] 发版完成 \n>  \n>${text}`
+        text: `# [ ${project[name] || name} ] ${emoji} \n>  \n>${text}`
       },
       headers: { 'Content-Type': 'application/json' },
       msgtype: 'markdown'

@@ -95,7 +95,6 @@ const publish = (name, spinner) => {
     spinner.succeed(`${name}  上传完成`)
   })
 } // 上传代码
-
 const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
@@ -109,11 +108,11 @@ const task = name => {
   return funs()
     .then(() => {
       spinner.succeed(`${name} 发布完成`)
-      note(name, changelogText)
+      note(name, changelogText, '🍊 🍋 🍎 🍌')
     })
     .catch(err => {
       spinner.fail(err + '    ' + name)
-      note(name, '发版失败😓')
+      note(name, '发版失败😓', '😂 😂 😂')
     })
 }
 
