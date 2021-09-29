@@ -24,9 +24,12 @@ const task = async name => {
         })
       })
       .then(() => {
-        return ssh.execCommand(`mv ${name}.zip ./xy_back/`, {
-          cwd: remoteFile
-        })
+        return ssh.execCommand(
+          `mv ${name}.zip ./xy_back/${new Date().toLocaleDateString()}_${name}.zip`,
+          {
+            cwd: remoteFile
+          }
+        )
       })
       .catch(err => {
         console.log('上传失败', err)
