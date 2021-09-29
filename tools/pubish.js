@@ -22,7 +22,6 @@ const compressing = require('compressing')
 let PATH = '/Users/caohefei/work'
 
 // changelog
-
 let changelogText = ''
 
 const gitPull = (name, spinner) => {
@@ -109,7 +108,7 @@ const task = name => {
   )
   return funs()
     .then(() => {
-      spinner.succeed(`${name}  发布完成`)
+      spinner.succeed(`${name} 发布完成`)
       note(name, changelogText)
     })
     .catch(err => {
