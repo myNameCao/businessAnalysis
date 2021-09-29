@@ -25,7 +25,7 @@ const task = async name => {
       })
       .then(() => {
         return ssh.execCommand(
-          `mv ${name}.zip ./xy_back/${new Date().toLocaleDateString()}_${name}.zip`,
+          `mv ${name}.zip ./xy_back/${name}_${new Date().toLocaleDateString()}.zip`,
           {
             cwd: remoteFile
           }
