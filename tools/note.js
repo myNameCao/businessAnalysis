@@ -23,7 +23,7 @@ const note = (name, text, emoji) => {
         title: name + '发版完成',
         text: `## [${
           project[name] || name
-        }] \n> \n> ## ${emoji} \n> ### 修改内容如下: \n> \n>${text}`
+        }] \n> \n> ## ${emoji} \n> #### 修改内容如下: \n> \n>${text}`
       },
       headers: { 'Content-Type': 'application/json' },
       msgtype: 'markdown'
