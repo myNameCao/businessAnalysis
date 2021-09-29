@@ -1,5 +1,6 @@
 const ora = require('ora')
 const path = require('path')
+
 const fs = require('fs')
 
 const inquirer = require('inquirer')
@@ -8,11 +9,21 @@ const { chdir } = require('process')
 const { unlink, rename, rmdir } = require('fs').promises
 
 const { upload } = require('./uploads')
+
 const { note } = require('./note')
+
+const { changeLog } = require('./createChangelog')
+
 const { composeAsync } = require('../composeAsync')
+
+// 压缩
 const compressing = require('compressing')
 
 let PATH = '/Users/caohefei/work'
+
+// changelog
+
+let changelogText = ''
 
 const gitPull = (name, spinner) => {
   return Promise.resolve()
@@ -44,7 +55,7 @@ const gitPull = (name, spinner) => {
         ])
         .then(async i => {
           updatePackage(i.version) // 更新版本
-          await note(name) // 发送通知
+          changelogText = await changeLog(name) // 生成通知信息
           return execSync(`yarn release ${i.version} `)
         })
     })
@@ -99,9 +110,11 @@ const task = name => {
   return funs()
     .then(() => {
       spinner.succeed(`${name}  发布完成`)
+      note(name, changelogText)
     })
     .catch(err => {
       spinner.fail(err + '    ' + name)
+      note(name, '发版失败😓')
     })
 }
 
