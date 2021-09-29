@@ -21,7 +21,7 @@ const note = (name, text，emoji) => {
     .post(url, {
       markdown: {
         title: name + '发版完成',
-        text: `# [ ${project[name] || name} ] ${emoji} \n>  \n>${text}`
+        text: `# [${project[name] || name}] ${emoji} \n>  \n>${text}`
       },
       headers: { 'Content-Type': 'application/json' },
       msgtype: 'markdown'

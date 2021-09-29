@@ -108,11 +108,11 @@ const task = name => {
   return funs()
     .then(() => {
       spinner.succeed(`${name} 发布完成`)
-      note(name, changelogText, '🍊 🍋 🍎 🍌')
+      note(name, changelogText, '发版成功 🍊 🍋 🍎 🍌')
     })
     .catch(err => {
       spinner.fail(err + '    ' + name)
-      note(name, '发版失败😓', '😂 😂 😂')
+      note(name, '发版失败😓', ' 发版失败 😂 😂 😂')
     })
 }
 
