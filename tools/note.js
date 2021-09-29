@@ -6,7 +6,7 @@ const project = {
   report: '过程与阶段性报告',
   base: '教学数据|设置',
   node: '测试项目',
-  exam: '题库组卷|教辅系统',
+  exam: '题库|教辅系统',
   mark: '在线阅卷',
   datacenter: '学情分析',
   check: '晓羊策学——公众号',
@@ -16,13 +16,14 @@ const project = {
   answersheet: '答题卡'
 }
 
-const note = (name, text，emoji) => {
+const note = (name, text, emoji) => {
   axios
     .post(url, {
       markdown: {
         title: name + '发版完成',
-        text: `# [${project[name] || name}] ${emoji} \n> 
-        ## 修改内容如下: \n> 
+        text: `# [${project[name] || name}] \n> 
+        ${emoji} \n> 
+        # 修改内容如下: \n> 
         \n>${text}`
       },
       headers: { 'Content-Type': 'application/json' },
