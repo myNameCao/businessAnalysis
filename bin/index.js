@@ -13,7 +13,6 @@ inquirer
         'test_new',
         'report',
         'base',
-        'node',
         'exam',
         'mark',
         'datacenter',
