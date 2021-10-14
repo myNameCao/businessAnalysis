@@ -156,3 +156,30 @@ const queue = new QueueNumber()
 
 queue.push(0)
 queue.push('1') // Error: 不能推入
+
+//  ##  7 类型推断
+
+function add(a: number, b: number) {
+  return a + b
+}
+
+type Adder = (a: number, b: number) => number
+let aaa: Adder = (a, b) => a + b
+
+const t7 = {
+  a: 123,
+  b: 456
+}
+
+t7.a = 2
+
+//
+
+
+ declare namespace UUU{
+  let a:number 
+}
+
+
+// ts 3.6 增加了新的功能  function 申明和class 申明可以合并了 新的写法
+

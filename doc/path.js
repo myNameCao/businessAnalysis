@@ -18,8 +18,8 @@ console.log(path.join('/a', 'b', 'index.html'))
 // 规范化路径
 console.log(path.normalize('a/b/c'))
 
-// 绝对目录
+//  返回的绝对目录
 
-console.log(path.resolve('ch.js'))
+console.log(path.resolve('/a/c', '../'))
 // resolve(from,to)
-console.log(path.resolve('./a/b/c', '/a/b/c/d/f'))
+console.log(path.resolve('./node', 'path.js'), 1)
