@@ -14,8 +14,8 @@
   "version": "1.0.23",
   "main": "index.js",
   "bin": {
-    "chris_publish": "bin/index.js",
-    "see_publish": "bin/checkgit.js"
+    "observe_publish": "bin/checkgit.js",
+    "chris_publish": "bin/index.js"
   },
   "devDependencies": {
     "conventional-changelog-cli": "^2.1.1",
