@@ -1,3 +1,5 @@
+import { red } from "chalk"
+
 //   1   断言
 interface Foo {
   bar: number
@@ -183,3 +185,198 @@ t7.a = 2
 
 // ts 3.6 增加了新的功能  function 申明和class 申明可以合并了 新的写法
 
+
+
+
+
+
+// 辨析联合类型
+interface Square {
+  kind: 'square';
+  size: number;
+}
+
+interface Rectangle {
+  kind: 'rectangle';
+  width: number;
+  height: number;
+}
+
+// 有人仅仅是添加了 `Circle` 类型
+// 我们可能希望 TypeScript 能在任何被需要的地方抛出错误
+interface Circle {
+  kind: 'circle';
+  radius: number;
+}
+
+type Shape = Square | Rectangle | Circle;
+
+function area(s: Shape) {
+  switch (s.kind) {
+    case 'square':
+      return s.size * s.size;
+    case 'rectangle':
+      return s.width * s.height;
+    case 'circle':
+      return Math.PI * s.radius ** 2;
+    default:
+      const _exhaustiveCheck: never = s;
+      return _exhaustiveCheck;
+  }
+}
+
+
+
+// typescript 索引签名  
+
+
+
+const obj = {
+  toString() {
+    return 'Hello';
+  }
+};
+
+const sign: any = {};
+
+sign[obj.toString()]= 'word'
+
+
+ // 申明一个索引签名  
+
+ const sign1:{
+   [index:string]: {message:string }
+ }= {}
+
+
+
+ sign1['a']={message: 's'}
+
+ sign1['B'] = {message: 's', messages: 'some message' };
+
+ interface Sign {
+   [key:string]:number 
+   x:number,
+   y:number
+ }
+
+
+ // 
+ interface Sign2 {
+   [key:string]:number,
+   x:number,
+   y:string  // Error  y 的属性 必须为number 
+
+ }
+
+
+
+ interface  Sign3 {
+   [key: string ]:number,
+   x:number
+ }
+ let sign3 :Sign3={
+     x:1,
+     y:2
+ }
+
+
+ sign3['x']
+
+ const abx = "xs"
+ sign3[abx]
+
+ // 使用 一组有限的字符串字面量
+
+ 
+ type Index ='A'|'b'|'c'
+ type  FromIndex = {[k in Index]?: number}
+
+ const  good:FromIndex ={b:1,c:2}
+
+ const bad:FromIndex= {a:1,b:2,c:3}
+
+ //配合 keyof/typeof 来获取变量的类型 来实现 延迟推断
+
+ type FromSomeIndex< K extends string>= {[key in K]:number}
+
+ interface NestedCSS {
+  color?: string; // strictNullChecks=false 时索引签名可为 undefined
+  [selector: string]: string | NestedCSS;
+}
+
+
+
+
+// 设计模式  索引签名的嵌套
+
+const example: NestedCSS = {
+  color: 'red',
+  '.subclass': {
+    color: 'blue'
+  }
+};
+const failsSilently: NestedCSS={
+  colour:'red'
+}
+
+
+
+interface  NestedCss {
+  color?:string;
+  nest?:{
+    [selector:string]:NestedCss
+  }
+}
+const example1:NestedCss ={
+  color:"red",
+  nest:{
+    '.sun':{
+      color:"bule"
+    }
+  }
+}
+
+
+const failsSilently1: NestedCss ={
+  colour:'red'
+}
+
+
+type FieldState= {
+  value:string
+  
+}
+
+
+type  formstate={
+  isValid:boolean;
+  [fileName:string]:FieldState
+}
+
+type FieldState1= {
+ isValid 
+}&{[fielsName:string]:FieldState}
+
+declare const foo333: formstate
+
+const isValidBool = foo333.isValid
+
+const somethingFieldState = foo333['something']
+const br33: FieldState1 ={
+  isValid:false,
+}
+
+
+
+// 流动的类型
+
+
+const foo23 = 'Hello World';
+
+// 使用一个捕获的类型
+let bar: typeof foo23;
+
+// bar 仅能被赋值 'Hello World'
+bar = 'Hello World'; // ok
+bar = 'anything else'; // Error
