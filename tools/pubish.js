@@ -1,11 +1,14 @@
 const ora = require('ora')
+
 const path = require('path')
 
 const fs = require('fs')
 
 const inquirer = require('inquirer')
 const { execSync } = require('child_process')
+
 const { chdir } = require('process')
+
 const { unlink, rename, rmdir } = require('fs').promises
 
 const { upload } = require('./uploads')
@@ -25,21 +28,18 @@ let PATH = '/Users/caohefei/work'
 let changelogText = ''
 
 const gitPull = (name, spinner) => {
+  // 打包只能打包 master 的 内容
   return Promise.resolve()
+    .then(() => chdir(`${PATH}/${name}`))
+    .then(() => execSync('git checkout master'))
     .then(() => {
-      return chdir(`${PATH}/${name}`)
-    })
-    .then(() => {
-      return execSync('git pull origin develop')
-    })
-    .then(res => {
-      console.log(res.toString())
-    })
-    .then(() => {
-      return execSync('git log -1')
-    })
-    .then(res => {
-      console.log(res.toString())
+      // 打印出上次tag 到 最近的 commitId 的log
+      let endtag = execSync(`git rev-list --tags --max-count=1`)
+        .toString()
+        .trim() // 最后的tag 的commitId
+      let head = execSync(`git rev-parse HEAD`).toString().trim() // 最后一次提交
+      let txt = execSync(`git log ${endtag}..HEAD`) //buffer
+      console.log(txt.toString())
     })
     .then(res => {
       const currentVersion = require(`${PATH}/${name}/package.json`).version
@@ -68,12 +68,8 @@ const build = (name, spinner) => {
   spinner.succeed('开始编译')
   spinner.start('loading....')
   return Promise.resolve()
-    .then(() => {
-      return execSync(`yarn com`)
-    })
-    .then(() => {
-      spinner.succeed(`${name} 编译完成`)
-    })
+    .then(() => execSync(`yarn com`))
+    .then(() => spinner.succeed(`${name} 编译完成`))
 } // 打包
 const renameVue = name => {
   return rename('./dist', `./${name}`)
@@ -98,12 +94,21 @@ const publish = (name, spinner) => {
 const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
+
+const sameBranch = () => {
+  return Promise.resolve()
+    .then(() => execSync('git checkout develop '))
+    .then(() => execSync('git merge master'))
+    .then(() => execSync('git push origin develop '))
+}
 const task = name => {
   const spinner = ora().start()
   const funs = composeAsync(
-    [gitPull, build, renameVue, zip, rmVue, publish, rmZip].map(fn => {
-      return fn.bind(null, name, spinner)
-    })
+    [gitPull, build, renameVue, zip, rmVue, publish, rmZip, sameBranch].map(
+      fn => {
+        return fn.bind(null, name, spinner)
+      }
+    )
   )
   return funs()
     .then(() => {
