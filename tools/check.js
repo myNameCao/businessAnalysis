@@ -13,6 +13,7 @@ const PATH = '/Users/caohefei/work'
 const check = name => {
   return Promise.resolve()
     .then(() => chdir(`${PATH}/${name}`))
+    .then(() => console.log(chalk.red(name + ' 项目检查中........')))
     .then(() => execSync('git pull origin develop'))
     .then(res => console.log(res.toString()))
     .then(() => {
