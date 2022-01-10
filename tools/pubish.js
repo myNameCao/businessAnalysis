@@ -53,15 +53,21 @@ const gitPull = (name, spinner) => {
           }
         ])
         .then(async i => {
-          updatePackage(i.version) // 更新版本
+          updatePackage(i.version.trim()) // 更新版本
           changelogText = await changeLog(name) // 生成通知信息
         })
     })
 } // 拉取代码
 const updatePackage = version => {
   const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-  pkg.preVersion = pkg.version
-  pkg.version = version || pkg.preVersion
+
+  if (version) {
+    pkg.preVersion = pkg.version
+    pkg.version = version
+  }
+  if (!version) {
+    pkg.version = pkg.preVersion
+  }
   fs.writeFileSync('./package.json', JSON.stringify(pkg, null, 2) + '\n')
 }
 const build = (name, spinner) => {
