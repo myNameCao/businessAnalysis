@@ -5,6 +5,7 @@ const path = require('path')
 const fs = require('fs')
 
 const inquirer = require('inquirer')
+
 const { execSync } = require('child_process')
 
 const { chdir } = require('process')
@@ -55,10 +56,10 @@ const gitPull = (name, spinner) => {
         .then(async i => {
           updatePackage(i.version) // 更新版本
           changelogText = await changeLog(name) // 生成通知信息
-          return execSync(`yarn release ${i.version} `)
         })
     })
 } // 拉取代码
+
 const updatePackage = version => {
   const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
   pkg.version = version
@@ -95,8 +96,10 @@ const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
 
+//同步 develop
 const sameBranch = () => {
   return Promise.resolve()
+    .then(() => execSync(`yarn release`))
     .then(() => execSync('git checkout develop '))
     .then(() => execSync('git merge master'))
     .then(() => execSync('git push origin develop '))
