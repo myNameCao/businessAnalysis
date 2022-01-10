@@ -62,7 +62,8 @@ const gitPull = (name, spinner) => {
 
 const updatePackage = version => {
   const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-  pkg.version = version
+  pkg.preVersion = pkg.version
+  pkg.version = version || pkg.preVersion
   fs.writeFileSync('./package.json', JSON.stringify(pkg, null, 2) + '\n')
 }
 const build = (name, spinner) => {
@@ -85,7 +86,6 @@ const zip = (name, spinner) => {
 const rmVue = name => {
   return rmdir(`./${name}`, { recursive: true })
 } // 删除 多余文件夹
-
 const publish = (name, spinner) => {
   spinner.start(name + '开始上传')
   return upload(name).then(() => {
@@ -96,7 +96,6 @@ const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
 
-//同步 develop
 const sameBranch = () => {
   return Promise.resolve()
     .then(() => execSync(`yarn release`))
@@ -121,6 +120,7 @@ const task = name => {
     .catch(err => {
       spinner.fail(err + '    ' + name)
       note(name, '发版失败 🍋  🍇  🍎  🍈', '🥀 🥀 🥀 🥀 🥀 🥀 🥀 🥀 ')
+      updatePackage()
     })
 }
 
