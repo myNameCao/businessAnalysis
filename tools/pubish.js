@@ -60,7 +60,6 @@ const gitPull = (name, spinner) => {
 } // 拉取代码
 const updatePackage = version => {
   const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-
   if (version) {
     pkg.preVersion = pkg.version
     pkg.version = version
@@ -99,7 +98,6 @@ const publish = (name, spinner) => {
 const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
-
 const sameBranch = () => {
   return Promise.resolve()
     .then(() => execSync(`yarn release`))

@@ -3,7 +3,7 @@ const conventionalChangelog = require('conventional-changelog')
 const { chdir } = require('process')
 
 const changeLog = async name => {
-  // 注意 必须a
+  // 注意 必须
   chdir(`/Users/caohefei/work/${name}`)
   let stream = conventionalChangelog({
     preset: 'angular'
