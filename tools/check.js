@@ -53,7 +53,9 @@ const check = name => {
             {
               type: 'confirm',
               name: 'test',
-              message: 'Are you  update  to  master?',
+              message: `${chalk.red(
+                project[name]
+              )} Are you  update  to  master?`,
               default: false
             }
           ])

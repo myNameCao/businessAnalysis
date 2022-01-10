@@ -42,9 +42,10 @@ const gitPull = (name, spinner) => {
       let txt = execSync(`git log ${endtag}..HEAD`) //buffer
       console.log(txt.toString())
     })
-    .then(res => {
+    .then(async res => {
       const currentVersion = require(`${PATH}/${name}/package.json`).version
       spinner.succeed('拉取代码成功')
+      changelogText = await changeLog() // 生成通知信息
       return inquirer
         .prompt([
           {
@@ -53,9 +54,8 @@ const gitPull = (name, spinner) => {
             message: ` 当前的版本号是 ${currentVersion}，请输入你的版本号？`
           }
         ])
-        .then(async i => {
+        .then(i => {
           updatePackage(i.version) // 更新版本
-          changelogText = await changeLog() // 生成通知信息
         })
     })
 } // 拉取代码
