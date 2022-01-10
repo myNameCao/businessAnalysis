@@ -55,7 +55,7 @@ const gitPull = (name, spinner) => {
         ])
         .then(async i => {
           updatePackage(i.version) // 更新版本
-          changelogText = await changeLog(name) // 生成通知信息
+          changelogText = await changeLog() // 生成通知信息
         })
     })
 } // 拉取代码
@@ -123,5 +123,4 @@ const task = name => {
       updatePackage()
     })
 }
-
 exports.task = task
