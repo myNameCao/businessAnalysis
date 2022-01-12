@@ -1,5 +1,7 @@
 const ora = require('ora')
 
+const chalk = require('chalk')
+
 const path = require('path')
 
 const fs = require('fs')
@@ -15,6 +17,8 @@ const { unlink, rename, rmdir } = require('fs').promises
 const { upload } = require('./uploads')
 
 const { note } = require('./note')
+
+const { projectName } = require('./projectName')
 
 const { changeLog } = require('./createChangelog')
 
@@ -49,7 +53,9 @@ const gitPull = (name, spinner) => {
           {
             type: 'input',
             name: 'version',
-            message: ` 当前的版本号是 ${currentVersion}，请输入你的版本号？`
+            message: `${chalk.red(
+              projectName[name]
+            )} 版本号:${currentVersion},请输入新的版本号？`
           }
         ])
         .then(async i => {
