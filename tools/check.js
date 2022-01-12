@@ -5,22 +5,9 @@ const chalk = require('chalk')
 const { execSync } = require('child_process')
 
 const { chdir } = require('process')
+const { projectName } = require('./projectName')
 
 const inquirer = require('inquirer')
-const project = {
-  test_new: '考试安排',
-  report: '过程与阶段性报告',
-  base: '教学数据|公共设置',
-  node: '测试项目',
-  exam: '题库组卷|教辅系统',
-  mark: '在线阅卷',
-  datacenter: '学情分析',
-  check: '晓羊策学——公众号',
-  center: '后台管理系统',
-  unionexam: '区域联考',
-  pay: '支付列表',
-  answersheet: '答题卡制作'
-}
 
 const PATH = '/Users/caohefei/work'
 
@@ -40,7 +27,7 @@ const check = name => {
     })
     .then(({ txt, endtag, head }) => {
       if (endtag !== head) {
-        console.log(chalk.red(`【${project[name]}】 改动内容如下 \n`))
+        console.log(chalk.red(`【${projectName[name]}】 改动内容如下 \n`))
         console.log(txt.toString())
         return true
       }
@@ -54,7 +41,7 @@ const check = name => {
               type: 'confirm',
               name: 'test',
               message: `${chalk.red(
-                project[name]
+                projectName[name]
               )} Are you  update  to  master?`,
               default: false
             }

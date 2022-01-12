@@ -10,7 +10,7 @@ const projectName = {
   center: '后台管理系统',
   unionexam: '区域联考',
   pay: '支付列表',
-  answersheet: '答题卡制作'
+  answersheet: '答题卡'
 }
 
 exports.projectName = projectName
