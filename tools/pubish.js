@@ -126,8 +126,8 @@ const task = name => {
       note(name, changelogText, '👏 👏 👏 👏 👏 👏 👏 👏')
     })
     .catch(err => {
-      spinner.fail(err + '    ' + name)
-      note(name, '发版失败 🍋  🍇  🍎  🍈', '🥀 🥀 🥀 🥀 🥀 🥀 🥀 🥀 ')
+      spinner.fail(`${err}  ${name}  项目`)
+      note(name, `发版失败: ${err}`, ' 🥀 🥀 🥀 🥀 🥀 🥀 🥀 🥀 ')
       updatePackage()
     })
 }

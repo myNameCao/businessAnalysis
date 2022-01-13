@@ -31,9 +31,6 @@ const task = async name => {
           }
         )
       })
-      .catch(err => {
-        console.log('上传失败', err)
-      })
   } finally {
     ssh.dispose()
   }
