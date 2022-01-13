@@ -18,7 +18,7 @@ const { upload } = require('./uploads')
 
 const { note } = require('./note')
 
-const { projectName } = require('./projectName')
+const { projectName, setVersion } = require('./projectName')
 
 const { changeLog } = require('./createChangelog')
 
@@ -53,6 +53,7 @@ const gitPull = (name, spinner) => {
           {
             type: 'input',
             name: 'version',
+            default: setVersion(currentVersion),
             message: `${chalk.red(
               projectName[name]
             )} 版本号:${currentVersion},请输入新的版本号？`

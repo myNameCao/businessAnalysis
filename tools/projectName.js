@@ -13,4 +13,24 @@ const projectName = {
   answersheet: '答题卡'
 }
 
+const setVersion = v => {
+  v = v + ''
+  let list = v.split('.')
+  let a = list[0] * 1
+  let b = list[1] * 1
+  let c = list[2] * 1
+  c += 1
+  if (c === 100) {
+    b += 1
+    c = 0
+  }
+  if (b == 10 && c == 0) {
+    a += 1
+    b = 0
+    c = 0
+  }
+  return `${a}.${b}.${c}`
+}
+
 exports.projectName = projectName
+exports.setVersion = setVersion
