@@ -1,5 +1,6 @@
 const projectName = {
   test_new: '考试安排',
+  test: '考试安排老版',
   report: '过程与阶段性报告',
   base: '教学数据|公共设置',
   node: '测试项目',

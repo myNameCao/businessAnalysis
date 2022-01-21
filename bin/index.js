@@ -11,6 +11,7 @@ inquirer
       message: 'Select your product',
       choices: [
         'test_new',
+        'test',
         'report',
         'base',
         'exam',

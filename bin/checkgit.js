@@ -3,6 +3,7 @@ const { composeAsync } = require('../composeAsync')
 const { check } = require('../tools/check')
 let prodocts = [
   'test_new',
+  'test',
   'report',
   'base',
   'exam',
