@@ -1,14 +1,14 @@
-function foo(num) {
-  console.log('foo' + num)
-  this.count++
-}
-foo.count = 0
-var i
+const fs = require('fs')
+const path = require('path')
+const filePath = path.resolve(__dirname, 'hello.txt')
 
-for (i = 0; i < 10; i++) {
-  if (i > 5) {
-    foo(i)
-  }
-}
+console.log('filePath: ', filePath)
 
-console.log(foo.count)
+fs.readFile(filePath, (err, res) => {
+  console.log(err, res.toString())
+})
+
+module.exports = {
+  a: 1,
+  test: () => {}
+}
