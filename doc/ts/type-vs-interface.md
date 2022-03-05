@@ -4,6 +4,7 @@
 
 ```ts
 type Alias = { num: number }
+
 interface Interface {
   num: number
 }

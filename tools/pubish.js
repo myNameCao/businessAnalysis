@@ -12,7 +12,7 @@ const { execSync } = require('child_process')
 
 const { chdir } = require('process')
 
-const { unlink, rename, rmdir } = require('fs').promises
+const { unlink, rename, rm } = require('fs').promises
 
 const { upload } = require('./uploads')
 
@@ -94,7 +94,7 @@ const zip = (name, spinner) => {
 } // 压缩代码
 
 const rmVue = name => {
-  return rmdir(`./${name}`, { recursive: true })
+  return rm(`./${name}`, { recursive: true })
 } // 删除 多余文件夹
 const publish = (name, spinner) => {
   spinner.start(name + '开始上传')
