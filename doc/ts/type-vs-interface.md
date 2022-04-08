@@ -2,8 +2,15 @@
 
 - 如果你无法通过接口来描述一个类型并且需要使用联合类型或元组类型，这时通常会使用类型别名。
 
+type 可以申明基本类型别名 和联合类型 和元祖
+
+```ts
+
+```
+
 ```ts
 type Alias = { num: number }
+
 interface Interface {
   num: number
 }
