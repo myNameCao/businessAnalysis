@@ -36,3 +36,5 @@ const setVersion = v => {
 
 exports.projectName = projectName
 exports.setVersion = setVersion
+
+console.log(1)
