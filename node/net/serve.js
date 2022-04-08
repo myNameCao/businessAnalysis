@@ -14,7 +14,7 @@ serve.on('listening', () => {
 serve.on('connection', socket => {
   socket.on('data', buffer => {
     const ms = buffer.toString()
-    console.log(ms)
+    console.log(ms, 1111)
     socket.write(Buffer.from('你好' + ms))
   })
 })

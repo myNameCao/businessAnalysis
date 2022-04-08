@@ -1,4 +1,5 @@
 const projectName = {
+  viewbase: '登录页面',
   test_new: '考试安排',
   test: '考试安排老版',
   report: '过程与阶段性报告',

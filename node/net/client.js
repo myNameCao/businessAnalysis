@@ -1,11 +1,11 @@
 //TCP 客户端代码实现
 const net = require('net')
-const client = net.createServer({
+const client = net.createConnection({
   port: 3000,
   host: '127.0.0.1'
 })
 console.log(process.pid)
-client.on('connection', () => {
+client.on('connect', () => {
   client.write('node 技术栈')
   setTimeout(() => {
     client.write('JavaScript ')
@@ -15,7 +15,7 @@ client.on('connection', () => {
     client.write('C ')
     client.write('PHP ')
     client.write('ASP.NET ')
-  }, 1000)
+  }, 2000)
 })
 
 client.on('data', buffer => {

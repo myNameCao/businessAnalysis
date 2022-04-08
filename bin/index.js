@@ -10,6 +10,7 @@ inquirer
       name: 'checkbox',
       message: 'Select your product',
       choices: [
+        'viewbase',
         'test_new',
         'test',
         'report',

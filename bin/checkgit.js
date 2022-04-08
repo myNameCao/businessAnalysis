@@ -2,6 +2,7 @@
 const { composeAsync } = require('../composeAsync')
 const { check } = require('../tools/check')
 let prodocts = [
+  'viewbase',
   'test_new',
   'test',
   'report',
