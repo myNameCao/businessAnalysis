@@ -39,4 +39,3 @@ const task = async name => {
 }
 
 exports.upload = task
-console.log(new Date().toLocaleDateString())
