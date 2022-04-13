@@ -1,9 +1,9 @@
 const projectName = {
-  viewbase: '登录页面',
+  viewbase: '教学数据|公共设置|错题本',
   test_new: '考试安排',
   test: '考试安排老版',
   report: '过程与阶段性报告',
-  base: '教学数据|公共设置',
+  base: '登录系统',
   node: '测试项目',
   exam: '题库组卷|教辅系统',
   mark: '在线阅卷',
