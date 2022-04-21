@@ -1,5 +1,26 @@
 // 1. 剖析Vue原理&实现双向绑定MVVM
 
+import { ChildProcess } from 'child_process'
+import { stdin } from 'process'
+
+type Replace<
+  S extends string,
+  From extends string,
+  To extends string
+> = S extends `${infer U}${From}${infer V}`
+  ? From extends ''
+    ? `${U}${From}${V}`
+    : `${U}${To}${V}`
+  : S
+
+type replaced = Replace<'types are fun', 'fun', 'awesome'>
+
+type CamelCase<S> = S extends `${infer S1}-${infer S2}`
+  ? S2 extends Capitalize<S2>
+    ? `${S1}-${CamelCase<S2>}`
+    : `${S1}${CamelCase<Capitalize<S2>>}`
+  : S
+
 // 2. 组件通讯
 
 // 3. css 布局三栏布局  清楚浮动
