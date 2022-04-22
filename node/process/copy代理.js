@@ -1,12 +1,10 @@
-const fork = require('child_process').fork
+// IPC 进程间 通信技术
 
-const cpus = require('os').cpus()
+// IPC 的方式有多种 有管道 消息队列 信号量 domian  socket 、 node 是使用过pipe 来实现的
 
-for (let i = 0; i < cpus.length; i++) {
-  const worker = fork('work3.js')
-  console.log(
-    'worker process created, pid: %s ppid: %s',
-    worker.pid,
-    process.pid
-  )
-}
+const spawn = require('child_process').spawn
+
+const child = spawn('node', ['work4.js'])
+child.stdout.pipe(process.stdout)
+console.log(process.pid, child.pid)
+结束
