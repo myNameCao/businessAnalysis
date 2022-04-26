@@ -1,0 +1,190 @@
+{
+  "testProfileInfo": {
+    "name": "语文三模考试【 Demo样例 】",
+    "subject": "语文",
+    "date": "2020-07-27T00:00:00+08:00",
+    "seId": 1,
+    "meId": 1,
+    "classId": "2319",
+    "className": "2班"
+  },
+  "examMainInfo": {
+    "fullScore": 100,
+    "maxScore": 58,
+    "minScore": 51.5,
+    "avgScore": 55.36,
+    "difficulty": 0.58,
+    "discrimination": 0.05,
+    "studentCount": 30,
+    "standardDeviation": 2.03,
+    "overAvgCount": 13,
+    "overAllRate": "0.45",
+    "passRate": "40.00",
+    "excellentRate": "75.00"
+  },
+  "studentRankInfo": [
+    {
+      "id": 1,
+      "studentName": "张小北",
+      "essScore": 98,
+      "advance": 2
+    },
+    {
+      "id": 2,
+      "studentName": "王啦啦",
+      "essScore": 96,
+      "advance": 1
+    },
+    {
+      "id": 3,
+      "studentName": "刘小贝",
+      "essScore": 94,
+      "advance": 2
+    },
+    {
+      "id": 4,
+      "studentName": "张晓飞",
+      "essScore": 92,
+      "advance": 1
+    },
+    {
+      "id": 5,
+      "studentName": "王五",
+      "essScore": 90,
+      "advance": 8
+    },
+    {
+      "id": 6,
+      "studentName": "赵小龙",
+      "essScore": 87,
+      "advance": 7
+    },
+    {
+      "id": 7,
+      "studentName": "曹虎",
+      "essScore": 84,
+      "advance": 4
+    },
+    {
+      "id": 8,
+      "studentName": "栾小亮",
+      "essScore": 81,
+      "advance": 2
+    },
+    {
+      "id": 9,
+      "studentName": "胡来",
+      "essScore": 78,
+      "advance": 12
+    },
+    {
+      "id": 10,
+      "studentName": "何美丽",
+      "essScore": 73,
+      "advance": 12
+    },
+    {
+      "id": 11,
+      "studentName": "欧阳雪",
+      "essScore": 71,
+      "advance": 23
+    },
+    {
+      "id": 12,
+      "studentName": "慕容刚",
+      "essScore": 69,
+      "advance": 12
+    },
+    {
+      "id": 13,
+      "studentName": "贾宝",
+      "essScore": 65,
+      "advance": 15
+    },
+    {
+      "id": 14,
+      "studentName": "白亮",
+      "essScore": 65,
+      "advance": 25
+    },
+    {
+      "id": 15,
+      "studentName": "陈锋",
+      "essScore": 60,
+      "advance": 15
+    }
+  ],
+  "horizontalDistributionStuInfo": {
+    "xTitle": [
+      "[0,10)",
+      "[10,20)",
+      "[20,30)",
+      "[30,40)",
+      "[40,50)",
+      "[50,60)",
+      "[60,70)",
+      "[70,80)",
+      "[80,90)",
+      "[90,100.00)"
+    ],
+    "yTitle": [20, 14, 12, 15, 22, 11, 18, 19, 20, 21]
+  },
+  "questionScoreRate": {
+    "list": [
+      {
+        "eqCorrectAnswer": "A",
+        "eqDisplayIndex": 1,
+        "eqDisplayName": "1",
+        "eqFullScore": 10,
+        "gradeavgScore": "3.75",
+        "graderate": "37.50",
+        "scoreList": ["3.75", "37.50"]
+      },
+      {
+        "eqCorrectAnswer": "B",
+        "eqDisplayIndex": 2,
+        "eqDisplayName": "2",
+        "eqFullScore": 10,
+        "gradeavgScore": "1.25",
+        "graderate": "12.50",
+        "scoreList": ["1.25", "12.50"]
+      },
+      {
+        "eqCorrectAnswer": "B",
+        "eqDisplayIndex": 3,
+        "eqDisplayName": "3",
+        "eqFullScore": 10,
+        "gradeavgScore": "1.25",
+        "graderate": "12.50",
+        "scoreList": ["1.25", "12.50"]
+      },
+      {
+        "eqCorrectAnswer": "B",
+        "eqDisplayIndex": 4,
+        "eqDisplayName": "4",
+        "eqFullScore": 10,
+        "gradeavgScore": "7.50",
+        "graderate": "75.00",
+        "scoreList": ["7.50", "75.00"]
+      },
+      {
+        "eqCorrectAnswer": "A",
+        "eqDisplayIndex": 5,
+        "eqDisplayName": "5",
+        "eqFullScore": 10,
+        "gradeavgScore": "8.75",
+        "graderate": "87.50",
+        "scoreList": ["8.75", "87.50"]
+      },
+      {
+        "eqCorrectAnswer": "--",
+        "eqDisplayIndex": 6,
+        "eqDisplayName": "批阅块_1_6",
+        "eqFullScore": 50,
+        "gradeavgScore": "50.00",
+        "graderate": "100.00",
+        "scoreList": ["50.00", "100.00"]
+      }
+    ]
+  }
+}

@@ -1,11 +1,17 @@
+// 开启一个服务
+const Koa = require('koa')
 const fs = require('fs')
-const readable = fs.createReadStream('./ipc.js')
-const writeable = fs.createWriteStream('./copy代理.js')
+const app = new Koa()
+const { promisify } = require('util')
+const { resolve } = require('path')
+const readFile = promisify(fs.readFile)
 
-// readable.pipe(writeable)
-readable.pipe(writeable, {
-  end: false
+app.use(async ctx => {
+  try {
+    const readable = fs.createReadStream(resolve(__dirname, 'test.json'))
+    ctx.body = readable
+  } catch (err) {
+    ctx.body = err
+  }
 })
-readable.on('end', function () {
-  writeable.end('结束')
-})
+app.listen(3000)
