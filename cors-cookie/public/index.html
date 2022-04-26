@@ -28,7 +28,7 @@
       crossButton.onclick = function () {
         axios({
           method: 'get',
-          //   withCredentials: true, // 跨域携带 cookie
+          withCredentials: true, // 跨域携带 cookie
           url: 'http://localhost:8003/anotherService'
         }).then(res => {
           console.log(res)
