@@ -20,7 +20,6 @@ inquirer
         'datacenter',
         'check',
         'center',
-        'unionexam',
         'pay',
         'answersheet'
       ]
