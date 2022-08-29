@@ -1,3 +1,5 @@
+const path = require('path')
+
 const projectName = {
   viewbase: '教学数据|公共设置|错题本',
   test_new: '考试安排',
@@ -34,5 +36,9 @@ const setVersion = v => {
   return `${a}.${b}.${c}`
 }
 
+let rootPath = path.resolve(__dirname, '../../')
+
 exports.projectName = projectName
 exports.setVersion = setVersion
+
+exports.rootPath = rootPath

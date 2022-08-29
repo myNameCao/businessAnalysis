@@ -1,10 +1,12 @@
 const conventionalChangelog = require('conventional-changelog')
 
+const path = require('path')
+const { rootPath } = require('./projectName')
 const { chdir } = require('process')
 
 const changeLog = async name => {
   // 注意 必须
-  chdir(`/Users/caohefei/work/${name}`)
+  chdir(path.join(rootPath, name))
   let stream = conventionalChangelog({
     preset: 'angular'
   })
