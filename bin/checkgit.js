@@ -12,7 +12,6 @@ let prodocts = [
   'datacenter',
   'check',
   'center',
-  'unionexam',
   'answersheet'
 ]
 composeAsync(
