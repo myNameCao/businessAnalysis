@@ -37,7 +37,6 @@ const gitPull = (name, spinner) => {
     .then(() => chdir(path.join(PATH, name)))
     .then(() => execSync('git checkout master'))
     .then(() => {
-      console.log('执行目录', process.execPath)
       // 打印出上次tag 到 最近的 commitId 的log
       let endtag = execSync(`git rev-list --tags --max-count=1`)
         .toString()
