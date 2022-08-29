@@ -3,6 +3,7 @@ module.exports = {
   env: {
     node: true
   },
+  ecmaVersion: 2015,
   extends: ['eslint:recommended'],
   parserOptions: {
     parser: 'babel-eslint',
