@@ -18,6 +18,7 @@
   "main": "index.js",
   "bin": {
     "observe_publish": "bin/checkgit.js",
+    "observe_one": "bin/checkone.js",
     "chris_publish": "bin/index.js"
   },
   "devDependencies": {
