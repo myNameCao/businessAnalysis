@@ -108,6 +108,8 @@ const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
 const sameBranch = () => {
+  console.log('执行 node 的目录', process.execPath)
+  console.log('node 运行目录', process.cwd())
   return Promise.resolve()
     .then(() => execSync(`yarn release`))
     .then(() => execSync('git checkout develop '))

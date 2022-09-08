@@ -18,7 +18,7 @@ axios
   .then(res => {
     let timestamp = parseInt(new Date().getTime() / 1000)
     let noncestr = 'Wm3WZYTPz0wzccnW'
-    let url = 'https://check.xycxedu.com/testImg/'
+    let url = 'https%3A%2F%2Fcheck.xycxedu.com%2FtestImg'
     let jsapi_ticket = res.data.ticket
     console.log(timestamp)
     console.log(noncestr)
