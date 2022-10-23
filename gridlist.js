@@ -27,7 +27,6 @@ const getHistory = async (options, b, t) => {
         new Date().getTime() - length * 24 * 60 * 60 * 1000
       )
     })
-    // console.log(list.length)
     check(list, options.name)
   })
 }
@@ -37,12 +36,9 @@ const getSinaIndustryClassified = () => {
   stock.getSinaIndustryClassified().then(async ({ data }) => {
     console.log('共' + data.length + '行业')
     for (let a = 0; a < data.length; a++) {
-      // console.log(a + 1, data[a].tag, data[a].name)
       num.push({ tag: data[a].tag, name: data[a].name })
-      // await getSinaClassifyDetails(data[a])
     }
     console.log(num)
-    // console.log('共', num.length)
   })
 }
 
