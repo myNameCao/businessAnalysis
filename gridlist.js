@@ -13,8 +13,9 @@ writeFile(process.pid)
 const length = 12 * 30
 
 const getHistory = async (options, b, t) => {
-  console.log(options.name, '价格：' + options.price, '====', b + '/' + t)
-  await stock.getHistory({ code: options.symbol }).then(({ data }) => {
+  let { name, price, symbol } = options
+  console.log(name, '价格：' + price, '====', b + '/' + t)
+  await stock.getHistory({ code: symbol }).then(({ data }) => {
     if (!data) {
       console.log('没有数据')
       return
@@ -29,7 +30,7 @@ const getHistory = async (options, b, t) => {
         new Date().getTime() - length * 24 * 60 * 60 * 1000
       )
     })
-    check(list, options.name)
+    check(list, name, price)
   })
 }
 

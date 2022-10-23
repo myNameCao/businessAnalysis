@@ -9,7 +9,7 @@ const maxL = (i, p) => {
 }
 
 const { writeFile } = require('./wirter')
-const check = (list, name) => {
+const check = (list, name, price) => {
   // ;[
   //0   '2022-10-21',
   // 1  '26.880',
@@ -38,6 +38,8 @@ const check = (list, name) => {
   if (active_90(gain_40) && active_5(gain_5)) {
     console.log(
       name,
+      '当前价格:',
+      price,
       '======================================================',
       '满足要求'
     )
@@ -50,19 +52,16 @@ const check = (list, name) => {
 
 // 最近一周的表现
 const active_5 = list => {
-  return comT(list) < 20 && list[4] > 0 && list[3] > 0 && list[2] > 0
+  return comT(list) < 15 && list[4] > 0 && list[3] > 0
 }
 
-const active_10 = list => {
-  let a = comT(list)
-  console.log(a)
-  return 1
-}
+const active_10 = list => {}
+
 // 三个月的数据比较活跃的
 const active_90 = list => {
   let maxList = maxL(list, 7)
-  console.log('活跃值:', maxList.length)
-  return maxList.length > 6
+  console.log('活跃值:', maxList.length, maxList)
+  return maxList.length > 7
 }
 
 exports.check = check
