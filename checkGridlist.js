@@ -35,33 +35,38 @@ const check = (list, name, price) => {
   let gain_10 = gain.slice(-10) // 最近二十次  大概是半个月的数据
   let gain_5 = gain.slice(-5) // 最近二十次  大概是半个月的数据
 
-  if (active_90(gain_40) && active_5(gain_5)) {
+  if (active_90(gain_40, name) && active_5(gain_5)) {
     console.log(
       name,
-      '当前价格:',
-      price,
+
       '======================================================',
       '满足要求'
     )
     writeFile(
       '请注意 ==================================================================================== ' +
-        name
+        name +
+        '   ' +
+        price
     )
   }
 }
 
 // 最近一周的表现
 const active_5 = list => {
-  return comT(list) < 15 && list[4] > 0 && list[3] > 0
+  return comT(list) < 0 && list[4] > 0 && list[3] > 0
 }
 
 const active_10 = list => {}
 
 // 三个月的数据比较活跃的
-const active_90 = list => {
+const active_90 = (list, name) => {
   let maxList = maxL(list, 7)
-  console.log('活跃值:', maxList.length, maxList)
-  return maxList.length > 7
+  console.log('活跃值:', maxList.length)
+  let isActive = maxList.length > 7
+  if (isActive) {
+    writeFile(name + '  活跃值: ' + maxList.length)
+  }
+  return isActive
 }
 
 exports.check = check

@@ -66,7 +66,9 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
   return await stock
     .getSinaClassifyDetails(options1)
     .then(async ({ data }) => {
-      writeFile(classObj.name + '*************有   ' + data.length + '   个')
+      writeFile(
+        classObj.name + '***********************有   ' + data.length + '   个'
+      )
 
       console.log(
         classObj.tag,
