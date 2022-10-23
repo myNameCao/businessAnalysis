@@ -1,12 +1,11 @@
 const { stock } = require('tushare')
 
 const { check } = require('./checkGridlist')
+const { writeFile } = require('./wirter')
 
-// Include process module
 const process = require('process')
 
-// Printing process.pid property value
-console.log('process id is ' + process.pid)
+writeFile('process id is ' + process.pid)
 
 // 区间数据
 const length = 12 * 30
