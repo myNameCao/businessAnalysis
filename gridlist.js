@@ -1,10 +1,19 @@
 const { stock } = require('tushare')
-const { isArray } = require('util')
-const length = 60
+
+const { check } = require('./checkGridlist')
+
+// Include process module
+const process = require('process')
+
+// Printing process.pid property value
+console.log('process id is ' + process.pid)
+
+// 区间数据
+const length = 12 * 30
 
 const getHistory = async (options, b, t) => {
-  console.log(options.name, options.code, '====', b + '/' + t)
-  await stock.getHistory(options).then(({ data }) => {
+  console.log(options.name, '价格：' + options.price, '====', b + '/' + t)
+  await stock.getHistory({ code: options.symbol }).then(({ data }) => {
     if (!data) {
       console.log('没有数据')
       return
@@ -20,27 +29,9 @@ const getHistory = async (options, b, t) => {
       )
     })
     // console.log(list.length)
-    // console.log(list)
+    check(list, options.name)
   })
 }
-
-// let num = []
-// 获取行业信息
-// {
-//   tag: 'new_blhy',
-//   name: '玻璃行业',
-//   num: '19',
-//   price: '15.805789473684',
-//   changePrice: '-0.062105263157895',
-//   changePercent: '-0.39138943248532',
-//   volume: 2368517.03,
-//   amount: 249027.6675,
-//   leadingSymbol: 'sz300160',
-//   leadingChangePercent: '1.906',
-//   leadingPrice: '6.950',
-//   leadingChangePrice: '0.130',
-//   leadingName: '秀强股份'
-// }
 
 const getSinaIndustryClassified = () => {
   let num = []
@@ -78,19 +69,13 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
     .getSinaClassifyDetails(options1)
     .then(async ({ data }) => {
       console.log(
-        classObj.name,
         classObj.tag,
         index + '/' + T,
-        '===============',
-        data.length,
-        '只'
+        '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
+        classObj.name
       )
       for (let b = 0; b < data.length; b++) {
-        await getHistory(
-          { code: data[b].symbol, name: data[b].name },
-          b + 1,
-          data.length
-        )
+        await getHistory(data[b], b + 1, data.length)
       }
     })
     .catch(e => {
@@ -102,20 +87,55 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
 
 const test = async calslists => {
   let classList = calslists || [
-    // { tag: 'new_fjzz', name: '飞机制造' },
-    // { tag: 'new_hghy', name: '化工行业' },
-    // { tag: 'new_jdhy', name: '家电行业' },
-    // { tag: 'new_jdly', name: '酒店旅游' },
-    // { tag: 'new_jxhy', name: '机械行业' },
-    // { tag: 'new_nlmy', name: '农林牧渔' },
-    // { tag: 'new_nyhf', name: '农药化肥' },
-    // { tag: 'new_qczz', name: '汽车制造' },
-    // { tag: 'new_sphy', name: '食品行业' },
-    // { tag: 'new_syhy', name: '石油行业' },
-
-    // { tag: 'new_swzz', name: '生物制药' },
-    // { tag: 'new_ylqx', name: '医疗器械' },
-    { tag: 'new_ysjs', name: '有色金属' }
+    { tag: 'new_blhy', name: '玻璃行业' },
+    { tag: 'new_cbzz', name: '船舶制造' },
+    { tag: 'new_cmyl', name: '传媒娱乐' },
+    { tag: 'new_dlhy', name: '电力行业' },
+    { tag: 'new_dqhy', name: '电器行业' },
+    { tag: 'new_dzqj', name: '电子器件' },
+    { tag: 'new_dzxx', name: '电子信息' },
+    { tag: 'new_fdc', name: '房地产' },
+    { tag: 'new_fdsb', name: '发电设备' },
+    { tag: 'new_fjzz', name: '飞机制造' },
+    { tag: 'new_fzhy', name: '纺织行业' },
+    { tag: 'new_fzjx', name: '纺织机械' },
+    { tag: 'new_fzxl', name: '服装鞋类' },
+    { tag: 'new_glql', name: '公路桥梁' },
+    { tag: 'new_gsgq', name: '供水供气' },
+    { tag: 'new_gthy', name: '钢铁行业' },
+    { tag: 'new_hbhy', name: '环保行业' },
+    { tag: 'new_hghy', name: '化工行业' },
+    { tag: 'new_hqhy', name: '化纤行业' },
+    { tag: 'new_jdhy', name: '家电行业' },
+    { tag: 'new_jdly', name: '酒店旅游' },
+    { tag: 'new_jjhy', name: '家具行业' },
+    { tag: 'new_jrhy', name: '金融行业' },
+    { tag: 'new_jtys', name: '交通运输' },
+    { tag: 'new_jxhy', name: '机械行业' },
+    { tag: 'new_jzjc', name: '建筑建材' },
+    { tag: 'new_kfq', name: '开发区' },
+    { tag: 'new_ljhy', name: '酿酒行业' },
+    { tag: 'new_mtc', name: '摩托车' },
+    { tag: 'new_mthy', name: '煤炭行业' },
+    { tag: 'new_nlmy', name: '农林牧渔' },
+    { tag: 'new_nyhf', name: '农药化肥' },
+    { tag: 'new_qczz', name: '汽车制造' },
+    { tag: 'new_qtxy', name: '其它行业' },
+    { tag: 'new_slzp', name: '塑料制品' },
+    { tag: 'new_snhy', name: '水泥行业' },
+    { tag: 'new_sphy', name: '食品行业' },
+    { tag: 'new_stock', name: '次新股' },
+    { tag: 'new_swzz', name: '生物制药' },
+    { tag: 'new_sybh', name: '商业百货' },
+    { tag: 'new_syhy', name: '石油行业' },
+    { tag: 'new_tchy', name: '陶瓷行业' },
+    { tag: 'new_wzwm', name: '物资外贸' },
+    { tag: 'new_ylqx', name: '医疗器械' },
+    { tag: 'new_yqyb', name: '仪器仪表' },
+    { tag: 'new_ysbz', name: '印刷包装' },
+    { tag: 'new_ysjs', name: '有色金属' },
+    { tag: 'new_zhhy', name: '综合行业' },
+    { tag: 'new_zzhy', name: '造纸行业' }
   ]
   for (let b = 0; b < classList.length; b++) {
     let { tag, name } = classList[b]
