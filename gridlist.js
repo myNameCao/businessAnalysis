@@ -76,6 +76,8 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
       for (let b = 0; b < data.length; b++) {
         await getHistory(data[b], b + 1, data.length)
       }
+
+      writeFile('检查完成')
     })
     .catch(e => {
       console.log(e)
