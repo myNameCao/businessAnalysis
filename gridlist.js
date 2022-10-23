@@ -63,7 +63,7 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
   return await stock
     .getSinaClassifyDetails(options1)
     .then(async ({ data }) => {
-      writeFile(classObj.name + '有' + data.length)
+      writeFile(classObj.name + '*************有   ' + data.length + '   个')
 
       console.log(
         classObj.tag,
@@ -84,7 +84,7 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
 
 const test = async calslists => {
   let classList = calslists || [
-    { tag: 'new_blhy', name: '玻璃行业' },
+    // { tag: 'new_blhy', name: '玻璃行业' },
     { tag: 'new_cbzz', name: '船舶制造' },
     { tag: 'new_cmyl', name: '传媒娱乐' },
     { tag: 'new_dlhy', name: '电力行业' },
