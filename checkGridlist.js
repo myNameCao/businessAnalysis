@@ -36,6 +36,11 @@ const check = (list, name) => {
   let gain_5 = gain.slice(-5) // 最近二十次  大概是半个月的数据
 
   if (active_5(gain_5) && active_10(gain_40)) {
+    console.log(
+      name,
+      '======================================================',
+      '满足要求'
+    )
     writeFile(name)
   }
 }
