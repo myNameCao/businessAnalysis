@@ -50,7 +50,7 @@ const check = (list, name) => {
 
 // 最近一周的表现
 const active_5 = list => {
-  return comT(list) < 0 && list[4] > 0 && list[3] > 0 && list[2] < 0
+  return comT(list) < 3 && list[4] > 0 && list[3] > 0 && list[2] > 0
 }
 const active_10 = list => {
   let a = comT(list)
