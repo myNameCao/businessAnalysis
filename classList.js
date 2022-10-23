@@ -45,7 +45,7 @@ exports.Classlist = [
   // { tag: 'new_ylqx', name: '医疗器械' },
   // { tag: 'new_yqyb', name: '仪器仪表' },
   // { tag: 'new_ysbz', name: '印刷包装' },
-  { tag: 'new_ysjs', name: '有色金属' },
-  { tag: 'new_zhhy', name: '综合行业' },
-  { tag: 'new_zzhy', name: '造纸行业' }
+  // { tag: 'new_ysjs', name: '有色金属' },
+  // { tag: 'new_zhhy', name: '综合行业' },
+  // { tag: 'new_zzhy', name: '造纸行业' }
 ]
