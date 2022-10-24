@@ -10,8 +10,10 @@ const getSinaClassifyDetails = async (classObj, index, T, total) => {
   return await stock
     .getSinaClassifyDetails(options1)
     .then(async ({ data }) => {
-      console.log(data)
-      if (!data) return
+      if (!data) {
+        console.log('没有数据')
+        return
+      }
       writeFile(
         classObj.name + '***********************有   ' + data.length + '   个'
       )

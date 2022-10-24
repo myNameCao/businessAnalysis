@@ -36,12 +36,14 @@ const check = (list, name, price, symbol) => {
   active_10(prices.slice(-60), name)
 
   let gain_40 = gain.slice(-100) // 最近六十次  大概是6个月的数据
-  // console.log('最远时间：', list.slice(-100)[0][0])
+  let price_30 = prices.slice(-60) // 三个月
   let gain_20 = gain.slice(-20) // 最近二十次  大概是1个月的数据
-  let gain_10 = gain.slice(-10) // 最近二十次  大概是半个月的数据
-  let gain_5 = gain.slice(-5) // 最近二十次  大概是半个月的数据
 
-  if (active_90(gain_40, name) && active_5(gain_20, name)) {
+  if (
+    active_90(gain_40, name) &&
+    active_Max_price(price_30, name) &&
+    active_5(gain_20, name)
+  ) {
     let str =
       '请注意 ======================================================================== ' +
       name +
@@ -73,17 +75,23 @@ const active_10 = (list, name) => {
 const active_90 = (list, name) => {
   let maxList = maxL(list, 7)
   let isActive = maxList.length > 7
-  if (isActive) {
-    writeFile(name + '  活跃值: ' + maxList.length)
-  }
+
   return isActive
 }
 
 const active_Max_price = (list, name) => {
-  let maxPrice = Math.max(...lsit)
+  let maxPrice = Math.max(...list)
   let price = list.pop()
 
-  return (maxPrice - price) / price > 20
+  let isminPrice = maxPrice - 1.5 * price > 0
+
+  console.log(maxPrice, price)
+
+  if (isminPrice) {
+    writeFile(name + ' 当前比较低迷 ******     ' + maxPrice + '/' + price)
+  }
+
+  return isminPrice
 }
 
 exports.check = check
