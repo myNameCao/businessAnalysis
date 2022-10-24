@@ -56,7 +56,7 @@ const check = (list, name, price, symbol) => {
   }
 }
 
-//  具体当前的表现  这里是一个月的数据
+//  具体当前的表现  一个月
 const active_5 = (list, name) => {
   //  最近两天的数据
   let length = list.length
@@ -66,9 +66,10 @@ const active_5 = (list, name) => {
 // 三个月历史最低
 const active_10 = (list, name) => {
   let minPrice = Math.min(...list)
+  let average = comT(list) / list.length
   let price = list.pop()
   if (minPrice === price) {
-    writeFile(name + ' 历史最低')
+    writeFile(name + '   历史最低    均值' + average + '/' + price)
   }
 }
 // 三个月的数据比较活跃的
