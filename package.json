@@ -28,7 +28,8 @@
     "husky": "^4.3.0"
   },
   "scripts": {
-    "test": "node ./stockTool/gridlist.js",
+    "test": "node ./stockTool/getSinaConceptsClassified.js  概念分类 ",
+    "test1": "node ./stockTool/getSinaIndustryClassified.js  行业分类 ",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s  && git add CHANGELOG.md",
     "release": "node ./scripts/release.js",
     "preinstall": "node ./scripts/checkYarn.js",

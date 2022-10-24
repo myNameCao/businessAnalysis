@@ -1,6 +1,12 @@
-//  获取新浪概念分类信息
-
 const { stock } = require('tushare')
-stock.getSinaConceptsClassified().then(({ data }) => {
-  console.log(data)
+
+const { test } = require('./getSinaClassifyDetails.js')
+const { writeFile } = require('./wirter')
+
+writeFile(process.pid + ' 行业分类')
+
+stock.getSinaIndustryClassified().then(async ({ data }) => {
+  if (data?.length) {
+    test(data)
+  }
 })
