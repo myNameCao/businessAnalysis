@@ -4,35 +4,36 @@ const { check } = require('./checkGridlist')
 const { writeFile } = require('./wirter')
 
 const { Classlist } = require('./classList.js')
+const { getHistory } = require('./getDetail')
 
 const process = require('process')
 
 writeFile(process.pid)
 
 // 区间数据
-const length = 12 * 30
+// const length = 12 * 30
 
-const getHistory = async (options, b, t) => {
-  let { name, price, symbol } = options
-  console.log(name, '价格：' + price, '====', b + '/' + t)
-  await stock.getHistory({ code: symbol }).then(({ data }) => {
-    if (!data) {
-      console.log('没有数据')
-      return
-    }
-    let list = data?.record || []
-    if (!Array.isArray(list)) {
-      return
-    }
-    list = list.filter(item => {
-      return (
-        new Date(item[0]).getTime() >
-        new Date().getTime() - length * 24 * 60 * 60 * 1000
-      )
-    })
-    check(list, name, price)
-  })
-}
+// const getHistory = async (options, b, t) => {
+//   let { name, price, symbol } = options
+//   console.log(name, '价格：' + price, '====', b + '/' + t)
+//   await stock.getHistory({ code: symbol }).then(({ data }) => {
+//     if (!data) {
+//       console.log('没有数据')
+//       return
+//     }
+//     let list = data?.record || []
+//     if (!Array.isArray(list)) {
+//       return
+//     }
+//     list = list.filter(item => {
+//       return (
+//         new Date(item[0]).getTime() >
+//         new Date().getTime() - length * 24 * 60 * 60 * 1000
+//       )
+//     })
+//     check(list, name, price)
+//   })
+// }
 //{
 //   symbol: 'sz000571',
 //   name: 'ST大洲',
