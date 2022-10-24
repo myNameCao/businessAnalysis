@@ -10,6 +10,7 @@ const maxL = (i, p) => {
 
 const { writeFile } = require('./wirter')
 const check = (list, name, price) => {
+  // console.log(list.pop(), price)
   // ;[
   //0   '2022-10-21',
   // 1  '26.880',
@@ -27,7 +28,12 @@ const check = (list, name, price) => {
   //   '433,029.18',
   //   '0.86'
   // ]
+
   let gain = list.map(item => item[7] * 1) // 每天的涨幅
+
+  let prices = list.map(item => item[3] * 1) // 每天的涨幅
+
+  active_10(prices.slice(-60), name)
 
   let gain_40 = gain.slice(-100) // 最近六十次  大概是6个月的数据
   // console.log('最远时间：', list.slice(-100)[0][0])
@@ -35,7 +41,7 @@ const check = (list, name, price) => {
   let gain_10 = gain.slice(-10) // 最近二十次  大概是半个月的数据
   let gain_5 = gain.slice(-5) // 最近二十次  大概是半个月的数据
 
-  if (active_90(gain_40, name) && active_5(gain_5)) {
+  if (active_90(gain_40, name) && active_5(gain_20)) {
     console.log(
       name,
 
@@ -53,10 +59,17 @@ const check = (list, name, price) => {
 
 // 最近一周的表现
 const active_5 = list => {
-  return comT(list) < 0 && list[4] > 0 && list[3] > 0
+  return comT(list) < -10 && list[4] > 0 && list[3] > 0
 }
 
-const active_10 = list => {}
+// 三个月历史最低
+const active_10 = (list, name) => {
+  let minPrice = Math.min(...list)
+  let price = list.pop()
+  if (minPrice === price) {
+    writeFile(name + ' 历史最低')
+  }
+}
 
 // 三个月的数据比较活跃的
 const active_90 = (list, name) => {
