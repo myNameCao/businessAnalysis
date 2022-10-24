@@ -8,8 +8,10 @@ const maxL = (i, p) => {
   return i.filter(i => Math.abs(i) >= p)
 }
 
+let { msg } = require('./msg')
 const { writeFile } = require('./wirter')
 const check = (list, name, price, symbol) => {
+  msg.number += 1
   // console.log(list.pop(), price)
   // ;[
   //0   '2022-10-21',
@@ -69,7 +71,7 @@ const active_10 = (list, name) => {
   let average = comT(list) / list.length
   let price = list.pop()
   if (minPrice === price) {
-    writeFile(name + '   历史最低    均值' + average + '/' + price)
+    writeFile(name + '   历史最低    均值 ' + average.toFixed(2) + '/' + price)
   }
 }
 // 三个月的数据比较活跃的
@@ -85,8 +87,6 @@ const active_Max_price = (list, name) => {
   let price = list.pop()
 
   let isminPrice = maxPrice - 1.5 * price > 0
-
-  console.log(maxPrice, price)
 
   if (isminPrice) {
     writeFile(name + ' 当前比较低迷 ******     ' + maxPrice + '/' + price)

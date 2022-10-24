@@ -3,7 +3,9 @@ const { stock } = require('tushare')
 const { writeFile } = require('./wirter')
 const { getHistory } = require('./getHistory')
 
-const getSinaClassifyDetails = async (classObj, index, T, total) => {
+let { msg } = require('./msg')
+
+const getSinaClassifyDetails = async (classObj, index, T) => {
   var options1 = {
     tag: classObj.tag
   }
@@ -17,8 +19,6 @@ const getSinaClassifyDetails = async (classObj, index, T, total) => {
       writeFile(
         classObj.name + '***********************有   ' + data.length + '   个'
       )
-
-      total.num += data.length
 
       console.log(
         classObj.tag,
@@ -43,7 +43,7 @@ const test = async classList => {
     let { tag, name } = classList[b]
     await getSinaClassifyDetails({ tag, name }, b + 1, classList.length, total)
   }
-  writeFile('检查完成============================   ' + total.num + '  只')
+  writeFile('检查完成============================   ' + msg.number + '  只')
 }
 
 // test()
