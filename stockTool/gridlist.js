@@ -33,19 +33,6 @@ const getHistory = async (options, b, t) => {
     check(list, name, price)
   })
 }
-
-const getSinaIndustryClassified = () => {
-  let num = []
-  stock.getSinaIndustryClassified().then(async ({ data }) => {
-    console.log('共' + data.length + '行业')
-    for (let a = 0; a < data.length; a++) {
-      num.push({ tag: data[a].tag, name: data[a].name })
-    }
-    console.log(num)
-  })
-}
-
-// 获取行业 包含的股票信息
 //{
 //   symbol: 'sz000571',
 //   name: 'ST大洲',
@@ -85,7 +72,6 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
     })
 }
 // 按行业查询
-// getSinaIndustryClassified()
 
 const test = async calslists => {
   let classList = calslists || Classlist
