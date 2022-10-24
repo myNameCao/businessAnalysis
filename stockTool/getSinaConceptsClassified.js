@@ -4,7 +4,7 @@ const { writeFile } = require('./wirter')
 
 const { test } = require('./getSinaClassifyDetails.js')
 
-writeFile(process.pid)
+writeFile(process.pid + '                    概念分类')
 
 stock.getSinaConceptsClassified().then(({ data }) => {
   if (data?.length) {
