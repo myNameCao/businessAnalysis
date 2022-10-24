@@ -17,7 +17,10 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
         return
       }
       writeFile(
-        classObj.name + '***********************有   ' + data.length + '   个'
+        classObj.name +
+          '*********************** ***********************有   ' +
+          data.length +
+          '   个'
       )
 
       console.log(

@@ -71,14 +71,13 @@ const active_10 = (list, name) => {
   let average = comT(list) / list.length
   let price = list.pop()
   if (minPrice === price) {
-    writeFile(name + '   历史最低    均值 ' + average.toFixed(2) + '/' + price)
+    writeFile(name + ' 历史最低 均值 ' + average.toFixed(2) + '/' + price)
   }
 }
 // 三个月的数据比较活跃的
 const active_90 = (list, name) => {
   let maxList = maxL(list, 7)
   let isActive = maxList.length > 7
-
   return isActive
 }
 
@@ -89,7 +88,7 @@ const active_Max_price = (list, name) => {
   let isminPrice = maxPrice - 1.5 * price > 0
 
   if (isminPrice) {
-    writeFile(name + ' 当前比较低迷 ******     ' + maxPrice + '/' + price)
+    writeFile(name + ' 比较低迷 ******     ' + maxPrice + '/' + price)
   }
 
   return isminPrice

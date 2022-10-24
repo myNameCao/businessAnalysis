@@ -1,6 +1,7 @@
 const { stock } = require('tushare')
 const process = require('process')
 const iconv = require('iconv-lite')
+let { rmSync } = require('fs')
 
 let { msg } = require('./msg')
 
@@ -10,6 +11,8 @@ const { test } = require('./getSinaClassifyDetails.js')
 let str = '概念分类'
 msg[process.pid] = str
 msg.fileName = str
+
+rmSync('./概念分类.js', { force: true })
 
 writeFile(process.pid + '                    ' + str)
 
