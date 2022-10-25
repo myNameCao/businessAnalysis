@@ -56,6 +56,8 @@ const check = (list, N, price, symbol) => {
       '   ' +
       price
     console.log(str)
+    let { noteList } = msg
+    noteList.push({ name, symbol, price })
     writeFile(str)
   }
 }

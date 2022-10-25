@@ -1,5 +1,6 @@
 let msg = {
   fileName: '自定义',
+  noteList: [],
   temp: {},
   number: 0,
   path: '../../Desktop/look/',

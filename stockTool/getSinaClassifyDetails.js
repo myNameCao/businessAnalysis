@@ -1,6 +1,6 @@
 const { stock } = require('tushare')
 
-const { writeFile } = require('./wirter')
+const { writeFile, writeNote } = require('./wirter')
 const { getHistory } = require('./getHistory')
 
 let { msg } = require('./msg')
@@ -51,6 +51,7 @@ const test = async classList => {
   }
   let str = '检查完成============================   ' + msg.number + '  只'
   console.log(str)
+  writeNote(msg.noteList)
   writeFile(str)
 }
 

@@ -16,6 +16,18 @@ const writeFile = name => {
   })
 }
 
+const writeNote = L => {
+  rm('./stockTool/list.js', { force: true })
+
+  let content = `let  list = ${JSON.stringify(L)}
+  exports.list = list
+  `
+
+  wf('./stockTool/list.js', content, { flag: 'a' }, err => {
+    if (err) console.log(err)
+  })
+}
+
 const rmSync = () => {
   let { path, fileName } = msg
   rm(`${path}${fileName}.txt`, { force: true })
@@ -23,3 +35,4 @@ const rmSync = () => {
 
 exports.writeFile = writeFile
 exports.rmSync = rmSync
+exports.writeNote = writeNote
