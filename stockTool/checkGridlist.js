@@ -5,7 +5,12 @@ const comT = i => {
 }
 
 const maxL = (i, p) => {
-  return i.filter(i => Math.abs(i) >= p)
+  let maxList = i.filter(i => Math.abs(i) >= p)
+  let plus = maxList.filter(i => i > 0) // 正
+  return {
+    maxList,
+    plus
+  }
 }
 
 let { msg } = require('./msg')
@@ -49,7 +54,7 @@ const check = (list, N, price, symbol) => {
 
   if (isActive && isMin && is_lastRise) {
     let str =
-      '请注意 ======================================================================== ' +
+      '请注意 =============================================================== ' +
       name +
       '  ' +
       symbol +
@@ -73,18 +78,20 @@ const historyMin = list => {
   let minPrice = Math.min(...list)
   let average = comT(list) / list.length
   let price = list.pop()
-  if (minPrice === price) {
-    writeFile(name + ' 历史最低 区间均值 ' + average.toFixed(2) + '/' + price)
-    return true
+  let isMIn = minPrice === price
+  if (isMIn) {
+    writeFile(
+      name + ' 历史最低, 区间均值 / 当前 ' + average.toFixed(2) + '/' + price
+    )
   }
-  return false
+  return isMIn
 }
 
 const activeLength = list => {
-  let maxList = maxL(list, 7)
+  let { maxList, plus } = maxL(list, 7)
   let isActive = maxList.length > 7
   if (isActive) {
-    writeFile(name + ' 活跃值' + maxList.length)
+    writeFile(name + ' 较活跃， 值： ' + plus.length + ' / ' + maxList.length)
   }
   return isActive
 }
@@ -93,7 +100,7 @@ const activeMax = list => {
   let price = list.pop()
   let isminPrice = maxPrice - 1.5 * price > 0
   if (isminPrice) {
-    writeFile(name + ' 低迷****** ' + maxPrice + '/' + price)
+    writeFile(name + ' 比较低， 最高/当前   ' + maxPrice + ' / ' + price)
   }
   return isminPrice
 }
