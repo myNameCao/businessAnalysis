@@ -11,14 +11,14 @@ const writeFile = name => {
 
   // 注意时机
   let { path, fileName } = msg
-  wf(`${path}${fileName}.json`, name + '\n', { flag: 'a' }, err => {
+  wf(`${path}${fileName}.txt`, name + '\n', { flag: 'a' }, err => {
     if (err) console.log(err)
   })
 }
 
 const rmSync = () => {
   let { path, fileName } = msg
-  rm(`${path}${fileName}.json`, { force: true })
+  rm(`${path}${fileName}.txt`, { force: true })
 }
 
 exports.writeFile = writeFile
