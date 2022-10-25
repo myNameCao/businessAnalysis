@@ -9,6 +9,10 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
   var options1 = {
     tag: classObj.tag
   }
+
+  if (!classObj.tag) {
+    console.log('没有tag')
+  }
   return await stock
     .getSinaClassifyDetails(options1)
     .then(async ({ data }) => {
