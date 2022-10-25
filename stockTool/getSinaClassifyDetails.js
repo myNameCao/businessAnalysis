@@ -46,7 +46,9 @@ const test = async classList => {
     let { tag, name } = classList[b]
     await getSinaClassifyDetails({ tag, name }, b + 1, classList.length, total)
   }
-  writeFile('检查完成============================   ' + msg.number + '  只')
+  let str = '检查完成============================   ' + msg.number + '  只'
+  console.log(str)
+  writeFile(str)
 }
 
 // test()

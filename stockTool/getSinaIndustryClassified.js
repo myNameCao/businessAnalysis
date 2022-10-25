@@ -1,16 +1,15 @@
 const { stock } = require('tushare')
 
 const { test } = require('./getSinaClassifyDetails.js')
-const { writeFile } = require('./wirter')
-let { rmSync } = require('fs')
+const { writeFile, rmSync } = require('./wirter')
 
 let { msg } = require('./msg')
 
-msg[process.pid] = '行业分类'
+let str = '行业分类'
+msg[process.pid] = str
+msg.fileName = str
 
-msg.fileName = '行业分类'
-
-rmSync('./行业分类.js', { force: true })
+rmSync()
 
 writeFile(process.pid + '                         行业分类')
 

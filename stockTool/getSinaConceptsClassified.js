@@ -1,19 +1,13 @@
 const { stock } = require('tushare')
 const process = require('process')
 const iconv = require('iconv-lite')
-let { rmSync } = require('fs')
-
 let { msg } = require('./msg')
-
-const { writeFile } = require('./wirter')
-
+const { writeFile, rmSync } = require('./wirter')
 const { test } = require('./getSinaClassifyDetails.js')
 let str = '概念分类'
 msg[process.pid] = str
 msg.fileName = str
-
-rmSync('./概念分类.js', { force: true })
-
+rmSync()
 writeFile(process.pid + '                    ' + str)
 
 stock.getSinaConceptsClassified().then(({ data }) => {
@@ -23,7 +17,7 @@ stock.getSinaConceptsClassified().then(({ data }) => {
     data[i].name = iconv.decode(Buffer.from(buffer), 'utf8')
     data[i].leadingName = iconv.decode(Buffer.from(buffer1), 'utf8')
   }
-
+  console.log(data)
   if (data?.length) {
     test(data)
   }

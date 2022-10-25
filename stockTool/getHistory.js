@@ -2,7 +2,9 @@ const { stock } = require('tushare')
 
 const { check } = require('./checkGridlist')
 
-const length = 12 * 30
+let {
+  msg: { furthest_time, recent_time }
+} = require('./msg')
 
 const getHistory = async (options, b, t) => {
   let { name, price, symbol } = options
@@ -19,15 +21,16 @@ const getHistory = async (options, b, t) => {
       return
     }
     list = list.filter(item => {
-      return (
-        new Date(item[0]).getTime() >
-        new Date().getTime() - length * 24 * 60 * 60 * 1000
-      )
+      let IndexTime = new Date(item[0]).getTime()
+
+      let furthest = new Date(furthest_time).getTime()
+      let recent = recent_time
+        ? new Date(recent_time).getTime()
+        : new Date().getTime()
+      return IndexTime >= furthest && IndexTime <= recent
     })
     check(list, name, price, symbol)
   })
 }
-
-// getHistory({ symbol: '000530', name: '冰山' })
 
 exports.getHistory = getHistory
