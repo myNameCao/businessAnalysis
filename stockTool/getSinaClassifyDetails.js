@@ -45,10 +45,9 @@ const getSinaClassifyDetails = async (classObj, index, T) => {
 
 const test = async classList => {
   if (!classList.length) return
-  let total = { num: 0 }
   for (let b = 0; b < classList.length; b++) {
     let { tag, name } = classList[b]
-    await getSinaClassifyDetails({ tag, name }, b + 1, classList.length, total)
+    await getSinaClassifyDetails({ tag, name }, b + 1, classList.length)
   }
   let str = '检查完成============================   ' + msg.number + '  只'
   console.log(str)

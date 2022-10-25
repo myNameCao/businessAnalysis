@@ -2,15 +2,20 @@ const { stock } = require('tushare')
 
 const { check } = require('./checkGridlist')
 
-let {
-  msg: { furthest_time, recent_time }
-} = require('./msg')
+let { msg } = require('./msg')
 
 const getHistory = async (options, b, t) => {
   let { name, price, symbol } = options
 
   if (!symbol) return
+  let { furthest_time, recent_time, temp } = msg
   console.log(name, '价格：' + price, '====', b + '/' + t)
+  // 去重复
+  if (temp[symbol]) {
+    console.log('重复了')
+    return
+  }
+  temp[symbol] = true
   await stock.getHistory({ code: symbol }).then(({ data }) => {
     if (!data) {
       console.log('没有数据')

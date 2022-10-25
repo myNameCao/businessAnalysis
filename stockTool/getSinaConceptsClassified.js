@@ -7,8 +7,18 @@ const { test } = require('./getSinaClassifyDetails.js')
 let str = '概念分类'
 msg[process.pid] = str
 msg.fileName = str
+msg.temp = {}
 rmSync()
-writeFile(process.pid + '                    ' + str)
+let data1 = msg.recent_time || '今天'
+writeFile(
+  process.pid +
+    '                    ' +
+    str +
+    '                             区间  ' +
+    msg.furthest_time +
+    '    到   ' +
+    data1
+)
 
 stock.getSinaConceptsClassified().then(({ data }) => {
   for (let i = 0; i < data.length; i++) {
