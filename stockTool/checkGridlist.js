@@ -15,6 +15,8 @@ const maxL = (i, p) => {
 
 let { msg } = require('./msg')
 
+let { band } = require('./band')
+
 let name = ''
 const { writeFile } = require('./wirter')
 const check = (list, N, price, symbol) => {
@@ -42,6 +44,8 @@ const check = (list, N, price, symbol) => {
   let gain = list.map(item => item[7] * 1)
 
   let prices = list.map(item => item[3] * 1)
+
+  band(prices)
 
   // 历史最低
   let ishistoryMin = historyMin(prices)
