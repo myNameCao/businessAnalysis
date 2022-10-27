@@ -54,7 +54,7 @@ const check = (list, N, price, symbol) => {
 
   if (isActive && isMin && is_lastRise) {
     let str =
-      '请注意 =============================================================== ' +
+      '请注意 ========================================= ' +
       name +
       '  ' +
       symbol +
