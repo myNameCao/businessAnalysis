@@ -1,16 +1,19 @@
 let { msg } = require('./msg')
 
+let { writeFile } = require('./wirter')
+
 const comT = i => {
   return i.reduce((a, b) => a + b)
 }
 
-const band = list => {
+const band = (list, name) => {
   if (!list.length) return false
   let { band } = msg
 
   let result_list = [list[0]]
 
   let length = list.length
+  let lastItem = list[length - 1]
   let add = null
   for (let i = 1; i < length; i++) {
     let item = list[i]
@@ -23,14 +26,29 @@ const band = list => {
         continue
       }
     }
-    if (Math.abs(item - result_list[result_list.length - 1]) > band) {
+    if (
+      Math.abs(item - result_list[result_list.length - 1]) >
+      band * lastItem
+    ) {
       result_list.push(item)
       add = subAdd
     }
   }
-  console.log(result_list)
+  if (result_list.length > 3) {
+    let [a, b] = result_list.slice(-2)
+    let isDown = a - b > 0
+    if ((b = lastItem)) {
+      let str = `波动分布： ${name}  [ ${result_list.join(' | ')} ]`
 
-  return result_list
+      let srtba = isDown ? '波低' : '波顶'
+      console.log(srtba, result_list)
+      isDown && writeFile(str)
+      return true
+    }
+  }
+  return false
 }
 
 exports.band = band
+
+// band([1, 4, 6, 7, 9, 3, 6, 10, 8, 8, 7, 6, 4, 2, 1])

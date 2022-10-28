@@ -1,6 +1,7 @@
 let msg = {
   fileName: '自定义',
-  band: 3, // 波距
+  band: 0.5, // 波距
+  activeNumber: 8, // 活跃值
   noteList: [],
   temp: {},
   number: 0,

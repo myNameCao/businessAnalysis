@@ -10,6 +10,8 @@ msg.fileName = str
 msg.temp = {}
 rmSync()
 let data1 = msg.recent_time || '今天'
+
+console.log(data1, str)
 writeFile(
   process.pid +
     '                    ' +

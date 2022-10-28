@@ -45,20 +45,18 @@ const check = (list, N, price, symbol) => {
 
   let prices = list.map(item => item[3] * 1)
 
-  band(prices)
+  let downBanl = band(prices, name)
 
   // 历史最低
   let ishistoryMin = historyMin(prices)
-  // 和最高值比较相比低
-  let isMin = activeMax(prices)
   // 比较活跃
   let isActive = activeLength(gain)
   // 最近几天刚表现出来
   let is_lastRise = last_rise(gain)
 
-  if (isActive && isMin && is_lastRise) {
+  if (isActive && downBanl) {
     let str =
-      '请注意 ========================================= ' +
+      '请注意 ======================================== ' +
       name +
       '  ' +
       symbol +
@@ -93,20 +91,11 @@ const historyMin = list => {
 
 const activeLength = list => {
   let { maxList, plus } = maxL(list, 7)
-  let isActive = maxList.length > 7
+  let isActive = maxList.length > msg.activeNumber
   if (isActive) {
     writeFile(name + ' 较活跃， 值： ' + plus.length + ' / ' + maxList.length)
   }
   return isActive
-}
-const activeMax = list => {
-  let maxPrice = Math.max(...list)
-  let price = list.pop()
-  let isminPrice = maxPrice - 1.5 * price > 0
-  if (isminPrice) {
-    writeFile(name + ' 比较低， 最高/当前   ' + maxPrice + ' / ' + price)
-  }
-  return isminPrice
 }
 
 exports.check = check
