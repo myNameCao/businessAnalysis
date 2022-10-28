@@ -34,7 +34,7 @@ const band = (list, name) => {
       add = subAdd
     }
   }
-  if (result_list.length > 3) {
+  if (result_list.length > msg.bandNumber) {
     let [a, b] = result_list.slice(-2)
     let isDown = a - b > 0
     if ((b = lastItem)) {
