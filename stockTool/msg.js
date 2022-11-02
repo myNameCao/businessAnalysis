@@ -1,8 +1,9 @@
 let msg = {
   fileName: '自定义',
-  band: 0.5, // 波距
-  bandNumber: 3,
-  activeNumber: 8, // 活跃值
+  band: 0.4, // 波距
+  diff: 0.01, //与波的对比
+  bandNumber: 4,
+  activeNumber: 15, // 活跃值
   noteList: [],
   temp: {},
   number: 0,
