@@ -56,7 +56,7 @@ const check = (list, N, price, symbol) => {
 
   if (isActive && downBanl) {
     let str =
-      '请注意 ================================= ' +
+      '请注意 ==================================== ' +
       name +
       '  ' +
       symbol +
