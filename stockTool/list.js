@@ -1,4 +1,4 @@
-let  list = [{"name":"*ST和佳","symbol":"sz300273","price":"2.190"},{"name":"以岭药业","symbol":"sz002603","price":"32.220"}]
+let  list = [{"name":"神驰机电","symbol":"sh603109","price":"16.750"},{"name":"天保基建","symbol":"sz000965","price":"4.480"},{"name":"日出东方","symbol":"sh603366","price":"6.870"},{"name":"大港股份","symbol":"sz002077","price":"17.050"},{"name":"科信技术","symbol":"sz300565","price":"27.610"},{"name":"中锐股份","symbol":"sz002374","price":"4.670"},{"name":"阳 光 城","symbol":"sz000671","price":"1.760"},{"name":"皇庭国际","symbol":"sz000056","price":"4.130"},{"name":"南山控股","symbol":"sz002314","price":"3.240"},{"name":"新华联","symbol":"sz000620","price":"2.720"},{"name":"以岭药业","symbol":"sz002603","price":"32.690"},{"name":"宁波建工","symbol":"sh601789","price":"4.510"}]
 
   exports.list = list
   
