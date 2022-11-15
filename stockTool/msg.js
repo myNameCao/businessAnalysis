@@ -3,7 +3,7 @@ let msg = {
   band: 0.4, // 波距
   diff: 0.1, //与波的差距
   bandNumber: 3, // 波数
-  activeNumber: 20, // 活跃值
+  activeNumber: 15, // 活跃值
   noteList: [],
   temp: {},
   number: 0,

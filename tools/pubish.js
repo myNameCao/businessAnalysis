@@ -41,9 +41,6 @@ const gitPull = (name, spinner) => {
       let endtag = execSync(`git rev-list --tags --max-count=1`)
         .toString()
         .trim() // 最后的tag 的commitId
-      let head = execSync(`git rev-parse HEAD`)
-        .toString()
-        .trim() // 最后一次提交
       let txt = execSync(`git log ${endtag}..HEAD`) //buffer
       console.log(txt.toString())
     })
