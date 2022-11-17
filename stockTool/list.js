@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 let  list = [{"name":"神驰机电","symbol":"sh603109","price":"16.140"},{"name":"北京科锐","symbol":"sz002350","price":"7.530"},{"name":"禾望电气","symbol":"sh603063","price":"27.230"},{"name":"积成电子","symbol":"sz002339","price":"6.520"},{"name":"巨星农牧","symbol":"sh603477","price":"20.740"},{"name":"红星发展","symbol":"sh600367","price":"18.270"},{"name":"西子洁能","symbol":"sz002534","price":"17.800"},{"name":"川润股份","symbol":"sz002272","price":"6.730"},{"name":"雪人股份","symbol":"sz002639","price":"9.210"},{"name":"同兴环保","symbol":"sz003027","price":"21.620"},{"name":"立航科技","symbol":"sh603261","price":"38.450"},{"name":"金晶科技","symbol":"sh600586","price":"8.370"},{"name":"万业企业","symbol":"sh600641","price":"19.920"},{"name":"合盛硅业","symbol":"sh603260","price":"100.660"},{"name":"日出东方","symbol":"sh603366","price":"6.820"},{"name":"江淮汽车","symbol":"sh600418","price":"13.700"},{"name":"大港股份","symbol":"sz002077","price":"20.190"},{"name":"京城股份","symbol":"sh600860","price":"14.310"},{"name":"科信技术","symbol":"sz300565","price":"26.920"},{"name":"万里股份","symbol":"sh600847","price":"16.670"},{"name":"鼎龙文化","symbol":"sz002502","price":"3.230"},{"name":"惠程科技","symbol":"sz002168","price":"3.990"},{"name":"天能重工","symbol":"sz300569","price":"9.210"},{"name":"以岭药业","symbol":"sz002603","price":"37.760"},{"name":"东风汽车","symbol":"sh600006","price":"5.810"},{"name":"同达创业","symbol":"sh600647","price":"15.940"}]
+=======
+let  list = []
+>>>>>>> 35f72b5 (chore: merg code)
 
   exports.list = list
   
