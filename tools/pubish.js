@@ -26,6 +26,8 @@ const { composeAsync } = require('../composeAsync')
 
 let falg = process.argv[2]
 
+falg = falg === 'sp' ? 'sp' : undefined
+
 // 压缩
 const compressing = require('compressing')
 
@@ -70,7 +72,7 @@ const updatePackage = version => {
   const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
   if (version) {
     pkg.preVersion = pkg.version
-    pkg.version = version
+    pkg.version = falg ? 'sp' + version : version
   }
   if (!version) {
     pkg.version = pkg.preVersion
@@ -107,8 +109,6 @@ const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
 const sameBranch = () => {
-  console.log(falg)
-
   if (falg) {
     return Promise.resolve().then(() => execSync(`yarn release`))
   }
@@ -130,6 +130,9 @@ const task = name => {
   return funs()
     .then(() => {
       spinner.succeed(`${name} 发布完成`)
+      if (falg) {
+        console.log('紧急上线 *******  ，请手动合并代码再走')
+      }
       note(name, changelogText, '👏 👏 👏 👏 👏 👏 👏 👏')
     })
     .catch(err => {
