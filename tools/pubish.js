@@ -24,6 +24,8 @@ const { changeLog } = require('./createChangelog')
 
 const { composeAsync } = require('../composeAsync')
 
+let falg = process.argv[2]
+
 // 压缩
 const compressing = require('compressing')
 
@@ -105,6 +107,11 @@ const rmZip = name => {
   return unlink(`./${name}.zip`)
 } // 删除压缩包
 const sameBranch = () => {
+  console.log(falg)
+
+  if (falg) {
+    return Promise.resolve().then(() => execSync(`yarn release`))
+  }
   return Promise.resolve()
     .then(() => execSync(`yarn release`))
     .then(() => execSync('git checkout develop '))
