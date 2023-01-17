@@ -25,6 +25,17 @@ const writeNote = L => {
     if (err) console.log(err)
   })
 }
+const writeAll = L => {
+  rm('./stockTool/all.js', { force: true })
+  let content = `let  list = ${JSON.stringify(L)}
+
+  exports.list = list
+  `
+  // 写入文件内容（如果文件不存在会创建一个文件）
+  wf('./stockTool/all.js', content, { flag: 'a' }, err => {
+    if (err) console.log(err)
+  })
+}
 
 const rmSync = () => {
   let { path, fileName } = msg
@@ -33,4 +44,5 @@ const rmSync = () => {
 
 exports.writeFile = writeFile
 exports.rmSync = rmSync
+exports.writeAll = writeAll
 exports.writeNote = writeNote

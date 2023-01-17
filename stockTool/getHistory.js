@@ -4,12 +4,9 @@ const { check } = require('./checkGridlist')
 
 let { msg } = require('./msg')
 
-const getHistory = async (options, b, t) => {
-  let { name, price, symbol } = options
-
+const getHistory = async ({ name, symbol }) => {
   if (!symbol) return
-  let { furthest_time, recent_time, temp } = msg
-  console.log(name, '价格：' + price, '====', b + '/' + t)
+  let { furthest_time, recent_time, temp, disabledtemp, checktemp } = msg
   // 去重复
   if (temp[symbol]) {
     console.log('重复了')
@@ -18,11 +15,15 @@ const getHistory = async (options, b, t) => {
   temp[symbol] = true
   await stock.getHistory({ code: symbol }).then(({ data }) => {
     if (!data) {
-      console.log('没有数据')
+      console.log(name + '           没有数据')
+      disabledtemp[symbol] = name
       return
     }
+
     let list = data?.record || []
     if (!Array.isArray(list)) {
+      console.log(name + '           没有数据')
+      disabledtemp[symbol] = name
       return
     }
     list = list.filter(item => {
@@ -34,7 +35,8 @@ const getHistory = async (options, b, t) => {
         : new Date().getTime()
       return IndexTime >= furthest && IndexTime <= recent
     })
-    check(list, name, price, symbol)
+    checktemp[symbol] = name
+    check(list, name, symbol)
   })
 }
 

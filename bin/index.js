@@ -3,6 +3,14 @@ var inquirer = require('inquirer')
 const { task } = require('../tools/pubish')
 const { composeAsync } = require('../composeAsync')
 
+let falg = process.argv[2]
+
+if (falg && falg !== 'sp') {
+  console.log('参数错误 特殊上线是 参数为: sp ')
+
+  return
+}
+
 inquirer
   .prompt([
     {

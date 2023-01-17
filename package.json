@@ -4,6 +4,7 @@
     "axios": "^0.21.1",
     "chalk": "^4.1.0",
     "compressing": "^1.5.1",
+    "dipiper": "^1.0.13",
     "execa": "^5.1.1",
     "iconv-lite": "^0.6.3",
     "inquirer": "^8.1.2",
@@ -30,9 +31,8 @@
     "husky": "^4.3.0"
   },
   "scripts": {
-    "test": "node ./stockTool/getSinaConceptsClassified.js ",
     "mylike": "node ./stockTool/mylike.js ",
-    "test1": "node ./stockTool/getSinaIndustryClassified.js ",
+    "all": "node ./stockTool/myall.js ",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s  && git add CHANGELOG.md",
     "release": "node ./scripts/release.js",
     "preinstall": "node ./scripts/checkYarn.js",

@@ -1,4 +1,21 @@
-let  list = [{"name":"盛弘股份","symbol":"sz300693","price":"58.920"},{"name":"红星发展","symbol":"sh600367","price":"17.220"},{"name":"科达制造","symbol":"sh600499","price":"15.660"},{"name":"盛新锂能","symbol":"sz002240","price":"42.200"},{"name":"天齐锂业","symbol":"sz002466","price":"88.430"},{"name":"天华超净","symbol":"sz300390","price":"61.600"},{"name":"华峰铝业","symbol":"sh601702","price":"14.440"},{"name":"上机数控","symbol":"sh603185","price":"118.740"},{"name":"合盛硅业","symbol":"sh603260","price":"91.110"},{"name":"赛力斯","symbol":"sh601127","price":"46.420"},{"name":"联创股份","symbol":"sz300343","price":"11.100"},{"name":"ST开元","symbol":"sz300338","price":"5.570"},{"name":"科华数据","symbol":"sz002335","price":"53.540"}]
+let list = [
+  { name: '中国医药', symbol: 'sh600056' },
+  { name: '赛力斯', symbol: 'sh601127' },
+  { name: '塞力医疗', symbol: 'sh603716' },
+  { name: '大理药业', symbol: 'sh603963' },
+  { name: '中兴商业', symbol: 'sz000715' },
+  { name: '新华制药', symbol: 'sz000756' },
+  { name: '中国武夷', symbol: 'sz000797' },
+  { name: '宝鹰股份', symbol: 'sz002047' },
+  { name: '毅昌科技', symbol: 'sz002420' },
+  { name: '千红制药', symbol: 'sz002550' },
+  { name: '以岭药业', symbol: 'sz002603' },
+  { name: '双成药业', symbol: 'sz002693' },
+  { name: '龙津药业', symbol: 'sz002750' },
+  { name: '天顺股份', symbol: 'sz002800' },
+  { name: '赛隆药业', symbol: 'sz002898' },
+  { name: '华森制药', symbol: 'sz002907' },
+  { name: '上海凯宝', symbol: 'sz300039' }
+]
 
-  exports.list = list
-  
+exports.list = list

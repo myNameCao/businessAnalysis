@@ -1,14 +1,15 @@
 let msg = {
   fileName: '注意',
-  band: 0.5, // 波距
-  diff: 0.05, //与波的差距
+  band: 0.4, // 波距  起伏的程度
+  diff: 0.02, // 目前与波的差距 查看现在的状态
   bandNumber: 3, // 波数
-  activeNumber: 35, // 活跃值
+  activeNumber: 20, // 活跃值
   noteList: [],
   temp: {},
-  number: 0,
+  checktemp: {},
+  disabledtemp: {},
   path: '../../Desktop/look/',
-  furthest_time: '2021-6-1',
+  furthest_time: '2022-01-01',
   // 默认是今天
   recent_time: ''
 }

@@ -26,8 +26,6 @@ const { composeAsync } = require('../composeAsync')
 
 let falg = process.argv[2]
 
-falg = falg === 'sp' ? 'sp' : undefined
-
 // 压缩
 const compressing = require('compressing')
 
@@ -72,7 +70,7 @@ const updatePackage = version => {
   const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
   if (version) {
     pkg.preVersion = pkg.version
-    pkg.version = falg ? 'sp' + version : version
+    pkg.version = version
   }
   if (!version) {
     pkg.version = pkg.preVersion

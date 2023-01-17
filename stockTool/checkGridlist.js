@@ -19,10 +19,7 @@ let { band } = require('./band')
 
 let name = ''
 const { writeFile } = require('./wirter')
-const check = (list, N, price, symbol) => {
-  name = N
-  msg.number += 1
-  // console.log(list.pop(), price)
+const check = (list, name, symbol) => {
   // ;[
   //0   '2022-10-21',
   // 1  '26.880',
@@ -40,10 +37,15 @@ const check = (list, N, price, symbol) => {
   //   '433,029.18',
   //   '0.86'
   // ]
-
+  //
   let gain = list.map(item => item[7] * 1)
 
   let prices = list.map(item => item[3] * 1)
+
+  console.log(`${name} ======  ${prices.slice(-1)}`)
+
+  // 量
+  let amount = list.map(item => item[6] * 1)
 
   let downBanl = band(prices, name)
 
@@ -56,15 +58,10 @@ const check = (list, N, price, symbol) => {
 
   if (isActive && downBanl) {
     let str =
-      '请注意 ==================================== ' +
-      name +
-      '  ' +
-      symbol +
-      '   ' +
-      price
+      '请注意 ==================================== ' + name + '  ' + symbol
     console.log(str)
     let { noteList } = msg
-    noteList.push({ name, symbol, price })
+    noteList.push({ name, symbol })
     writeFile(str)
   }
 }
