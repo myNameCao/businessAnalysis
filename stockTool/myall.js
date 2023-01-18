@@ -1,6 +1,6 @@
 let { getHistory } = require('./getHistory')
 
-let { writeFile, rmSync, writeNote } = require('./wirter')
+let { writeFile, rmSync, writeList } = require('./wirter')
 
 let { list } = require('./all')
 let { msg } = require('./msg')
@@ -26,6 +26,7 @@ const testList = async () => {
   )
   console.log(`无效数据：${Object.values(disabledtemp)}`)
 
-  writeNote(noteList)
+  writeList(noteList, 'list')
+  writeList(disabledtemp, 'disabledtemp')
 }
 testList()

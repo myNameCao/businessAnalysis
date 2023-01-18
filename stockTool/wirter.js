@@ -14,29 +14,6 @@ const writeFile = (text, feature) => {
   })
 }
 
-const writeNote = L => {
-  rm('./stockTool/list.js', { force: true })
-  let content = `let  list = ${JSON.stringify(L)}
-
-  exports.list = list
-  `
-  // 写入文件内容（如果文件不存在会创建一个文件）
-  wf('./stockTool/list.js', content, { flag: 'a' }, err => {
-    if (err) console.log(err)
-  })
-}
-const writeAll = L => {
-  rm('./stockTool/all.js', { force: true })
-  let content = `let  list = ${JSON.stringify(L)}
-
-  exports.list = list
-  `
-  // 写入文件内容（如果文件不存在会创建一个文件）
-  wf('./stockTool/all.js', content, { flag: 'a' }, err => {
-    if (err) console.log(err)
-  })
-}
-
 const writeList = (L, name) => {
   rm(`./stockTool/${name}.js`, { force: true })
   let content = `let  list = ${JSON.stringify(L)}
@@ -57,5 +34,3 @@ const rmSync = () => {
 exports.writeFile = writeFile
 exports.writeList = writeList
 exports.rmSync = rmSync
-exports.writeAll = writeAll
-exports.writeNote = writeNote
