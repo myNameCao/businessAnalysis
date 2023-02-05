@@ -19,7 +19,7 @@ let { band } = require('./band')
 
 let name = ''
 const { writeFile } = require('./wirter')
-const check = (list, name, symbol) => {
+const check = (list, N, symbol) => {
   // ;[
   //0   '2022-10-21',
   // 1  '26.880',
@@ -38,11 +38,13 @@ const check = (list, name, symbol) => {
   //   '0.86'
   // ]
   //
+  //  全局设置 名字
+  name = N
   let gain = list.map(item => item[7] * 1)
 
   let prices = list.map(item => item[3] * 1)
 
-  console.log(`${name} ======  ${prices.slice(-1)}`)
+  // console.log(`${name} ======  ${prices.slice(-1)}`)
 
   // 量
   let amount = list.map(item => item[6] * 1)
@@ -57,12 +59,12 @@ const check = (list, name, symbol) => {
   let is_lastRise = last_rise(gain)
 
   if (isActive && downBanl) {
-    let str =
-      '请注意 ==================================== ' + name + '  ' + symbol
-    console.log(str)
+    // let str =
+    //   '请注意 ==================================== ' + name + '  ' + symbol
+    // console.log(str)
     let { noteList } = msg
     noteList.push({ name, symbol })
-    writeFile(str)
+    // writeFile(str)
   }
 }
 
