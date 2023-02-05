@@ -24,7 +24,6 @@ const testList = async () => {
       Object.keys(disabledtemp).length
     } 条`
   )
-  console.log(`无效数据：${Object.values(disabledtemp)}`)
 
   writeList(noteList, 'list')
   writeList(disabledtemp, 'disabledtemp')

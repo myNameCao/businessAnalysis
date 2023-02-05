@@ -1,20 +1,4 @@
-let list = [
-  { name: '中国医药', symbol: 'sh600056' },
-  { name: '赛力斯', symbol: 'sh601127' },
-  { name: '塞力医疗', symbol: 'sh603716' },
-  { name: '大理药业', symbol: 'sh603963' },
-  { name: '中兴商业', symbol: 'sz000715' },
-  { name: '新华制药', symbol: 'sz000756' },
-  { name: '中国武夷', symbol: 'sz000797' },
-  { name: '宝鹰股份', symbol: 'sz002047' },
-  { name: '精华制药', symbol: 'sz002349' },
-  { name: '千红制药', symbol: 'sz002550' },
-  { name: '以岭药业', symbol: 'sz002603' },
-  { name: '双成药业', symbol: 'sz002693' },
-  { name: '龙津药业', symbol: 'sz002750' },
-  { name: '赛隆药业', symbol: 'sz002898' },
-  { name: '华森制药', symbol: 'sz002907' },
-  { name: '上海凯宝', symbol: 'sz300039' }
-]
+let  list = [{"name":"中国医药","symbol":"sh600056"},{"name":"文一科技","symbol":"sh600520"},{"name":"海量数据","symbol":"sh603138"},{"name":"南威软件","symbol":"sh603636"},{"name":"大理药业","symbol":"sh603963"},{"name":"中兴商业","symbol":"sz000715"},{"name":"新华制药","symbol":"sz000756"},{"name":"中国武夷","symbol":"sz000797"},{"name":"美利云","symbol":"sz000815"},{"name":"精华制药","symbol":"sz002349"},{"name":"以岭药业","symbol":"sz002603"},{"name":"美吉姆","symbol":"sz002621"},{"name":"双成药业","symbol":"sz002693"},{"name":"龙津药业","symbol":"sz002750"},{"name":"赛隆药业","symbol":"sz002898"},{"name":"华森制药","symbol":"sz002907"},{"name":"上海凯宝","symbol":"sz300039"}]
 
-exports.list = list
+  exports.list = list
+  
