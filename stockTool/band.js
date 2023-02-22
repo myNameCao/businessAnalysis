@@ -36,13 +36,15 @@ const band = (list, name) => {
   }
   if (result_list.length > msg.bandNumber) {
     let [a, b] = result_list.slice(-2)
-    console.log(result_list)
+    // console.log(result_list)
     let isDown = a - b > 0
     let diffnum = (Math.abs(lastItem - b) / b).toFixed(4) * 1
     if (diffnum <= diff) {
       let str = `波动分布： ${name}  [ ${result_list.join(' | ')} ]`
       let srtba = isDown ? ' 波低 ' : ' 波顶 '
-      console.log(srtba, result_list, diffnum)
+      if (isDown) {
+        console.log(name, ':', srtba, result_list, diffnum)
+      }
       writeFile(diffnum + '  ' + str)
       return true
     }

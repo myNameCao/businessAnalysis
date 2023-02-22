@@ -1,4 +1,29 @@
-let  list = [{"name":"中国医药","symbol":"sh600056"},{"name":"宋都股份","symbol":"sh600077"},{"name":"郑州煤电","symbol":"sh600121"},{"name":"亿利洁能","symbol":"sh600277"},{"name":"金山股份","symbol":"sh600396"},{"name":"文一科技","symbol":"sh600520"},{"name":"湖南天雁","symbol":"sh600698"},{"name":"京城股份","symbol":"sh600860"},{"name":"中铝国际","symbol":"sh601068"},{"name":"赛力斯","symbol":"sh601127"},{"name":"宁波建工","symbol":"sh601789"},{"name":"万控智造","symbol":"sh603070"},{"name":"翠微股份","symbol":"sh603123"},{"name":"海量数据","symbol":"sh603138"},{"name":"汇通集团","symbol":"sh603176"},{"name":"奥翔药业","symbol":"sh603229"},{"name":"文灿股份","symbol":"sh603348"},{"name":"傲农生物","symbol":"sh603363"},{"name":"日出东方","symbol":"sh603366"},{"name":"南威软件","symbol":"sh603636"},{"name":"佳力图","symbol":"sh603912"},{"name":"世运电路","symbol":"sh603920"},{"name":"大理药业","symbol":"sh603963"},{"name":"泉峰汽车","symbol":"sh603982"},{"name":"福然德","symbol":"sh605050"},{"name":"嵘泰股份","symbol":"sh605133"},{"name":"同力日升","symbol":"sh605286"},{"name":"罗曼股份","symbol":"sh605289"},{"name":"中成股份","symbol":"sz000151"},{"name":"国新健康","symbol":"sz000503"},{"name":"冰山冷热","symbol":"sz000530"},{"name":"顺钠股份","symbol":"sz000533"},{"name":"金圆股份","symbol":"sz000546"},{"name":"宝塔实业","symbol":"sz000595"},{"name":"阳 光 城","symbol":"sz000671"},{"name":"视觉中国","symbol":"sz000681"},{"name":"中兴商业","symbol":"sz000715"},{"name":"新华制药","symbol":"sz000756"},{"name":"中国武夷","symbol":"sz000797"},{"name":"陕西金叶","symbol":"sz000812"},{"name":"美利云","symbol":"sz000815"},{"name":"冀东装备","symbol":"sz000856"},{"name":"蓝焰控股","symbol":"sz000968"},{"name":"三羊马","symbol":"sz001317"},{"name":"宝鹰股份","symbol":"sz002047"},{"name":"粤 水 电","symbol":"sz002060"},{"name":"大港股份","symbol":"sz002077"},{"name":"中国海诚","symbol":"sz002116"},{"name":"精华制药","symbol":"sz002349"},{"name":"亚太药业","symbol":"sz002370"},{"name":"金财互联","symbol":"sz002530"},{"name":"中京电子","symbol":"sz002579"},{"name":"以岭药业","symbol":"sz002603"},{"name":"美吉姆","symbol":"sz002621"},{"name":"中科金财","symbol":"sz002657"},{"name":"鞍重股份","symbol":"sz002667"},{"name":"双成药业","symbol":"sz002693"},{"name":"光洋股份","symbol":"sz002708"},{"name":"龙津药业","symbol":"sz002750"},{"name":"浙江建投","symbol":"sz002761"},{"name":"吉宏股份","symbol":"sz002803"},{"name":"丰元股份","symbol":"sz002805"},{"name":"英维克","symbol":"sz002837"},{"name":"赛隆药业","symbol":"sz002898"},{"name":"金奥博","symbol":"sz002917"},{"name":"宇晶股份","symbol":"sz002943"},{"name":"京北方","symbol":"sz002987"},{"name":"上海凯宝","symbol":"sz300039"}]
+let list = [
+  { name: '赛力斯', symbol: 'sh601127' },
+  { name: '万控智造', symbol: 'sh603070' },
 
-  exports.list = list
-  
+  { name: '傲农生物', symbol: 'sh603363' }
+  // { name: '日出东方', symbol: 'sh603366' },
+  // { name: '金辰股份', symbol: 'sh603396' },
+  // { name: '吉翔股份', symbol: 'sh603399' },
+
+  // { name: '大理药业', symbol: 'sh603963' },
+  // { name: '泉峰汽车', symbol: 'sh603982' },
+  // { name: '恒润股份', symbol: 'sh603985' },
+  // { name: '继峰股份', symbol: 'sh603997' },
+
+  // { name: '顺钠股份', symbol: 'sz000533' },
+  // { name: '金圆股份', symbol: 'sz000546' },
+  // { name: '宝塔实业', symbol: 'sz000595' },
+  // { name: '阳 光 城', symbol: 'sz000671' },
+  // { name: '视觉中国', symbol: 'sz000681' },
+
+  // { name: '新天药业', symbol: 'sz002873' },
+  // { name: '京泉华', symbol: 'sz002885' },
+  // { name: '金奥博', symbol: 'sz002917' },
+  // { name: '宇晶股份', symbol: 'sz002943' },
+  // { name: '金时科技', symbol: 'sz002951' },
+  // { name: '华亚智能', symbol: 'sz003043' }
+]
+
+exports.list = list
