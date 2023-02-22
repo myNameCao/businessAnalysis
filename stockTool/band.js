@@ -40,16 +40,15 @@ const band = (list, name) => {
     let isDown = a - b > 0
     let diffnum = (Math.abs(lastItem - b) / b).toFixed(4) * 1
     if (diffnum <= diff) {
-      let str = `波动分布： ${name}  [ ${result_list.join(' | ')} ]`
+      let str = `波动分布：[ ${result_list.join(' | ')} ]`
       let srtba = isDown ? ' 波低 ' : ' 波顶 '
       if (isDown) {
         console.log(name, ':', srtba, result_list, diffnum)
       }
-      writeFile(diffnum + '  ' + str)
-      return true
+      return { isDown, diffnum, str }
     }
   }
-  return false
+  return { isDown: false }
 }
 
 exports.band = band
