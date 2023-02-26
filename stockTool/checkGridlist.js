@@ -16,6 +16,7 @@ const maxL = (i, p) => {
 let { msg } = require('./msg')
 
 let { band } = require('./band')
+let { MACD } = require('./indicator')
 
 let name = ''
 const { writeFile } = require('./wirter')
@@ -40,8 +41,10 @@ const check = (list, N, symbol) => {
   //
   //  全局设置 名字
   name = N
-  let gain = list.map(item => item[7] * 1)
 
+  // 涨幅
+  let gain = list.map(item => item[7] * 1)
+  // 价格
   let prices = list.map(item => item[3] * 1)
 
   // console.log(`${name} ======  ${prices.slice(-1)}`)
@@ -53,12 +56,14 @@ const check = (list, N, symbol) => {
 
   // 历史最低
   let ishistoryMin = historyMin(prices)
+  // 获得金叉
+  let { have_fork } = golden_fork(name, prices)
   // 比较活跃
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
   let is_lastRise = last_rise(gain)
 
-  if (isActive && isDown) {
+  if (isActive && isDown && have_fork) {
     str =
       name +
       '    ' +
@@ -95,6 +100,24 @@ const historyMin = list => {
   return isMIn
 }
 
+const golden_fork = (name, prices) => {
+  // console.log(prices.slice(-5))
+  // 最近 7 天
+  let { diffs, deas, bars } = MACD(prices)
+  //  macd
+  const last_7_bars = bars.map(i => Math.round(i * 1000) / 1000).slice(-5) || []
+  // dif
+  const last_7_diff =
+    diffs.map(i => Math.round(i * 1000) / 1000).slice(-5) || []
+  // dea
+  const last_7_dea = deas.map(i => Math.round(i * 1000) / 1000).slice(-5) || []
+  // 上升金叉
+  let have_fork = last_7_bars.some((item, i) => {
+    let p = last_7_bars[i - 1]
+    return p && p <= 0 && item >= 0
+  })
+  return { have_fork, last_7_macd: last_7_bars, last_7_diff, last_7_dea }
+}
 const activeLength = list => {
   let { maxList, plus } = maxL(list, 7)
   let isActive = maxList.length > msg.activeNumber
