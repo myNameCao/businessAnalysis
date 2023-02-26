@@ -46,9 +46,7 @@ const check = (list, N, symbol) => {
   let gain = list.map(item => item[7] * 1)
   // 价格
   let prices = list.map(item => item[3] * 1)
-
   // console.log(`${name} ======  ${prices.slice(-1)}`)
-
   // 量
   let amount = list.map(item => item[6] * 1)
 
@@ -57,7 +55,7 @@ const check = (list, N, symbol) => {
   // 历史最低
   let ishistoryMin = historyMin(prices)
   // 获得金叉
-  let { have_fork } = golden_fork(name, prices)
+  let { have_fork, last_7_macd } = golden_fork(name, prices)
   // 比较活跃
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
@@ -73,7 +71,10 @@ const check = (list, N, symbol) => {
       '  活跃值： ' +
       plus +
       ' / ' +
-      maxList
+      maxList +
+      ' macd [' +
+      last_7_macd.join(',') +
+      '  ]'
     let { noteList } = msg
     noteList.push({ name, symbol })
     writeFile(str)
@@ -114,7 +115,11 @@ const golden_fork = (name, prices) => {
   // 上升金叉
   let have_fork = last_7_bars.some((item, i) => {
     let p = last_7_bars[i - 1]
-    return p && p <= 0 && item >= 0
+    if (p && p <= 0 && item >= 0) {
+      console.log(`${name}:  ${last_7_bars}`)
+      return true
+    }
+    return false
   })
   return { have_fork, last_7_macd: last_7_bars, last_7_diff, last_7_dea }
 }
