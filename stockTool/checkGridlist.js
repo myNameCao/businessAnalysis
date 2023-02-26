@@ -115,8 +115,8 @@ const golden_fork = (name, prices) => {
   // 上升金叉
   let have_fork = last_7_bars.some((item, i) => {
     let p = last_7_bars[i - 1]
-    if (p && p <= 0 && item >= 0) {
-      console.log(`${name}:  ${last_7_bars}`)
+    if (p && p <= 0 && item >= 0 && last_7_diff[i] < 0) {
+      console.log(`${name}: macd 近几天分布  ${last_7_bars}`)
       return true
     }
     return false

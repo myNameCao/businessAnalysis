@@ -1,29 +1,4 @@
-let list = [
-  { name: '傲农生物', symbol: 'sh603363' },
-  { name: '日出东方', symbol: 'sh603366' },
-  { name: '金辰股份', symbol: 'sh603396' },
-  { name: '沐邦高科', symbol: 'sh603398' },
-  { name: '吉翔股份', symbol: 'sh603399' },
-  { name: '伯特利', symbol: 'sh603596' },
-  { name: '索通发展', symbol: 'sh603612' },
-  { name: '大理药业', symbol: 'sh603963' },
-  { name: '泉峰汽车', symbol: 'sh603982' },
-  { name: '中成股份', symbol: 'sz000151' },
-  { name: '冰山冷热', symbol: 'sz000530' },
-  { name: '粤宏远Ａ', symbol: 'sz000573' },
-  { name: '宝塔实业', symbol: 'sz000595' },
-  { name: '中兴商业', symbol: 'sz000715' },
-  { name: '中交地产', symbol: 'sz000736' },
-  { name: '新华制药', symbol: 'sz000756' },
-  { name: '中国武夷', symbol: 'sz000797' },
-  { name: '泰慕士', symbol: 'sz001234' },
-  { name: '弘业期货', symbol: 'sz001236' },
-  { name: '融捷股份', symbol: 'sz002192' },
-  { name: '准油股份', symbol: 'sz002207' },
-  { name: '步 步 高', symbol: 'sz002251' },
-  { name: '南国置业', symbol: 'sz002305' },
-  { name: '众生药业', symbol: 'sz002317' },
-  { name: '精华制药', symbol: 'sz002349' }
-]
+let  list = [{"name":"郑州煤电","symbol":"sh600121"},{"name":"亨通光电","symbol":"sh600487"},{"name":"龙元建设","symbol":"sh600491"},{"name":"爱旭股份","symbol":"sh600732"},{"name":"东方电气","symbol":"sh600875"},{"name":"晋控煤业","symbol":"sh601001"},{"name":"全筑股份","symbol":"sh603030"},{"name":"深 赛 格","symbol":"sz000058"},{"name":"通程控股","symbol":"sz000419"},{"name":"沈阳化工","symbol":"sz000698"},{"name":"中交地产","symbol":"sz000736"},{"name":"南宁糖业","symbol":"sz000911"},{"name":"大中矿业","symbol":"sz001203"},{"name":"天邦食品","symbol":"sz002124"},{"name":"ST广田","symbol":"sz002482"},{"name":"徐家汇","symbol":"sz002561"},{"name":"*ST奇信","symbol":"sz002781"},{"name":"万里石","symbol":"sz002785"},{"name":"安奈儿","symbol":"sz002875"},{"name":"华阳集团","symbol":"sz002906"}]
 
-exports.list = list
+  exports.list = list
+  
