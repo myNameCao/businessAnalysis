@@ -1,4 +1,0 @@
-let  list = [{"name":"郑州煤电","symbol":"sh600121"},{"name":"亨通光电","symbol":"sh600487"},{"name":"龙元建设","symbol":"sh600491"},{"name":"东方电气","symbol":"sh600875"},{"name":"晋控煤业","symbol":"sh601001"},{"name":"全筑股份","symbol":"sh603030"},{"name":"天马科技","symbol":"sh603668"},{"name":"深 赛 格","symbol":"sz000058"},{"name":"通程控股","symbol":"sz000419"},{"name":"沈阳化工","symbol":"sz000698"},{"name":"中交地产","symbol":"sz000736"},{"name":"南宁糖业","symbol":"sz000911"},{"name":"生 意 宝","symbol":"sz002095"},{"name":"天邦食品","symbol":"sz002124"},{"name":"ST广田","symbol":"sz002482"},{"name":"徐家汇","symbol":"sz002561"},{"name":"*ST奇信","symbol":"sz002781"},{"name":"万里石","symbol":"sz002785"},{"name":"华阳集团","symbol":"sz002906"},{"name":"钢研高纳","symbol":"sz300034"}]
-
-  exports.list = list
-  
