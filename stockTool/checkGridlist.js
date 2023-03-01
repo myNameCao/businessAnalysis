@@ -46,7 +46,8 @@ const check = (list, N, symbol) => {
   let gain = list.map(item => item[7] * 1)
   // 价格
   let prices = list.map(item => item[3] * 1)
-  // console.log(`${name} ======  ${prices.slice(-1)}`)
+
+  console.log(`${name} ======  ${prices.slice(-1)}`)
   // 量
   let amount = list.map(item => item[6] * 1)
 
@@ -91,7 +92,7 @@ const last_rise = list => {
 const historyMin = list => {
   let minPrice = Math.min(...list)
   let average = comT(list) / list.length
-  let price = list.pop()
+  let price = list.slice(-1)[0]
   let isMIn = minPrice === price
   if (isMIn) {
     writeFile(
@@ -102,7 +103,6 @@ const historyMin = list => {
 }
 
 const golden_fork = (name, prices) => {
-  // console.log(prices.slice(-5))
   // 最近 7 天
   let { diffs, deas, bars } = MACD(prices)
   //  macd
