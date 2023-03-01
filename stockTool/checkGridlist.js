@@ -83,21 +83,17 @@ const check = (list, N, symbol) => {
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
   let is_lastRise = last_rise(gain)
-
   if (isActive && isDown) {
+    let { noteList } = msg
     str =
       name + '' + diffnum + '  ' + str + '  活跃值： ' + plus + ' / ' + maxList
     if (have_fork) {
-      str += ' macd [' + macd_list.join(',') + '  ]'
-      let { noteList } = msg
       noteList.push({ name, symbol })
-      writeFile(str)
+      writeFile(str + ' macd [' + macd_list.join(',') + '  ]')
     }
     if (is_kdj_Fork) {
-      str += ' kdj [' + kdj_list.join(',') + '  ]'
-      let { noteList } = msg
       noteList.push({ name, symbol })
-      writeFile(str)
+      writeFile((str += ' kdj [' + kdj_list.join(',') + '  ]'))
     }
   }
 }
@@ -122,7 +118,7 @@ const historyMin = list => {
   return isMIn
 }
 /**
- * macd 赛选
+ * macd 金叉
  * @param {*} name
  * @param {*} prices
  * @returns
@@ -150,13 +146,14 @@ const golden_fork = (name, prices) => {
   return { have_fork, macd_list: last_7_bars, last_7_diff, last_7_dea }
 }
 /**
- *
- * @param {*} list
- * 二维数组 [max, min, close]
+ * kdj 金叉
+ * @param {*} name
+ * @param {*} prices
+ * [[max, min, close]]
  * @returns
- * return 一个对象包含运行的结果和最近的kdj
+ * 返回一个 对象包含运行的结果和最近的kdj
  */
-const KDJ_fork = prices => {
+const KDJ_fork = (name, prices) => {
   // 最近 7 天
   let kdjs = KDJ(prices)
   let r_list = kdjs.slice(-3)
@@ -164,7 +161,7 @@ const KDJ_fork = prices => {
     // 金叉
     if (Math.abs(k - d) < 3 && Math.abs(d - j) < 3) {
       let { j: j1 } = r_list[i - 1] || kdjs[kdjs.length - 4]
-      // 上升
+      // 上升金叉
       if (j1 <= j) {
         console.log(`${name}: KDJ   ${k + ' ' + d + ' ' + j}`)
         return true
