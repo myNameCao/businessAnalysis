@@ -1,8 +1,9 @@
 let { getHistory } = require('./getHistory')
 
-let { writeFile, rmSync } = require('./wirter')
+let { writeFile, ceateExcel } = require('./wirter')
 
 let { list } = require('./list')
+let { msg } = require('./msg')
 
 writeFile('                     日期: ' + new Date().toLocaleDateString())
 const testList = async () => {
@@ -10,5 +11,8 @@ const testList = async () => {
     let item = list[i]
     await getHistory(item)
   }
+
+  let { noteList } = msg
+  ceateExcel(noteList, new Date().toLocaleDateString().replace(/\//g, '-'))
 }
 testList()

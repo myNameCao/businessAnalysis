@@ -1,7 +1,5 @@
 let { msg } = require('./msg')
 
-let { writeFile } = require('./wirter')
-
 const comT = i => {
   return i.reduce((a, b) => a + b)
 }
@@ -45,12 +43,11 @@ const band = (list, name) => {
       if (isDown) {
         console.log(name, ':', srtba, result_list, diffnum)
       }
-      return { isDown, diffnum, str }
+      return { isDown, diffnum, result_list }
     }
   }
   return { isDown: false }
 }
-
 exports.band = band
 
 // band([1, 4, 6, 7, 9, 3, 6, 10, 8, 8, 7, 6, 4, 2, 1, 20, 19.9])

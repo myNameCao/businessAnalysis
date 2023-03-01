@@ -69,7 +69,8 @@ const check = (list, N, symbol) => {
   console.log(`${name} ======  ${prices.slice(-1)}`)
   // 量
   let amount = list.map(item => item[6] * 1)
-  let { isDown, diffnum, str } = band(prices, name)
+
+  let { isDown, diffnum, result_list } = band(prices, name)
 
   // 历史最低
   let ishistoryMin = historyMin(prices)
@@ -84,16 +85,23 @@ const check = (list, N, symbol) => {
   let is_lastRise = last_rise(gain)
   if (isActive && isDown) {
     let { noteList } = msg
-    str =
-      name + '' + diffnum + '  ' + str + '  活跃值： ' + plus + ' / ' + maxList
+    let obj_atcive = {
+      symbol,
+      name,
+      diffnum,
+      band: result_list.join('|'),
+      plus_active: plus,
+      active: maxList,
+      kdj: '',
+      macd: ''
+    }
     if (have_fork) {
-      noteList.push({ name, symbol })
-      writeFile(str + ' macd [' + macd_list.join(',') + '  ]')
+      obj_atcive.macd = macd_list.join('|')
     }
     if (is_kdj_Fork) {
-      noteList.push({ name, symbol })
-      writeFile((str += ' kdj [' + kdj_list.join(',') + '  ]'))
+      obj_atcive.kdj = kdj_list.join('|')
     }
+    noteList.push(obj_atcive)
   }
 }
 
@@ -156,19 +164,21 @@ const KDJ_fork = (name, prices) => {
   // 最近 7 天
   let kdjs = KDJ(prices)
   let r_list = kdjs.slice(-3)
+  let kdj_list = []
   let is_fork = r_list.some(({ k, d, j }, i) => {
     // 金叉
     if (Math.abs(k - d) < 3 && Math.abs(d - j) < 3) {
       let { j: j1 } = r_list[i - 1] || kdjs[kdjs.length - 4]
       // 上升金叉
       if (j1 <= j) {
+        kdj_list = [k, d, j]
         console.log(`${name}: KDJ   ${k + ' ' + d + ' ' + j}`)
         return true
       }
     }
     return false
   })
-  return { is_kdj_Fork: is_fork, kdj_list: r_list }
+  return { is_kdj_Fork: is_fork, kdj_list }
 }
 
 const activeLength = list => {

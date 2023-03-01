@@ -1,4 +1,6 @@
-let { rmSync: rm, writeFile: wf } = require('fs') // 引入fs模块
+let { rmSync: rm, writeFile: wf, appendFileSync } = require('fs') // 引入fs模块
+
+var xlsx = require('node-xlsx').default
 
 let { msg } = require('./msg')
 
@@ -31,6 +33,25 @@ const rmSync = () => {
   rm(`${path}${fileName}.txt`, { force: true })
 }
 
+const ceateExcel = (data, name) => {
+  let { path, fileName } = msg
+  let writer_path = `${path}${fileName}.xlsx`
+
+  const sheetOptions = {
+    '!cols': [{ wch: 6 }, { wch: 7 }, { wch: 10 }, { wch: 20 }]
+  }
+  // rm(writer_path, { force: true })
+
+  let list = data.map(item => {
+    return Object.values(item)
+  })
+  console.log(list.unshift(Object.keys(data[0])))
+  let buffer = xlsx.build([{ name: name || 'mysheet', data: list }], {
+    sheetOptions
+  }) // Returns a buffer
+  appendFileSync(writer_path, buffer, { flag: 'a' })
+}
 exports.writeFile = writeFile
+exports.ceateExcel = ceateExcel
 exports.writeList = writeList
 exports.rmSync = rmSync
