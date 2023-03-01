@@ -132,7 +132,11 @@ var kdj = function (ticks) {
 
     js.push(3 * curK - 2 * curD)
   }
-  let kdj_list = ks.map((item, i) => ({ k: item, d: ds[i], j: js[i] }))
+  let kdj_list = ks.map((item, i) => ({
+    k: Math.round(item * 1000) / 1000,
+    d: Math.round(ds[i] * 1000) / 1000,
+    j: Math.round(js[i] * 1000) / 1000
+  }))
 
   return kdj_list
 }

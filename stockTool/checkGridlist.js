@@ -69,7 +69,6 @@ const check = (list, N, symbol) => {
   console.log(`${name} ======  ${prices.slice(-1)}`)
   // 量
   let amount = list.map(item => item[6] * 1)
-
   let { isDown, diffnum, str } = band(prices, name)
 
   // 历史最低
@@ -128,17 +127,17 @@ const golden_fork = (name, prices) => {
   // 最近 7 天
   let { diffs, deas, bars } = MACD(prices)
   //  macd
-  const last_7_bars = bars.map(i => Math.round(i * 1000) / 1000).slice(-5) || []
+  const last_7_bars = bars.slice(-5).map(i => Math.round(i * 1000) / 1000) || []
   // dif
   const last_7_diff =
-    diffs.map(i => Math.round(i * 1000) / 1000).slice(-5) || []
+    diffs.slice(-5).map(i => Math.round(i * 1000) / 1000) || []
   // dea
-  const last_7_dea = deas.map(i => Math.round(i * 1000) / 1000).slice(-5) || []
+  const last_7_dea = deas.slice(-5).map(i => Math.round(i * 1000) / 1000) || []
   // 上升金叉
   let have_fork = last_7_bars.some((item, i) => {
     let p = last_7_bars[i - 1]
     if (p && p <= 0 && item >= 0 && last_7_diff[i] < 0) {
-      console.log(`${name}: macd   ${last_7_bars}`)
+      console.log(`${name}: MACD   ${last_7_bars}`)
       return true
     }
     return false
