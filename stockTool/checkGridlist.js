@@ -1,9 +1,20 @@
-// 目前只看一年的数据
-
+/**
+ * @param {*} i
+ * 累计求和
+ * @returns
+ */
 const comT = i => {
   return i.reduce((a, b) => a + b)
 }
 
+/**
+ *
+ * @param {*} i
+ * list 列表
+ * @param {*} p
+ * 幅度
+ * @returns
+ */
 const maxL = (i, p) => {
   let maxList = i.filter(i => Math.abs(i) >= p)
   let plus = maxList.filter(i => i > 0) // 正
@@ -14,12 +25,20 @@ const maxL = (i, p) => {
 }
 
 let { msg } = require('./msg')
-
 let { band } = require('./band')
-let { MACD } = require('./indicator')
+let { MACD, KDJ } = require('./indicator')
 
 let name = ''
 const { writeFile } = require('./wirter')
+/**
+ *
+ * @param {*} list
+ * 列表
+ * @param {*} N
+ * name
+ * @param {*} symbol
+ * code
+ */
 const check = (list, N, symbol) => {
   // ;[
   //0   '2022-10-21',
@@ -56,29 +75,30 @@ const check = (list, N, symbol) => {
   // 历史最低
   let ishistoryMin = historyMin(prices)
   // 获得金叉
-  let { have_fork, last_7_macd } = golden_fork(name, prices)
+  let { have_fork, macd_list } = golden_fork(name, prices)
+  let max_min_close = list.map(item => [item[2], item[4], item[3]])
+  let { is_kdj_Fork, kdj_list } = KDJ_fork(name, max_min_close)
+
   // 比较活跃
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
   let is_lastRise = last_rise(gain)
 
-  if (isActive && isDown && have_fork) {
+  if (isActive && isDown) {
     str =
-      name +
-      '    ' +
-      diffnum +
-      '  ' +
-      str +
-      '  活跃值： ' +
-      plus +
-      ' / ' +
-      maxList +
-      ' macd [' +
-      last_7_macd.join(',') +
-      '  ]'
-    let { noteList } = msg
-    noteList.push({ name, symbol })
-    writeFile(str)
+      name + '' + diffnum + '  ' + str + '  活跃值： ' + plus + ' / ' + maxList
+    if (have_fork) {
+      str += ' macd [' + macd_list.join(',') + '  ]'
+      let { noteList } = msg
+      noteList.push({ name, symbol })
+      writeFile(str)
+    }
+    if (is_kdj_Fork) {
+      str += ' kdj [' + kdj_list.join(',') + '  ]'
+      let { noteList } = msg
+      noteList.push({ name, symbol })
+      writeFile(str)
+    }
   }
 }
 
@@ -101,7 +121,13 @@ const historyMin = list => {
   }
   return isMIn
 }
-
+/**
+ * macd 赛选
+ * @param {*} name
+ * @param {*} prices
+ * @returns
+ * 返回一个 对象包含运行的结果和最近的macd
+ */
 const golden_fork = (name, prices) => {
   // 最近 7 天
   let { diffs, deas, bars } = MACD(prices)
@@ -121,8 +147,34 @@ const golden_fork = (name, prices) => {
     }
     return false
   })
-  return { have_fork, last_7_macd: last_7_bars, last_7_diff, last_7_dea }
+  return { have_fork, macd_list: last_7_bars, last_7_diff, last_7_dea }
 }
+/**
+ *
+ * @param {*} list
+ * 二维数组 [max, min, close]
+ * @returns
+ * return 一个对象包含运行的结果和最近的kdj
+ */
+const KDJ_fork = prices => {
+  // 最近 7 天
+  let kdjs = KDJ(prices)
+  let r_list = kdjs.slice(-3)
+  let is_fork = r_list.some(({ k, d, j }, i) => {
+    // 金叉
+    if (Math.abs(k - d) < 3 && Math.abs(d - j) < 3) {
+      let { j: j1 } = r_list[i - 1] || kdjs[kdjs.length - 4]
+      // 上升
+      if (j1 <= j) {
+        console.log(`${name}: KDJ   ${k + ' ' + d + ' ' + j}`)
+        return true
+      }
+    }
+    return false
+  })
+  return { is_kdj_Fork: is_fork, kdj_list: r_list }
+}
+
 const activeLength = list => {
   let { maxList, plus } = maxL(list, 7)
   let isActive = maxList.length > msg.activeNumber
