@@ -38,14 +38,40 @@ const ceateExcel = (data, name) => {
   let writer_path = `${path}${fileName}.xlsx`
 
   const sheetOptions = {
-    '!cols': [{ wch: 6 }, { wch: 7 }, { wch: 10 }, { wch: 20 }]
+    '!cols': [
+      { wch: 2 },
+      { wch: 2 },
+      { wch: 5 },
+      { wch: 5 },
+      { wch: 40 },
+      { wch: 30 },
+      { wch: 30 },
+      { wch: 5 },
+      { wch: 5 }
+    ]
   }
-  // rm(writer_path, { force: true })
+  rm(writer_path, { force: true })
 
+  const headerStyle = {
+    font: {
+      name: '宋体',
+      bold: true,
+      sz: '20'
+    },
+    alignment: {
+      horizontal: 'center',
+      vertical: 'center'
+    }
+  }
   let list = data.map(item => {
-    return Object.values(item)
+    return Object.values(item).map(i => {
+      return {
+        v: i,
+        s: headerStyle
+      }
+    })
   })
-  console.log(list.unshift(Object.keys(data[0])))
+  list.unshift(Object.keys(data[0]))
   let buffer = xlsx.build([{ name: name || 'mysheet', data: list }], {
     sheetOptions
   }) // Returns a buffer

@@ -78,7 +78,6 @@ const check = (list, N, symbol) => {
   let { have_fork, macd_list } = golden_fork(name, prices)
   let max_min_close = list.map(item => [item[2], item[4], item[3]])
   let { is_kdj_Fork, kdj_list } = KDJ_fork(name, max_min_close)
-
   // 比较活跃
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
@@ -89,11 +88,12 @@ const check = (list, N, symbol) => {
       symbol,
       name,
       diffnum,
+      price: prices.slice(-1)[0],
       band: result_list.join('|'),
-      plus_active: plus,
-      active: maxList,
       kdj: '',
-      macd: ''
+      macd: '',
+      plus_active: plus,
+      active: maxList
     }
     if (have_fork) {
       obj_atcive.macd = macd_list.join('|')
@@ -101,10 +101,11 @@ const check = (list, N, symbol) => {
     if (is_kdj_Fork) {
       obj_atcive.kdj = kdj_list.join('|')
     }
-    noteList.push(obj_atcive)
+    if (have_fork || is_kdj_Fork) {
+      noteList.push(obj_atcive)
+    }
   }
 }
-
 //  具体当前的表现  一个月
 const last_rise = list => {
   //  最近两天的数据
