@@ -2,6 +2,8 @@ let { rmSync: rm, writeFile: wf, appendFileSync } = require('fs') // 引入fs模
 
 var XLSX = require('xlsx')
 
+var XLSXD = require('xlsx-style')
+
 let { msg } = require('./msg')
 
 const writeFile = (text, feature) => {
@@ -66,6 +68,8 @@ const ceateExcel = (data, name) => {
 
   var wb = XLSX.utils.book_new()
   var ws = XLSX.utils.json_to_sheet(data)
+  ws['A1'] = { t: 's', v: 'A', s: headerStyle }
+
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')
   XLSX.writeFile(wb, writer_path, {
     compression: true
