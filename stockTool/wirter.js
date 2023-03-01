@@ -2,8 +2,6 @@ let { rmSync: rm, writeFile: wf, appendFileSync } = require('fs') // 引入fs模
 
 var XLSX = require('xlsx')
 
-var XLSXD = require('xlsx-style')
-
 let { msg } = require('./msg')
 
 const writeFile = (text, feature) => {

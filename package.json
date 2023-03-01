@@ -21,7 +21,6 @@
     "dipiper": "^1.0.13",
     "husky": "^4.3.0",
     "tushare": "^0.3.1",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz",
-    "xlsx-style": "^0.8.13"
+    "xlsx": "^0.18.5"
   }
 }
