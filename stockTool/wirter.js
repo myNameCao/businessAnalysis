@@ -34,8 +34,8 @@ const rmSync = () => {
 }
 
 const ceateExcel = (data, name) => {
-  let { path, fileName } = msg
-  let writer_path = `${path}${fileName}.xlsx`
+  let { path } = msg
+  let writer_path = `${path}${name}.xlsx`
 
   const sheetOptions = {
     '!cols': [
@@ -44,7 +44,7 @@ const ceateExcel = (data, name) => {
       { wch: 5 },
       { wch: 5 },
       { wch: 40 },
-      { wch: 30 },
+      { wch: 25 },
       { wch: 30 },
       { wch: 5 },
       { wch: 5 }

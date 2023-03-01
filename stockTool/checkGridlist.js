@@ -29,7 +29,6 @@ let { band } = require('./band')
 let { MACD, KDJ } = require('./indicator')
 
 let name = ''
-const { writeFile } = require('./wirter')
 /**
  *
  * @param {*} list
@@ -75,13 +74,12 @@ const check = (list, N, symbol) => {
   // 历史最低
   let ishistoryMin = historyMin(prices)
   // 获得金叉
-  let { have_fork, macd_list } = golden_fork(name, prices)
+  let { have_fork, macd_list } = Macd_fork(name, prices)
   let max_min_close = list.map(item => [item[2], item[4], item[3]])
   let { is_kdj_Fork, kdj_list } = KDJ_fork(name, max_min_close)
   // 比较活跃
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
-  let is_lastRise = last_rise(gain)
   if (isActive && isDown) {
     let { noteList } = msg
     let obj_atcive = {
@@ -106,20 +104,18 @@ const check = (list, N, symbol) => {
     }
   }
 }
-//  具体当前的表现  一个月
-const last_rise = list => {
-  //  最近两天的数据
-  let length = list.length
-  let weeklist = list.slice(-5)
-  return comT(weeklist) < 0 && list[length - 1] > 0 && list[length - 2] > 0
-}
+/**
+ *
+ * @param {*} list
+ * @returns
+ */
 const historyMin = list => {
   let minPrice = Math.min(...list)
   let average = comT(list) / list.length
   let price = list.slice(-1)[0]
   let isMIn = minPrice === price
   if (isMIn) {
-    writeFile(
+    console.log(
       name + ' 历史最低, 区间均值 / 当前 ' + average.toFixed(2) + '/' + price
     )
   }
@@ -132,7 +128,7 @@ const historyMin = list => {
  * @returns
  * 返回一个 对象包含运行的结果和最近的macd
  */
-const golden_fork = (name, prices) => {
+const Macd_fork = (name, prices) => {
   // 最近 7 天
   let { diffs, deas, bars } = MACD(prices)
   //  macd
