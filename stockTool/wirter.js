@@ -1,6 +1,6 @@
 let { rmSync: rm, writeFile: wf, appendFileSync } = require('fs') // 引入fs模块
 
-var xlsx = require('node-xlsx').default
+var XLSX = require('xlsx')
 
 let { msg } = require('./msg')
 
@@ -63,19 +63,13 @@ const ceateExcel = (data, name) => {
       vertical: 'center'
     }
   }
-  let list = data.map(item => {
-    return Object.values(item).map(i => {
-      return {
-        v: i,
-        s: headerStyle
-      }
-    })
+
+  var wb = XLSX.utils.book_new()
+  var ws = XLSX.utils.json_to_sheet(data)
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')
+  XLSX.writeFile(wb, writer_path, {
+    compression: true
   })
-  list.unshift(Object.keys(data[0]))
-  let buffer = xlsx.build([{ name: name || 'mysheet', data: list }], {
-    sheetOptions
-  }) // Returns a buffer
-  appendFileSync(writer_path, buffer, { flag: 'a' })
 }
 exports.writeFile = writeFile
 exports.ceateExcel = ceateExcel

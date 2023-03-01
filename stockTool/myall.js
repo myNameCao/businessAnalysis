@@ -9,9 +9,6 @@ let str = '全部'
 msg[process.pid] = str
 msg.fileName = str
 
-rmSync()
-
-writeFile('                     日期: ' + new Date().toLocaleDateString())
 const testList = async () => {
   for (let i = 0; i < list.length; i++) {
     let item = list[i]

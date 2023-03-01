@@ -86,7 +86,7 @@ const check = (list, N, symbol) => {
       symbol,
       name,
       diffnum,
-      price: prices.slice(-1)[0],
+      price: prices.slice(-1)[0] * 1,
       band: result_list.join('|'),
       kdj: '',
       macd: '',

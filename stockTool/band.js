@@ -24,9 +24,10 @@ const band = (list, name) => {
         continue
       }
     }
+    //TODO: 优化
     if (
       Math.abs(item - result_list[result_list.length - 1]) >
-      band * lastItem
+      band * result_list[result_list.length - 1]
     ) {
       result_list.push(item)
       add = subAdd
