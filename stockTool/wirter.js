@@ -65,11 +65,19 @@ const ceateExcel = (data, name) => {
   let num = data.length
   while (num--) {
     let item = data[num]
-    headerStyle.font.color.rgb = item.note ? 'FF0000' : ''
     for (let key in item) {
       item[key] = {
         v: item[key],
-        s: headerStyle
+        s: {
+          font: {
+            sz: '14',
+            color: { rgb: item.note ? 'FF0000' : '' }
+          },
+          alignment: {
+            horizontal: 'center',
+            vertical: 'center'
+          }
+        }
       }
     }
   }
