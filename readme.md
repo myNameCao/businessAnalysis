@@ -1,3 +1,5 @@
+执行前请修改 msg 中 path 的位置
+
 第一步：执行 getall.js 文件
 
 第二步：yarn start
