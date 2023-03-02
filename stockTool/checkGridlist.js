@@ -26,7 +26,7 @@ const maxL = (i, p) => {
 
 let { msg } = require('./msg')
 let { band } = require('./band')
-let { MACD, KDJ } = require('./indicator')
+let { MACD, KDJ, OBV } = require('./indicator')
 
 let name = ''
 /**
@@ -75,8 +75,13 @@ const check = (list, N, symbol) => {
   let ishistoryMin = historyMin(prices)
   // 获得金叉
   let { have_fork, macd_list } = Macd_fork(name, prices)
-  let max_min_close = list.map(item => [item[2], item[4], item[3]])
+  let max_min_close = list.map(item => [item[2] * 1, item[4] * 1, item[3] * 1])
   let { is_kdj_Fork, kdj_list } = KDJ_fork(name, max_min_close)
+
+  let close_volume = list.map(item => [item[3] * 1, item[5] * 1])
+
+  OBV_fork(name, close_volume)
+
   // 比较活跃
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
@@ -182,6 +187,28 @@ const activeLength = list => {
   let { maxList, plus } = maxL(list, 7)
   let isActive = maxList.length > msg.activeNumber
   return { isActive, plus: plus.length, maxList: maxList.length }
+}
+
+/**
+ * OBV 金叉
+ * @param {*} name
+ * @param {*} prices
+ * [[ close,volume]]
+ * @returns
+ * 返回一个 对象包含运行的结果和最近的obv
+ */
+OBV_fork = (name, close_volume) => {
+  // console.log(name,OBV(close_volume))
+  // let obv_list = obv.slice(-5)
+  // let obv_ma_list = obv_ma.slice(-5)
+  // let is_fork = obv_list.some((item, i) => {
+  //   let p = obv_list[i - 1]
+  //   if (p && p <= 0 && item >= 0 && obv_ma_list[i] < 0) {
+  //     console.log(`${name}: OBV   ${obv_list}`)
+  //     return true
+  //   }
+  //   return false
+  // })
 }
 
 exports.check = check
