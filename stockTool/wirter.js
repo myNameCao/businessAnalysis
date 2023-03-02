@@ -70,7 +70,7 @@ const ceateExcel = (data, name) => {
         v: item[key],
         s: {
           font: {
-            sz: '14',
+            sz: '12',
             color: { rgb: item.note ? 'FF0000' : '' }
           },
           alignment: {
