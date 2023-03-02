@@ -3,7 +3,7 @@ let msg = {
   band: 0.2, // 波距  起伏的程度
   diff: 0.2, // 目前与波的差距 查看现在的状态
   bandNumber: 3, // 波数
-  activeNumber: 5, // 活跃值
+  activeNumber: 15, // 活跃值
   noteList: [],
   temp: {},
   checktemp: {},
