@@ -4,6 +4,7 @@
   "description": "<br>",
   "main": ".eslintrc.js",
   "scripts": {
+    "start": "npm run  all &&  npm run  mylike ",
     "mylike": "node ./stockTool/mylike.js ",
     "all": "node ./stockTool/myall.js "
   },
