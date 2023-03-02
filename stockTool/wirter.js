@@ -1,4 +1,4 @@
-let { rmSync: rm, writeFile: wf, appendFileSync } = require('fs') // 引入fs模块
+let { rmSync: rm, writeFile: wf } = require('fs') // 引入fs模块
 
 var XLSX = require('xlsx')
 
