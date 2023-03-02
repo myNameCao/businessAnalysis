@@ -104,6 +104,9 @@ const check = (list, N, symbol) => {
     if (is_kdj_Fork) {
       obj_atcive.kdj = kdj_list.join('|')
     }
+    if (have_fork && is_kdj_Fork) {
+      obj_atcive.note = true
+    }
     if (have_fork || is_kdj_Fork) {
       noteList.push(obj_atcive)
     }

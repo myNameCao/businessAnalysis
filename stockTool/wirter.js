@@ -1,6 +1,6 @@
 let { rmSync: rm, writeFile: wf } = require('fs') // 引入fs模块
 
-var XLSX = require('xlsx')
+var XLSX = require('xlsx-js-style')
 
 let { msg } = require('./msg')
 
@@ -37,26 +37,24 @@ const ceateExcel = (data, name) => {
   let { path } = msg
   let writer_path = `${path}${name}.xlsx`
 
-  const sheetOptions = {
-    '!cols': [
-      { wch: 2 },
-      { wch: 2 },
-      { wch: 5 },
-      { wch: 5 },
-      { wch: 40 },
-      { wch: 25 },
-      { wch: 30 },
-      { wch: 5 },
-      { wch: 5 }
-    ]
-  }
+  const sheetOptions = [
+    { wch: 5 },
+    { wch: 5 },
+    { wch: 10 },
+    { wch: 10 },
+    { wch: 60 },
+    { wch: 30 },
+    { wch: 40 },
+    { wch: 10 },
+    { wch: 10 }
+  ]
+
   rm(writer_path, { force: true })
 
   const headerStyle = {
     font: {
-      name: '宋体',
-      bold: true,
-      sz: '20'
+      sz: '14',
+      color: { rgb: 'FFFFAA00' }
     },
     alignment: {
       horizontal: 'center',
@@ -64,14 +62,29 @@ const ceateExcel = (data, name) => {
     }
   }
 
+  let num = data.length
+  while (num--) {
+    let item = data[num]
+    headerStyle.font.color.rgb = item.note ? 'FF0000' : ''
+    for (let key in item) {
+      item[key] = {
+        v: item[key],
+        s: headerStyle
+      }
+    }
+  }
+
   var wb = XLSX.utils.book_new()
   var ws = XLSX.utils.json_to_sheet(data)
 
+  // 设置表头样式
+  ws['!cols'] = sheetOptions
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')
   XLSX.writeFile(wb, writer_path, {
     compression: true
   })
 }
+
 exports.writeFile = writeFile
 exports.ceateExcel = ceateExcel
 exports.writeList = writeList
