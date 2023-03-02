@@ -33,6 +33,11 @@ const rmSync = () => {
   rm(`${path}${fileName}.txt`, { force: true })
 }
 
+/**
+ *
+ * @param {*} data
+ * @param {*} name
+ */
 const ceateExcel = (data, name) => {
   let { path } = msg
   let writer_path = `${path}${name}.xlsx`
@@ -43,31 +48,20 @@ const ceateExcel = (data, name) => {
     { wch: 10 },
     { wch: 10 },
     { wch: 60 },
-    { wch: 30 },
+    { wch: 25 },
     { wch: 40 },
     { wch: 10 },
     { wch: 10 }
   ]
-
+  // 如果文件存在，先删除
   rm(writer_path, { force: true })
-
-  const headerStyle = {
-    font: {
-      sz: '14',
-      color: { rgb: 'FFFFAA00' }
-    },
-    alignment: {
-      horizontal: 'center',
-      vertical: 'center'
-    }
-  }
-
   let num = data.length
   while (num--) {
     let item = data[num]
     for (let key in item) {
       item[key] = {
         v: item[key],
+        t: key === 'name' ? 's' : 'n',
         s: {
           font: {
             sz: '12',

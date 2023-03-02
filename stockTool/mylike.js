@@ -10,7 +10,15 @@ const testList = async () => {
     await getHistory(item)
   }
   let { noteList } = msg
+
+  console.log(
+    'done',
+    noteList.length,
+    'macd',
+    noteList.filter(item => item['macd']).length,
+    'kdj',
+    noteList.filter(item => !!item['kdj']).length
+  )
   ceateExcel(noteList, new Date().toLocaleDateString().replace(/\//g, '-'))
-  console.log('done', noteList.length)
 }
 testList()
