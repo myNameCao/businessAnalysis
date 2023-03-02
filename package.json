@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "<br>",
   "main": ".eslintrc.js",
+  "bin": {
+    "chris_run": "bin/run.js"
+  },
   "scripts": {
     "start": "npm run  all &&  npm run  mylike ",
     "mylike": "node ./stockTool/mylike.js ",
