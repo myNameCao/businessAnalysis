@@ -9,7 +9,9 @@ let msg = {
   checktemp: {},
   disabledtemp: {},
   path: '../../Desktop/look/',
-  furthest_time: '2022-01-01',
+  furthest_time: new Date(Date.now() - 1000 * 60 * 60 * 24 * 365)
+    .toLocaleDateString()
+    .replace(/\//g, '-'),
   // 默认是今天
   recent_time: ''
 }
