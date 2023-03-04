@@ -9,6 +9,7 @@ node_modules
 
 all.js
 list.js
+disabledtemp.js
 config.json
 
 # Log files
