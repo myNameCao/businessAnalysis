@@ -94,6 +94,7 @@ const check = (list, N, symbol) => {
   // 比较活跃
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
+
   if (isActive && isDown) {
     let { noteList } = msg
     let obj_atcive = {
