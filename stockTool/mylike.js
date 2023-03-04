@@ -12,12 +12,12 @@ const testList = async () => {
   let { noteList } = msg
 
   console.log(
-    'done',
+    'DONE',
     noteList.length,
-    'macd',
-    noteList.filter(item => item['macd']).length,
-    'kdj',
-    noteList.filter(item => !!item['kdj']).length
+    'MACD',
+    noteList.filter(item => !!item['MACD']).length,
+    'KDJ',
+    noteList.filter(item => !!item['KDJ']).length
   )
   ceateExcel(noteList, new Date().toLocaleDateString().replace(/\//g, '-'))
 }
