@@ -67,7 +67,11 @@ const check = (list, N, symbol) => {
 
   console.log(`${name} ======  ${prices.slice(-1)}`)
 
-  if (prices.slice(-1)[0] >= msg.max_prices) {
+  // 价格过滤
+  if (
+    prices.slice(-1)[0] >= msg.max_min_prices[0] ||
+    prices.slice(-1)[0] <= msg.max_min_prices[1]
+  ) {
     return
   }
 
