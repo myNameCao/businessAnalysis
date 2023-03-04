@@ -66,6 +66,11 @@ const check = (list, N, symbol) => {
   let prices = list.map(item => item[3] * 1)
 
   console.log(`${name} ======  ${prices.slice(-1)}`)
+
+  if (prices.slice(-1)[0] >= msg.max_prices) {
+    return
+  }
+
   // 量
   let amount = list.map(item => item[6] * 1)
 
