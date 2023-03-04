@@ -181,7 +181,7 @@ const KDJ_fork = (name, prices) => {
   let kdj_list = []
   let is_fork = r_list.some(({ k, d, j }, i) => {
     // 金叉
-    if (Math.abs(k - d) < 3 && Math.abs(d - j) < 3) {
+    if (Math.abs(k - d) < 5 && Math.abs(d - j) < 5) {
       let { j: j1 } = r_list[i - 1] || kdjs[kdjs.length - 3]
       // 上升金叉
       if (j1 <= j) {

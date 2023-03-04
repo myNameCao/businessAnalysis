@@ -1,8 +1,8 @@
 let msg = {
   fileName: '注意',
-  max_min_prices: [30, 5], //  最高价格
-  band: 0.2, // 波距  起伏的程度
-  diff: 0.2, // 目前与波的差距 查看现在的状态
+  max_min_prices: [30, 5], //  范围大小
+  band: 0.2, // 波距起伏的程度 越小数量越多
+  diff: 0.3, // 目前与波的差距  越大数量越多
   bandNumber: 3, // 波数
   activeNumber: 15, // 活跃值
   noteList: [],
