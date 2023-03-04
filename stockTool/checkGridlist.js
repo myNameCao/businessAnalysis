@@ -99,19 +99,19 @@ const check = (list, N, symbol) => {
     let obj_atcive = {
       symbol,
       name,
-      diffnum,
+      DIFFPRICE: diffnum,
       price: prices.slice(-1)[0] * 1,
       band: result_list.join('|'),
-      kdj: '',
-      macd: '',
+      KDJ: '',
+      MACD: '',
       plus_active: plus,
       active: maxList
     }
     if (have_fork) {
-      obj_atcive.macd = macd_list.join('|')
+      obj_atcive.MACD = macd_list.join('|')
     }
     if (is_kdj_Fork) {
-      obj_atcive.kdj = kdj_list.join('|')
+      obj_atcive.KDJ = kdj_list.join('|')
     }
     if (have_fork && is_kdj_Fork) {
       obj_atcive.note = true

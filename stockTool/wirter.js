@@ -43,7 +43,7 @@ const ceateExcel = (data, name) => {
   let writer_path = `${path}${name}.xlsx`
 
   const sheetOptions = [
-    { wch: 5 },
+    { wch: 10 },
     { wch: 10 },
     { wch: 10 },
     { wch: 10 },
@@ -81,6 +81,8 @@ const ceateExcel = (data, name) => {
 
   // 设置表头样式
   ws['!cols'] = sheetOptions
+  ws['!rows'] = data.map(() => ({ hpx: 30 }))
+  ws['!rows'].unshift({ hpx: 20 })
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1')
   XLSX.writeFile(wb, writer_path, {
     compression: true
