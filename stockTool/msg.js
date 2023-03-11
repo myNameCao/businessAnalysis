@@ -11,7 +11,7 @@ let msg = {
   disabledtemp: {},
   path: '../../Desktop/look/',
   // 大概是一年前 到现在
-  furthest_time: new Date(Date.now() - 1000 * 60 * 60 * 24 * 400)
+  furthest_time: new Date(Date.now() - 1000 * 60 * 60 * 24 * 365)
     .toLocaleDateString()
     .replace(/\//g, '-'),
   // 默认是今天
