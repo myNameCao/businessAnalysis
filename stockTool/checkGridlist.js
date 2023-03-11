@@ -178,12 +178,12 @@ const Macd_fork = (name, prices) => {
 const KDJ_fork = (name, prices) => {
   // 最近 7 天
   let kdjs = KDJ(prices)
-  let r_list = kdjs.slice(-2)
+  let r_list = kdjs.slice(-5)
   let kdj_list = []
   let is_fork = r_list.some(({ k, d, j }, i) => {
     // 金叉
-    if (Math.abs(k - d) < 7 && Math.abs(d - j) < 7) {
-      let { j: j1 } = r_list[i - 1] || kdjs[kdjs.length - 3]
+    if (Math.abs(k - d) < 5 && Math.abs(d - j) < 5) {
+      let { j: j1 } = r_list[i - 1] || kdjs[kdjs.length - 6]
       // 上升金叉
       if (j1 <= j) {
         kdj_list = [k, d, j]
