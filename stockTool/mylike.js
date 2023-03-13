@@ -19,6 +19,9 @@ const testList = async () => {
     'KDJ',
     noteList.filter(item => !!item['KDJ']).length
   )
-  ceateExcel(noteList, new Date().toLocaleDateString().replace(/\//g, '-'))
+  let sortList = noteList.sort((a, b) => {
+    return b['active'] - a['active']
+  })
+  ceateExcel(sortList, new Date().toLocaleDateString().replace(/\//g, '-'))
 }
 testList()
