@@ -1,6 +1,6 @@
 let { getHistory } = require('./getHistory')
 
-let { writeFile, rmSync, writeList } = require('./wirter')
+let { writeList } = require('./wirter')
 
 let { list } = require('./all')
 let { msg } = require('./msg')

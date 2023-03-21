@@ -4,18 +4,6 @@ var XLSX = require('xlsx-js-style')
 
 let { msg } = require('./msg')
 
-const writeFile = (text, feature) => {
-  // 传递了追加参数 { 'flag': 'a' }
-  // 注意时机
-  let { path, fileName } = msg
-  let writer_path = feature
-    ? `${path}${fileName}_${feature}.txt`
-    : `${path}${fileName}.txt`
-  wf(writer_path, text + '\n', { flag: 'a' }, err => {
-    if (err) console.log(err)
-  })
-}
-
 const writeList = (L, name) => {
   rm(`./stockTool/${name}.js`, { force: true })
   let content = `let  list = ${JSON.stringify(L)}
@@ -26,11 +14,6 @@ const writeList = (L, name) => {
   wf(`./stockTool/${name}.js`, content, { flag: 'a' }, err => {
     if (err) console.log(err)
   })
-}
-
-const rmSync = () => {
-  let { path, fileName } = msg
-  rm(`${path}${fileName}.txt`, { force: true })
 }
 
 /**
@@ -89,8 +72,5 @@ const ceateExcel = (data, name) => {
     compression: true
   })
 }
-
-exports.writeFile = writeFile
 exports.ceateExcel = ceateExcel
 exports.writeList = writeList
-exports.rmSync = rmSync
