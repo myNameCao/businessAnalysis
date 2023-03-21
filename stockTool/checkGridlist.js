@@ -65,7 +65,7 @@ const check = (list, N, symbol) => {
   // 价格
   let prices = list.map(item => item[3] * 1)
 
-  console.log(`${name} ======  ${prices.slice(-1)}`)
+  console.log(`${name} ======  ${prices.slice(-1)},  ${gain.slice(-1)} `)
 
   // 价格过滤
   if (
@@ -101,6 +101,7 @@ const check = (list, N, symbol) => {
       symbol,
       name,
       DIFFPRICE: diffnum,
+      p_change: gain.slice(-1)[0] * 1,
       price: prices.slice(-1)[0] * 1,
       band: result_list.join('|'),
       KDJ: '',
@@ -117,7 +118,7 @@ const check = (list, N, symbol) => {
     if (have_fork && is_kdj_Fork) {
       obj_atcive.note = true
     }
-    if (have_fork || is_kdj_Fork) {
+    if (gain.slice(-1) * 1 > msg.p_change && (have_fork || is_kdj_Fork)) {
       noteList.push(obj_atcive)
     }
   }

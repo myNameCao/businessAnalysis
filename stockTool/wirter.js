@@ -47,6 +47,7 @@ const ceateExcel = (data, name) => {
     { wch: 10 },
     { wch: 10 },
     { wch: 10 },
+    { wch: 10 },
     { wch: 60 },
     { wch: 25 },
     { wch: 40 },
