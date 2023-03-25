@@ -65,7 +65,9 @@ const check = (list, N, symbol) => {
   // 价格
   let prices = list.map(item => item[3] * 1)
 
-  console.log(`${name} ======  ${prices.slice(-1)},  ${gain.slice(-1)} `)
+  let up_data_num = gain.slice(-msg.last_day).filter(i => i > 0).length
+
+  console.log(`${name} ======  ${prices.slice(-1)},${list.slice(-1)[0][0]} `)
 
   // 价格过滤
   if (
@@ -101,6 +103,7 @@ const check = (list, N, symbol) => {
       symbol,
       name,
       DIFFPRICE: diffnum,
+      last_up_num: up_data_num,
       p_change: gain.slice(-1)[0] * 1,
       price: prices.slice(-1)[0] * 1,
       band: result_list.join('|'),
@@ -179,12 +182,12 @@ const Macd_fork = (name, prices) => {
 const KDJ_fork = (name, prices) => {
   // 最近 7 天
   let kdjs = KDJ(prices)
-  let r_list = kdjs.slice(-2)
+  let r_list = kdjs.slice(-3)
   let kdj_list = []
   let is_fork = r_list.some(({ k, d, j }, i) => {
     // 金叉
     if (Math.abs(k - d) < 5 && Math.abs(d - j) < 5) {
-      let { j: j1 } = r_list[i - 1] || kdjs[kdjs.length - 3]
+      let { j: j1 } = r_list[i - 1] || kdjs[kdjs.length - 4]
       // 上升金叉
       if (j1 <= j) {
         kdj_list = [k, d, j]
