@@ -1,7 +1,7 @@
 let msg = {
   fileName: '',
   p_change: 0,
-  last_day: 5,
+  last_day: 3,
   max_min_prices: [40, 5], //  范围大小 最好调节这个参数
   band: 0.2, // 起伏程度 越小数量越多
   diff: 0.2, //低差  越大数量越多
