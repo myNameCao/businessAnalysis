@@ -180,7 +180,6 @@ const Macd_fork = (name, prices) => {
  * 返回一个 对象包含运行的结果和最近的kdj
  */
 const KDJ_fork = (name, prices) => {
-  // 最近 7 天
   let kdjs = KDJ(prices)
   let r_list = kdjs.slice(-3)
   let kdj_list = []
