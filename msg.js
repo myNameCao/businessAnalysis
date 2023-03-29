@@ -1,6 +1,6 @@
 let msg = {
   p_change: 0,
-  last_day: [5, 3],
+  last_day: [5, 0],
   max_min_prices: [30, 5],
   band: 0.3, // 越小越多
   diff: 0.15, // 越大越多

@@ -12,9 +12,6 @@ const testList = async () => {
     await getHistory(item)
   }
   let { noteList } = msg
-  let sortList = noteList.sort((a, b) => {
-    return b['active'] - a['active']
-  })
   console.log(
     'DONE',
     noteList.length,
@@ -23,11 +20,13 @@ const testList = async () => {
     'KDJ',
     noteList.filter(item => !!item['KDJ']).length
   )
-  for (let i = 0; i < sortList.length; i++) {
-    let item = sortList[i]
+  for (let i = 0; i < noteList.length; i++) {
+    let item = noteList[i]
     await getBank(item)
   }
-
+  let sortList = noteList.sort((a, b) => {
+    return b['BK_code'].slice(2) * 1 - a['BK_code'].slice(2) * 1
+  })
   ceateExcel(sortList, new Date().toLocaleDateString().replace(/\//g, '-'))
 }
 testList()
