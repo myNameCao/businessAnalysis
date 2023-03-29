@@ -5,6 +5,7 @@ let msg = {
   band: 0.3, // 越小越多
   diff: 0.15, // 越大越多
   bandNumber: 4, //次数
+  onMacd_Kdj: false,
   activeNumber: 15, //默认值 15  7%
   noteList: [],
   temp: {},

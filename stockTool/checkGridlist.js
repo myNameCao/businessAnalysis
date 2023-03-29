@@ -122,9 +122,14 @@ const check = (list, N, symbol) => {
     if (have_fork && is_kdj_Fork) {
       obj_atcive.note = true
     }
-    if (gain.slice(-1) * 1 > msg.p_change && (have_fork || is_kdj_Fork)) {
-      // 大于 要求的天数
-      if (up_data_num >= msg.last_day[1]) {
+
+    // 大于 要求的天数
+    if (up_data_num >= msg.last_day[1] && gain.slice(-1) * 1 > msg.p_change) {
+      noteList.push(obj_atcive)
+      if (msg.onMacd_Kdj && (have_fork || is_kdj_Fork)) {
+        noteList.push(obj_atcive)
+      }
+      if (!msg.onMacd_Kdj) {
         noteList.push(obj_atcive)
       }
     }
