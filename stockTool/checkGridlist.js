@@ -102,6 +102,7 @@ const check = (list, N, symbol) => {
     let obj_atcive = {
       symbol,
       name,
+      BK: '',
       DIFFPRICE: diffnum,
       last_up_num: up_data_num,
       p_change: gain.slice(-1)[0] * 1,
