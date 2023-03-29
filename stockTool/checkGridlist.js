@@ -24,7 +24,7 @@ const maxL = (i, p) => {
   }
 }
 
-let { msg } = require('./msg')
+let { msg } = require('../msg')
 let { band } = require('./band')
 let { MACD, KDJ, OBV } = require('./indicator')
 

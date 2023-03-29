@@ -1,4 +1,4 @@
-let { msg } = require('./msg')
+let { msg } = require('../msg')
 
 const comT = i => {
   return i.reduce((a, b) => a + b)

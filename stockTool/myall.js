@@ -3,7 +3,7 @@ let { getHistory } = require('./getHistory')
 let { writeList } = require('./wirter')
 
 let { list } = require('./all')
-let { msg } = require('./msg')
+let { msg } = require('../msg')
 
 let str = '全部'
 msg[process.pid] = str

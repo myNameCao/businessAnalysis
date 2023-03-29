@@ -2,7 +2,7 @@ const { stock } = require('tushare')
 
 const { check } = require('./checkGridlist')
 
-let { msg } = require('./msg')
+let { msg } = require('../msg')
 
 const getHistory = async ({ name, symbol }) => {
   if (!symbol) return

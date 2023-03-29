@@ -5,7 +5,7 @@ let { getBank } = require('./getbank')
 let { ceateExcel } = require('./wirter')
 
 let { list } = require('./list')
-let { msg } = require('./msg')
+let { msg } = require('../msg')
 const testList = async () => {
   for (let i = 0; i < list.length; i++) {
     let item = list[i]
@@ -15,10 +15,6 @@ const testList = async () => {
   let sortList = noteList.sort((a, b) => {
     return b['active'] - a['active']
   })
-  for (let i = 0; i < sortList.length; i++) {
-    let item = sortList[i]
-    await getBank(item)
-  }
   console.log(
     'DONE',
     noteList.length,
@@ -27,6 +23,11 @@ const testList = async () => {
     'KDJ',
     noteList.filter(item => !!item['KDJ']).length
   )
+  for (let i = 0; i < sortList.length; i++) {
+    let item = sortList[i]
+    await getBank(item)
+  }
+
   ceateExcel(sortList, new Date().toLocaleDateString().replace(/\//g, '-'))
 }
 testList()

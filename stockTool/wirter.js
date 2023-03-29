@@ -2,7 +2,7 @@ let { rmSync: rm, writeFile: wf } = require('fs') // 引入fs模块
 
 var XLSX = require('xlsx-js-style')
 
-let { msg } = require('./msg')
+let { msg } = require('../msg')
 
 const writeList = (L, name) => {
   rm(`./stockTool/${name}.js`, { force: true })
