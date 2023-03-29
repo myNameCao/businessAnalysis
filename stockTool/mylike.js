@@ -1,5 +1,7 @@
 let { getHistory } = require('./getHistory')
 
+let { getBank } = require('./getbank')
+
 let { ceateExcel } = require('./wirter')
 
 let { list } = require('./list')
@@ -10,7 +12,13 @@ const testList = async () => {
     await getHistory(item)
   }
   let { noteList } = msg
-
+  let sortList = noteList.sort((a, b) => {
+    return b['active'] - a['active']
+  })
+  for (let i = 0; i < sortList.length; i++) {
+    let item = sortList[i]
+    await getBank(item)
+  }
   console.log(
     'DONE',
     noteList.length,
@@ -19,9 +27,6 @@ const testList = async () => {
     'KDJ',
     noteList.filter(item => !!item['KDJ']).length
   )
-  let sortList = noteList.sort((a, b) => {
-    return b['active'] - a['active']
-  })
   ceateExcel(sortList, new Date().toLocaleDateString().replace(/\//g, '-'))
 }
 testList()

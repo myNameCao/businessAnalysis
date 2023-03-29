@@ -1,12 +1,11 @@
 let msg = {
-  fileName: '',
-  p_change: 0,
-  last_day: 2,
-  max_min_prices: [50, 5], //  范围大小 最好调节这个参数
-  band: 0.3, // 起伏程度 越小数量越多
-  diff: 0.2, //低差  越大数量越多
-  bandNumber: 4, // 起伏次数
-  activeNumber: 5, //  默认值 15 达标 7% 数量 可以是 0
+  p_change: -2,
+  last_day: [5, 3],
+  max_min_prices: [30, 5],
+  band: 0.2, // 起伏 越小越多
+  diff: 0.15, //低差 越大越多
+  bandNumber: 4, //起伏次数
+  activeNumber: 15, //默认值 15 达标 7%
   noteList: [],
   temp: {},
   checktemp: {},

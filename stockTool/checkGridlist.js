@@ -65,7 +65,7 @@ const check = (list, N, symbol) => {
   // 价格
   let prices = list.map(item => item[3] * 1)
 
-  let up_data_num = gain.slice(-msg.last_day).filter(i => i > 0).length
+  let up_data_num = gain.slice(-msg.last_day[0]).filter(i => i > 0).length
 
   console.log(`${name} ======  ${prices.slice(-1)},${list.slice(-1)[0][0]} `)
 
@@ -122,7 +122,10 @@ const check = (list, N, symbol) => {
       obj_atcive.note = true
     }
     if (gain.slice(-1) * 1 > msg.p_change && (have_fork || is_kdj_Fork)) {
-      noteList.push(obj_atcive)
+      // 大于 要求的天数
+      if (up_data_num >= msg.last_day[1]) {
+        noteList.push(obj_atcive)
+      }
     }
   }
 }
