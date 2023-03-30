@@ -1,11 +1,11 @@
 let msg = {
   p_change: 0,
-  last_day: [5, 0],
+  last_day: [3, 2],
   max_min_prices: [30, 5],
-  band: 0.3, // 趋向小
+  band: 0.2, // 趋向小
   diff: 0.15, // 趋向大
   bandNumber: 4, //次数
-  onMacd_Kdj: false,
+  onMacd_Kdj: true,
   activeNumber: 15, //默认值 15  7%
   noteList: [],
   temp: {},

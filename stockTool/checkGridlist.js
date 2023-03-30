@@ -67,7 +67,9 @@ const check = (list, N, symbol) => {
 
   let up_data_num = gain.slice(-msg.last_day[0]).filter(i => i > 0).length
 
-  console.log(`${name} ======  ${prices.slice(-1)},${list.slice(-1)[0][0]} `)
+  console.log(
+    `${name} ==  ${prices.slice(-1)},   ${list[0][0]}-${list.slice(-1)[0][0]} `
+  )
 
   // 价格过滤
   if (
