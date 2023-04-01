@@ -2,7 +2,7 @@ let { getHistory } = require('./getHistory')
 
 let { getBank } = require('./getbank')
 
-let { ceateExcel } = require('./wirter')
+let { ceateExcel, writeList } = require('./wirter')
 
 let { list } = require('./list')
 let { msg } = require('../msg')
@@ -12,6 +12,7 @@ const testList = async () => {
     await getHistory(item)
   }
   let { noteList } = msg
+
   console.log(
     'DONE',
     noteList.length,
@@ -27,6 +28,7 @@ const testList = async () => {
   let sortList = noteList.sort((a, b) => {
     return b['BK_code'].slice(2) * 1 - a['BK_code'].slice(2) * 1
   })
+  writeList(noteList, 'list')
   ceateExcel(sortList, new Date().toLocaleDateString().replace(/\//g, '-'))
 }
 testList()

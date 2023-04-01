@@ -99,6 +99,8 @@ const check = (list, N, symbol) => {
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
 
+  console.log(name, `活跃值 ${maxList}`)
+
   if (isActive && isDown) {
     let { noteList } = msg
     let obj_atcive = {
@@ -211,7 +213,7 @@ const KDJ_fork = (name, prices) => {
 
 const activeLength = list => {
   let { maxList, plus } = maxL(list, 7)
-  let isActive = maxList.length > msg.activeNumber
+  let isActive = maxList.length >= msg.activeNumber
   return { isActive, plus: plus.length, maxList: maxList.length }
 }
 
