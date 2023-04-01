@@ -6,7 +6,7 @@ let msg = {
   diff: 0.15, // 趋向大
   bandNumber: 4, //次数
   onMacd_Kdj: true,
-  activeNumber: 10, //默认值 15  7%
+  activeNumber: 15, //默认值 15  7%
   noteList: [],
   temp: {},
   checktemp: {},
