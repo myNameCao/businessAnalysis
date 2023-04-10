@@ -26,7 +26,7 @@ const band = (list, name) => {
     }
     //TODO: 优化 这里最好是当前价格的波动  如果 按波点
     if (
-      Math.abs(item - result_list[result_list.length - 1]) >
+      Math.abs(item - result_list[result_list.length - 1]) >=
       band * lastItem
     ) {
       result_list.push(item)
