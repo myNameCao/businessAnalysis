@@ -1,7 +1,5 @@
 const axios = require('axios')
 
-const url = ''
-
 // [
 //   { V: '北京', K: 'MT_BJ1001' },
 //   { V: '黑龙江公司', K: 'MT_HLJHEB1001' },
