@@ -46,24 +46,6 @@ const headers = {
   'Accept-Language': 'zh-CN,zh',
   Cookie: `lambo-sso-key_0_=${token}#${key}`
 }
-
-const note = name => {
-  axios
-    .post(url, {
-      markdown: {
-        title: '发版完成',
-        text: name
-      },
-      headers: { 'Content-Type': 'application/json' },
-      msgtype: 'markdown'
-    })
-    .then(function (res) {
-      console.log(res.data)
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-}
 const getShops = () => {
   const data = 'custId=******'
   axios
