@@ -119,7 +119,7 @@ const check = (list, N, symbol) => {
   let { noteList, list_8 } = msg
 
   // 获得 涨幅 接近涨停的
-  if (obj_atcive.p_change > 9) {
+  if (obj_atcive.p_change > 8) {
     list_8.push(obj_atcive)
     let length_num = gain.length - 1
     while (length_num > 0 && gain[length_num] > 9) {
