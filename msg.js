@@ -8,6 +8,7 @@ let msg = {
   onMacd_Kdj: true,
   activeNumber: 10, //默认值 15  7%
   noteList: [],
+  list_8: [],
   temp: {},
   checktemp: {},
   disabledtemp: {},

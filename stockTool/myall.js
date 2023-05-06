@@ -15,7 +15,7 @@ const testList = async () => {
     await getHistory(item)
   }
 
-  let { checktemp, disabledtemp, noteList } = msg
+  let { checktemp, disabledtemp, noteList, list_8 } = msg
   console.log(
     `有效数据： ${Object.keys(checktemp).length} 条,     无效数据：${
       Object.keys(disabledtemp).length
@@ -23,6 +23,7 @@ const testList = async () => {
   )
 
   writeList(noteList, 'list')
+  writeList(list_8, 'list_8')
   writeList(disabledtemp, 'disabledtemp')
 }
 testList()

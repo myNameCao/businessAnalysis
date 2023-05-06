@@ -100,23 +100,30 @@ const check = (list, N, symbol) => {
   // 最近几天刚表现出来
 
   console.log(name, `活跃值 ${maxList}`)
+  let obj_atcive = {
+    symbol,
+    name,
+    BK: '',
+    DIFFPRICE: diffnum,
+    last_up_num: up_data_num,
+    p_change: gain.slice(-1)[0] * 1,
+    price: prices.slice(-1)[0] * 1,
+    band: '',
+    KDJ: '',
+    MACD: '',
+    plus_active: plus,
+    active: maxList
+  }
 
+  let { noteList, list_8 } = msg
+
+  obj_atcive.p_change
+  // 获得 涨幅 接近涨停的
+  if (obj_atcive.p_change > 9) {
+    list_8.push(obj_atcive)
+  }
   if (isActive && isDown) {
-    let { noteList } = msg
-    let obj_atcive = {
-      symbol,
-      name,
-      BK: '',
-      DIFFPRICE: diffnum,
-      last_up_num: up_data_num,
-      p_change: gain.slice(-1)[0] * 1,
-      price: prices.slice(-1)[0] * 1,
-      band: result_list.join('|'),
-      KDJ: '',
-      MACD: '',
-      plus_active: plus,
-      active: maxList
-    }
+    obj_atcive.band = result_list.join('|')
     if (have_fork) {
       obj_atcive.MACD = macd_list.join('|')
     }
@@ -126,7 +133,6 @@ const check = (list, N, symbol) => {
     if (have_fork && is_kdj_Fork) {
       obj_atcive.note = true
     }
-
     // 大于 要求的天数
     if (up_data_num >= msg.last_day[1] && gain.slice(-1) * 1 > msg.p_change) {
       if (msg.onMacd_Kdj && (have_fork || is_kdj_Fork)) {
