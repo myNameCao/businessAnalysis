@@ -112,15 +112,20 @@ const check = (list, N, symbol) => {
     KDJ: '',
     MACD: '',
     plus_active: plus,
-    active: maxList
+    active: maxList,
+    change_9_num: 0
   }
 
   let { noteList, list_8 } = msg
 
-  obj_atcive.p_change
   // 获得 涨幅 接近涨停的
   if (obj_atcive.p_change > 9) {
     list_8.push(obj_atcive)
+    let length_num = gain.length - 1
+    while (length_num > 0 && gain[length_num] > 9) {
+      obj_atcive.change_9_num += 1
+      length_num--
+    }
   }
   if (isActive && isDown) {
     obj_atcive.band = result_list.join('|')

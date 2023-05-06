@@ -12,7 +12,6 @@ const testList = async () => {
     await getHistory(item)
   }
   let { noteList } = msg
-
   console.log(
     'DONE',
     noteList.length,
