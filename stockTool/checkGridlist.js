@@ -119,25 +119,26 @@ const check = (list, N, symbol) => {
   let { noteList, list_8 } = msg
 
   // 获得 涨幅 接近涨停的
-  if (obj_atcive.p_change > 8) {
+  if (obj_atcive.p_change >= 8) {
     list_8.push(obj_atcive)
     let length_num = gain.length - 1
-    while (length_num > 0 && gain[length_num] > 9) {
+    while (length_num > 0 && gain[length_num] >= 8) {
       obj_atcive.change_9_num += 1
       length_num--
     }
   }
+  if (have_fork) {
+    obj_atcive.MACD = macd_list.join('|')
+  }
+  if (is_kdj_Fork) {
+    obj_atcive.KDJ = kdj_list.join('|')
+  }
+  if (have_fork && is_kdj_Fork) {
+    obj_atcive.note = true
+  }
+  //  活跃值切 波低
   if (isActive && isDown) {
     obj_atcive.band = result_list.join('|')
-    if (have_fork) {
-      obj_atcive.MACD = macd_list.join('|')
-    }
-    if (is_kdj_Fork) {
-      obj_atcive.KDJ = kdj_list.join('|')
-    }
-    if (have_fork && is_kdj_Fork) {
-      obj_atcive.note = true
-    }
     // 大于 要求的天数
     if (up_data_num >= msg.last_day[1] && gain.slice(-1) * 1 > msg.p_change) {
       if (msg.onMacd_Kdj && (have_fork || is_kdj_Fork)) {

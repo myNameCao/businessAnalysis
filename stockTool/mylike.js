@@ -1,33 +1,34 @@
-let { getHistory } = require('./getHistory')
-
 let { getBank } = require('./getbank')
-
 let { ceateExcel, writeList } = require('./wirter')
 
 let { list } = require('./list')
-let { msg } = require('../msg')
+let { list: list_8 } = require('./list_8')
 const testList = async () => {
-  for (let i = 0; i < list.length; i++) {
-    let item = list[i]
-    await getHistory(item)
-  }
-  let { noteList } = msg
   console.log(
     'DONE',
-    noteList.length,
+    list.length,
     'MACD',
-    noteList.filter(item => !!item['MACD']).length,
+    list.filter(item => !!item['MACD']).length,
     'KDJ',
-    noteList.filter(item => !!item['KDJ']).length
+    list.filter(item => !!item['KDJ']).length
   )
-  for (let i = 0; i < noteList.length; i++) {
-    let item = noteList[i]
+  for (let i = 0; i < list.length; i++) {
+    let item = list[i]
     await getBank(item)
   }
-  let sortList = noteList.sort((a, b) => {
+  console.log('=====================')
+  for (let i = 0; i < list_8.length; i++) {
+    let item = list_8[i]
+    await getBank(item)
+  }
+  let sortList = list.sort((a, b) => {
     return b['BK_code'].slice(2) * 1 - a['BK_code'].slice(2) * 1
   })
-  writeList(noteList, 'list')
+  let sortList_8 = list_8.sort((a, b) => {
+    return b['BK_code'].slice(2) * 1 - a['BK_code'].slice(2) * 1
+  })
+  writeList(sortList, 'list')
+  writeList(sortList_8, 'list_8')
   ceateExcel(sortList, new Date().toLocaleDateString().replace(/\//g, '-'))
 }
 testList()

@@ -36,7 +36,7 @@ const ceateExcel = (data, name) => {
     { wch: 60 },
     { wch: 25 },
     { wch: 40 },
-    { wch: 10 },
+    { wch: 15 },
     { wch: 10 }
   ]
   // 如果文件存在，先删除
