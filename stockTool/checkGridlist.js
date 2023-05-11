@@ -120,7 +120,7 @@ const check = (list, N, symbol) => {
   let last_gain = gain.slice(-15)
   let length_num = last_gain.length
   while (length_num--) {
-    if (gain[length_num] >= 9) {
+    if (last_gain[length_num] >= 9) {
       obj_atcive.change_9_num += 1
     }
   }
