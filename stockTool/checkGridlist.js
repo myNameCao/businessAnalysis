@@ -116,16 +116,18 @@ const check = (list, N, symbol) => {
     change_9_num: 0
   }
 
-  let { noteList, list_8 } = msg
-
-  // 获得 涨幅 接近涨停的
-  if (obj_atcive.p_change >= 8) {
-    list_8.push(obj_atcive)
-    let length_num = gain.length - 1
-    while (length_num > 0 && gain[length_num] >= 8) {
+  // 最近15天得涨停次数
+  let last_gain = gain.slice(-15)
+  let length_num = last_gain.length
+  while (length_num--) {
+    if (gain[length_num] >= 9) {
       obj_atcive.change_9_num += 1
-      length_num--
     }
+  }
+  let { noteList, list_8 } = msg
+  // 获得 涨幅 接近涨停的
+  if (obj_atcive.p_change >= 9) {
+    list_8.push(obj_atcive)
   }
   if (have_fork) {
     obj_atcive.MACD = macd_list.join('|')
