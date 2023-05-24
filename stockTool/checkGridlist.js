@@ -109,7 +109,6 @@ const check = (list, N, symbol) => {
     name,
     BK: '',
     change_9_num: 0,
-    last_Tochange: '',
     price: prices.slice(-1)[0] * 1,
     diffnum,
     band: '',
@@ -137,7 +136,6 @@ const check = (list, N, symbol) => {
   // 最近几天次数
   let { noteList, list_8, toUpNumber } = msg
   let last_gain = gain.slice(-toUpNumber)
-  obj_atcive.last_Tochange = last_gain.join('|')
   let length_num = last_gain.length
   while (length_num--) {
     if (last_gain[length_num] >= 9) obj_atcive.change_9_num += 1
