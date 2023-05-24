@@ -26,17 +26,18 @@ const ceateExcel = (data, name) => {
   let writer_path = `${path}${name}.xlsx`
 
   const sheetOptions = [
+    { wch: 8 },
+    { wch: 8 },
+    { wch: 8 },
+    { wch: 30 },
+    { wch: 8 },
+    { wch: 8 },
+    { wch: 50 },
     { wch: 10 },
     { wch: 10 },
-    { wch: 10 },
-    { wch: 15 },
-    { wch: 10 },
-    { wch: 10 },
-    { wch: 10 },
-    { wch: 60 },
-    { wch: 25 },
     { wch: 40 },
-    { wch: 15 },
+    { wch: 40 },
+    { wch: 10 },
     { wch: 10 }
   ]
   // 如果文件存在，先删除

@@ -51,4 +51,6 @@ const band = (list, name) => {
 }
 exports.band = band
 
-// band([1, 4, 6, 7, 9, 3, 6, 10, 8, 8, 7, 6, 4, 2, 1, 20, 19.9])
+// let a = band([1, 4, 6, 7, 9, 3, 6, 10, 8, 8, 7, 6, 4, 2, 1, 20, 19.9])
+
+// console.log(a)

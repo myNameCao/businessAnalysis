@@ -62,6 +62,12 @@ const check = (list, N, symbol) => {
 
   // 涨幅
   let gain = list.map(item => item[7] * 1)
+
+  let gain_time = list.map(item => ({
+    time: item[0],
+    value: item[7] * 1
+  }))
+
   // 价格
   let prices = list.map(item => item[3] * 1)
 
@@ -98,46 +104,53 @@ const check = (list, N, symbol) => {
   // 比较活跃
   let { isActive, plus, maxList } = activeLength(gain)
   // 最近几天刚表现出来
-
   console.log(name, `活跃值 ${maxList}`)
   let obj_atcive = {
-    symbol,
     name,
     BK: '',
-    DIFFPRICE: diffnum,
-    last_up_num: up_data_num,
-    p_change: gain.slice(-1)[0] * 1,
+    change_9_num: 0,
+    last_Tochange: '',
     price: prices.slice(-1)[0] * 1,
+    diffnum,
     band: '',
-    KDJ: '',
-    MACD: '',
     plus_active: plus,
     active: maxList,
-    change_9_num: 0
+    KDJ: '',
+    MACD: '',
+    symbol
   }
 
-  // 最近15天得涨停次数
-  let last_gain = gain.slice(-15)
-  let length_num = last_gain.length
-  while (length_num--) {
-    if (last_gain[length_num] >= 9) {
-      obj_atcive.change_9_num += 1
+  let lock_list = []
+  for (let i = 0; i < gain_time.length; i++) {
+    let item = gain_time[i]
+    if (item.value > 9) {
+      lock_list.push('|')
+      lock_list.push(item)
+      for (let t = 0; t < 5; t++) {
+        i++
+        item = gain_time[i]
+        item && lock_list.push(item)
+      }
     }
   }
-  let { noteList, list_8 } = msg
+  obj_atcive.lock_list = lock_list
+  // 最近几天次数
+  let { noteList, list_8, toUpNumber } = msg
+  let last_gain = gain.slice(-toUpNumber)
+  obj_atcive.last_Tochange = last_gain.join('|')
+  let length_num = last_gain.length
+  while (length_num--) {
+    if (last_gain[length_num] >= 9) obj_atcive.change_9_num += 1
+  }
   // 获得 涨幅 接近涨停的
-  if (obj_atcive.p_change >= 9) {
-    list_8.push(obj_atcive)
-  }
-  if (have_fork) {
-    obj_atcive.MACD = macd_list.join('|')
-  }
-  if (is_kdj_Fork) {
-    obj_atcive.KDJ = kdj_list.join('|')
-  }
-  if (have_fork && is_kdj_Fork) {
-    obj_atcive.note = true
-  }
+  if (obj_atcive.change_9_num > 0) list_8.push(obj_atcive)
+
+  if (have_fork) obj_atcive.MACD = macd_list.join('|')
+
+  if (is_kdj_Fork) obj_atcive.KDJ = kdj_list.join('|')
+
+  if (have_fork && is_kdj_Fork) obj_atcive.note = true
+
   //  活跃值切 波低
   if (isActive && isDown) {
     obj_atcive.band = result_list.join('|')

@@ -1,8 +1,9 @@
 let msg = {
   p_change: 1,
+  toUpNumber: 5, // 最近几天的
   last_day: [2, 2],
   max_min_prices: [30, 5],
-  band: 0.2, // 趋向小
+  band: 0.15, // 趋向小
   diff: 0.15, // 趋向大
   bandNumber: 4, //次数
   onMacd_Kdj: true,
