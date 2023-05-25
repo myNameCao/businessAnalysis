@@ -26,13 +26,13 @@ const ceateExcel = (data, name) => {
   let writer_path = `${path}${name}.xlsx`
 
   const sheetOptions = [
-    { wch: 8 },
-    { wch: 8 },
-    { wch: 8 },
+    { wch: 10 },
+    { wch: 10 },
+    { wch: 10 },
     { wch: 30 },
     { wch: 8 },
-    { wch: 8 },
     { wch: 50 },
+    { wch: 10 },
     { wch: 10 },
     { wch: 10 },
     { wch: 40 },
