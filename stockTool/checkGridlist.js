@@ -125,6 +125,7 @@ const check = (list, N, symbol) => {
     if (item.value > 9) {
       lock_list.push('|')
       lock_list.push(item)
+
       for (let t = 0; t < 5; t++) {
         i++
         item = gain_time[i]
@@ -133,16 +134,15 @@ const check = (list, N, symbol) => {
     }
   }
   obj_atcive.lock_list = lock_list
-  // 最近几天次数
-  let { noteList, list_8, toUpNumber } = msg
-  let last_gain = gain.slice(-toUpNumber)
-  let length_num = last_gain.length
-  while (length_num--) {
-    if (last_gain[length_num] >= 9) obj_atcive.change_9_num += 1
-  }
-  // 获得 涨幅 接近涨停的
-  if (obj_atcive.change_9_num > 0) list_8.push(obj_atcive)
 
+  let { noteList, list_8 } = msg
+  // 所有都 向上
+  if (
+    obj_atcive.lock_list.length &&
+    obj_atcive.lock_list.every(item => item === '|' || item.value > -3)
+  ) {
+    list_8.push(obj_atcive)
+  }
   if (have_fork) obj_atcive.MACD = macd_list.join('|')
 
   if (is_kdj_Fork) obj_atcive.KDJ = kdj_list.join('|')
