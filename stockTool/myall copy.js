@@ -2,7 +2,7 @@ let { getHistory } = require('./getHistory')
 
 let { writeList } = require('./wirter')
 
-let { list } = require('./list')
+let { list } = require('./list_8')
 let { msg } = require('../msg')
 
 const testList = async () => {

@@ -41,14 +41,14 @@ let name = ''
 const check = (list, N, symbol) => {
   // ;[
   //0   '2022-10-21',
-  // 1  '26.880',
-  //2   '27.150',
-  // 3  '26.200',
-  //4   '26.200',
-  //5   '313286.69',
-  // 6   '-0.480',
-  // 7  '-1.80',
-  //   '26.760',
+  // 1  '26.880',开
+  //2   '27.150', 高
+  // 3  '26.200',收
+  //4   '26.200',低
+  //5   '313286.69',量
+  // 6   '-0.480',价格变动
+  // 7  '-1.80', 涨幅
+  //   '26.760', 5日
   //   '26.503',
   //   '27.396',
   //   '307,350.03',
@@ -65,7 +65,11 @@ const check = (list, N, symbol) => {
 
   let gain_time = list.map(item => ({
     time: item[0],
-    value: item[7] * 1
+    gain: item[7] * 1,
+    openP: item[1] * 1,
+    closeP: item[3] * 1,
+    highP: item[2] * 1,
+    lowP: item[4] * 1
   }))
 
   // 价格
@@ -106,43 +110,44 @@ const check = (list, N, symbol) => {
   // 最近几天刚表现出来
   console.log(name, `活跃值 ${maxList}`)
   let obj_atcive = {
+    symbol,
     name,
     BK: '',
-    change_9_num: 0,
     price: prices.slice(-1)[0] * 1,
     diffnum,
     band: '',
     plus_active: plus,
     active: maxList,
     KDJ: '',
-    MACD: '',
-    symbol
+    MACD: ''
   }
 
   let lock_list = []
-  for (let i = 0; i < gain_time.length; i++) {
+  for (let i = 1; i < gain_time.length; i++) {
+    let pre_item = gain_time[i - 1]
     let item = gain_time[i]
-    if (item.value > 9) {
-      lock_list.push('|')
-      lock_list.push(item)
-
-      for (let t = 0; t < 5; t++) {
+    if (isLock(pre_item, item)) {
+      let temp_l = []
+      temp_l.push(pre_item, item)
+      for (let t = 0; t < 2; t++) {
         i++
         item = gain_time[i]
-        item && lock_list.push(item)
+        item && temp_l.push(item)
       }
+      lock_list.push(temp_l)
     }
   }
-  obj_atcive.lock_list = lock_list
+  // obj_atcive.lock_list = lock_list
 
   let { noteList, list_8 } = msg
   // 所有都 向上
-  if (
-    obj_atcive.lock_list.length &&
-    obj_atcive.lock_list.every(item => item === '|' || item.value > -3)
-  ) {
+
+  let [a, b] = gain_time.slice(-2)
+
+  if (isLock(a, b)) {
     list_8.push(obj_atcive)
   }
+
   if (have_fork) obj_atcive.MACD = macd_list.join('|')
 
   if (is_kdj_Fork) obj_atcive.KDJ = kdj_list.join('|')
@@ -162,6 +167,18 @@ const check = (list, N, symbol) => {
       }
     }
   }
+}
+
+const isLock = (a, b) => {
+  let { gain } = a
+  let { openP, closeP, highP, lowP } = b
+  let up = (highP - closeP) / closeP
+  let op = openP != highP
+  let isred = closeP > openP
+  if (up > 0.05 && op && isred) {
+    return true
+  }
+  false
 }
 /**
  *
