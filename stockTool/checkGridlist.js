@@ -119,7 +119,8 @@ const check = (list, N, symbol) => {
     plus_active: plus,
     active: maxList,
     KDJ: '',
-    MACD: ''
+    MACD: '',
+    gain: gain.slice(-1)[0]
   }
 
   let lock_list = []
@@ -169,17 +170,38 @@ const check = (list, N, symbol) => {
   }
 }
 
-const isLock = (a, b) => {
-  let { gain } = a
+//  倒 T 字形 分析
+const isLock1 = (a, b) => {
   let { openP, closeP, highP, lowP } = b
   let up = (highP - closeP) / closeP
   let op = openP != highP
   let isred = closeP > openP
-  if (up > 0.05 && op && isred) {
+
+  if (up >= 0.04 && op && isred) {
     return true
   }
   false
 }
+
+//  Steady to the top
+const isLock0 = (a, b) => {
+  let { highP, lowP, gain } = b
+  if (gain > 9 && highP == lowP) {
+    return true
+  }
+  false
+}
+
+const isLock = (a, b) => {
+  let { openP, closeP, highP, lowP } = b
+  let up = (highP - lowP) / closeP
+  let isred = closeP > openP
+  if (up >= 0.08 && isred) {
+    return true
+  }
+  false
+}
+
 /**
  *
  * @param {*} list
