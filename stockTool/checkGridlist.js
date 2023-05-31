@@ -138,7 +138,7 @@ const check = (list, N, symbol) => {
       lock_list.push(temp_l)
     }
   }
-  // obj_atcive.lock_list = lock_list
+  obj_atcive.lock_list = lock_list
 
   let { noteList, list_8 } = msg
   // 所有都 向上
@@ -195,8 +195,10 @@ const isLock0 = (a, b) => {
 const isLock = (a, b) => {
   let { openP, closeP, highP, lowP } = b
   let up = (highP - lowP) / closeP
+  // 按价格算
+  let p_change = (closeP - lowP) / closeP <= 0.03
   let isred = closeP > openP
-  if (up >= 0.08 && isred) {
+  if (up >= 0.08 && p_change && isred) {
     return true
   }
   false
