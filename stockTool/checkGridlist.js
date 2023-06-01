@@ -114,13 +114,13 @@ const check = (list, N, symbol) => {
     name,
     BK: '',
     price: prices.slice(-1)[0] * 1,
+    gains: gain.slice(-10),
     diffnum,
     band: '',
     plus_active: plus,
     active: maxList,
     KDJ: '',
-    MACD: '',
-    gain: gain.slice(-1)[0]
+    MACD: ''
   }
 
   let lock_list = []
@@ -138,14 +138,14 @@ const check = (list, N, symbol) => {
       lock_list.push(temp_l)
     }
   }
-  obj_atcive.lock_list = lock_list
 
-  let { noteList, list_8 } = msg
+  let { noteList, list_8, myselect } = msg
   // 所有都 向上
 
   let [a, b] = gain_time.slice(-2)
 
   if (isLock(a, b)) {
+    obj_atcive.lock_list = lock_list
     list_8.push(obj_atcive)
   }
 
@@ -154,6 +154,8 @@ const check = (list, N, symbol) => {
   if (is_kdj_Fork) obj_atcive.KDJ = kdj_list.join('|')
 
   if (have_fork && is_kdj_Fork) obj_atcive.note = true
+
+  myselect.push(obj_atcive)
 
   //  活跃值切 波低
   if (isActive && isDown) {

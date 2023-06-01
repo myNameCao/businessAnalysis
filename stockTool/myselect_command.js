@@ -2,7 +2,7 @@ let { getHistory } = require('./getHistory')
 
 let { writeList } = require('./wirter')
 
-let { list } = require('./list_8')
+let { list } = require('./myselect')
 let { msg } = require('../msg')
 
 const testList = async () => {
@@ -11,8 +11,8 @@ const testList = async () => {
     await getHistory(item)
   }
 
-  let { list_8 } = msg
+  let { myselect } = msg
 
-  writeList(list_8, 'list_8')
+  writeList(myselect, 'myselect_show')
 }
 testList()

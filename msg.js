@@ -6,10 +6,11 @@ let msg = {
   band: 0.15, // 趋向小
   diff: 0.15, // 趋向大
   bandNumber: 4, //次数
-  onMacd_Kdj: true,
+  onMacd_Kdj: false,
   activeNumber: 10, //默认值 15  7%
   noteList: [],
   list_8: [],
+  myselect: [],
   temp: {},
   checktemp: {},
   disabledtemp: {},
