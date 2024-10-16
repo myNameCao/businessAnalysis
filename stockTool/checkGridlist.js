@@ -129,11 +129,11 @@ const check = (list, N, symbol) => {
     let item = gain_time[i]
     if (isLock(pre_item, item)) {
       let temp_l = []
-      temp_l.push(pre_item, item)
-      for (let t = 0; t < 2; t++) {
+      temp_l.push(pre_item.gain, item.gain)
+      for (let t = 0; t < 5; t++) {
         i++
         item = gain_time[i]
-        item && temp_l.push(item)
+        item && temp_l.push(item.gain)
       }
       lock_list.push(temp_l)
     }
@@ -157,9 +157,11 @@ const check = (list, N, symbol) => {
 
   myselect.push(obj_atcive)
 
+  if (isDown) {
+    obj_atcive.band = result_list.join('|')
+  }
   //  活跃值切 波低
   if (isActive && isDown) {
-    obj_atcive.band = result_list.join('|')
     // 大于 要求的天数
     if (up_data_num >= msg.last_day[1] && gain.slice(-1) * 1 > msg.p_change) {
       if (msg.onMacd_Kdj && (have_fork || is_kdj_Fork)) {
@@ -186,7 +188,7 @@ const isLock1 = (a, b) => {
 }
 
 //  Steady to the top
-const isLock0 = (a, b) => {
+const isLock2 = (a, b) => {
   let { highP, lowP, gain } = b
   if (gain > 9 && highP == lowP) {
     return true
@@ -195,6 +197,11 @@ const isLock0 = (a, b) => {
 }
 
 const isLock = (a, b) => {
+  let { highP, lowP, gain } = b
+  return gain >= 9
+}
+
+const isLock0 = (a, b) => {
   let { openP, closeP, highP, lowP } = b
   let up = (highP - lowP) / closeP
   // 按价格算

@@ -35,7 +35,6 @@ const band = (list, name) => {
   }
   if (result_list.length > msg.bandNumber) {
     let [a, b] = result_list.slice(-2)
-    console.log(result_list)
     let isDown = a - b > 0
     let diffnum = (Math.abs(lastItem - b) / b).toFixed(4) * 1
     if (diffnum <= diff) {
